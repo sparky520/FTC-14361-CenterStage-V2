@@ -27,13 +27,13 @@ public class IntakeSlide {
     }
     public void setPosition(extensionState extensionState, intakeSlidesState inExtendState)
     {
-        switch(inExtendState){
+        switch(extensionState){
             case retracted:
                 intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
 
                 break;
             case extending:
-                switch(extensionState){
+                switch(inExtendState){
                     case HIGHIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.fullExtension);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -42,7 +42,7 @@ public class IntakeSlide {
                         intakeSlideMotor.setPower(power);
                         // setPIDMotorPower(robotConstants.IntakeSlide.fullExtension);
 
-                        inExtendState = inExtendState.extended;
+                        extensionState = extensionState.extended;
                         break;
                     case MEDIUMIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.mediumExtension);
@@ -52,7 +52,7 @@ public class IntakeSlide {
                         intakeSlideMotor.setPower(power);
 
                         //setPIDMotorPower(robotConstants.IntakeSlide.mediumExtension);
-                        inExtendState = inExtendState.extended;
+                        extensionState = extensionState.extended;
 
                         break;
                     case STATION:
@@ -65,7 +65,7 @@ public class IntakeSlide {
                         //PIDMotorPower(robotConstants.IntakeSlide.retracted);
 
 
-                        inExtendState = inExtendState.retracted;
+                        extensionState = extensionState.retracted;
                         break;
 
 
@@ -73,6 +73,11 @@ public class IntakeSlide {
             case extended:
                 break;
         }
+    }
+
+    public double getIntakeSlidePosition(){
+        double position = intakeSlideMotor.getCurrentPosition();
+        return position;
     }
 
 }

@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import static java.lang.Math.round;
+
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -80,6 +82,12 @@ public Mecanum(HardwareMap hardwareMap){
         leftRear.setPower(leftRearPower * slowOffset);
         rightFront.setPower(rightFrontPower * slowOffset);
         rightRear.setPower(rightRearPower * slowOffset);
+    }
+    public void setMotorPowerRounded(){
+        leftFront.setPower(round(leftFrontPower));
+        leftRear.setPower(round(leftRearPower));
+        rightFront.setPower(round(rightFrontPower));
+        rightRear.setPower(round(rightRearPower));
     }
 
 }
