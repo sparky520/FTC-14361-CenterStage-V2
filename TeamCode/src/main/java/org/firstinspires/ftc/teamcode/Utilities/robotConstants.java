@@ -11,10 +11,14 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int HIGH = 0;
-        public static int MEDIUM = 0;
-        public static int LOW = 0;
-        public static int GROUND = 0;
+        public static int HIGHLEFT = 0;
+        public static int MEDIUMLEFT = 0;
+        public static int LOWLEFT = 0;
+        public static int GROUNDLEFT = 0;
+        public static int HIGHRIGHT = 0;
+        public static int MEDIUMRIGHT = 0;
+        public static int LOWRIGHT = 0;
+        public static int GROUNDRIGHT = 0;
     }
 
     public static class IntakeSlide
@@ -63,5 +67,13 @@ public class robotConstants
     public static class Climb
     {
         public static int climbPosition = 0;
+    }
+    public static class Wrist{
+        public static double wristSideways = .35;
+        public static double wristNormal = 0;
+    }
+    public static class VirtualFourBar{
+        public static double intaking = 0.5;
+        public static double outtaking = 0.0;
     }
 }
