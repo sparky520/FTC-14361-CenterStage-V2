@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 public class OuttakeSlide {
     DcMotorEx rightOuttakeSlide, leftOuttakeSlide;
     private final int countsPerRev = 384;
-    double power = .7;
+    double power = .9;
 
 
     public OuttakeSlide(HardwareMap hardwareMap) {
