@@ -38,6 +38,7 @@ public class IntakeSlide {
                 switch(inExtendState){
                     case HIGHIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.fullExtension);
+                        intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
@@ -49,6 +50,7 @@ public class IntakeSlide {
                         break;
                     case MEDIUMIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.mediumExtension);
+                        intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
@@ -62,6 +64,7 @@ public class IntakeSlide {
 
 
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
+                        intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                         intakeSlideMotor.setPower(power);
