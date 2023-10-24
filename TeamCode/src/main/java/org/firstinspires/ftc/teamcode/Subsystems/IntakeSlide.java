@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 public class IntakeSlide {
     DcMotorEx intakeSlideMotor;

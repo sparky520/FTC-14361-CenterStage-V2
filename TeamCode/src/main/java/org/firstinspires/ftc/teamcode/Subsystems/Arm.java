@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Commands.armState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 public class Arm {
     private Servo leftArm, rightArm;
