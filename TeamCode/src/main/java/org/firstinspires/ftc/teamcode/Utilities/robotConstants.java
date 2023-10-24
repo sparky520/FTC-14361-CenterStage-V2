@@ -11,12 +11,12 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int HIGHLEFT = 0;
-        public static int MEDIUMLEFT = 0;
+        public static int HIGHLEFT = -1700;
+        public static int MEDIUMLEFT = -1100;
         public static int LOWLEFT = 0;
         public static int GROUNDLEFT = 0;
-        public static int HIGHRIGHT = 0;
-        public static int MEDIUMRIGHT = 0;
+        public static int HIGHRIGHT = 1800;
+        public static int MEDIUMRIGHT = 1100;
         public static int LOWRIGHT = 0;
         public static int GROUNDRIGHT = 0;
     }
@@ -73,7 +73,11 @@ public class robotConstants
         public static double wristNormal = 0;
     }
     public static class VirtualFourBar{
-        public static double intaking = 0.5;
-        public static double outtaking = 0.0;
+        public static double intakingLeft = 1;
+        public static double intakingRight = .4;
+
+        public static double outtakingRight = .95;
+
+        public static double outtakingLeft = .4;
     }
 }

@@ -15,16 +15,16 @@ public class virtualFourBar {
     public void setVirtualFourBarPosition(virtualFourBarState virtualFourBarState){
         switch(virtualFourBarState){
             case outtaking:
-                leftVirtualFourBar.setPosition(robotConstants.VirtualFourBar.outtaking);
-                rightVirtualFourBar.setPosition(robotConstants.VirtualFourBar.outtaking);
+                leftVirtualFourBar.setPosition(robotConstants.VirtualFourBar.outtakingLeft);
+                rightVirtualFourBar.setPosition(robotConstants.VirtualFourBar.outtakingRight);
                 break;
             case intaking:
-              leftVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intaking);
-              rightVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intaking);
+              leftVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intakingLeft);
+              rightVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intakingRight);
               break;
             default:
-                leftVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intaking);
-                rightVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intaking);
+                leftVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intakingLeft);
+                rightVirtualFourBar.setPosition(robotConstants.VirtualFourBar.intakingRight);
 
 
             }

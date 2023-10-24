@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
@@ -8,16 +9,17 @@ import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
 import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 
 public class IntakeSlide {
-    DcMotor intakeSlideMotor;
+    DcMotorEx intakeSlideMotor;
     private final int countsPerRev = 384;
     double power = .7;
 
     public IntakeSlide(HardwareMap hardwareMap) {
 
-        intakeSlideMotor = hardwareMap.get(DcMotor.class, "intakeSlideMotor");
+        intakeSlideMotor = hardwareMap.get(DcMotorEx.class, "intakeSlideMotor");
 
-        intakeSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        intakeSlideMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intakeSlideMotor.setTargetPositionTolerance(5);
 
 
         //Stop and reset encoders doesnt work?
@@ -37,6 +39,7 @@ public class IntakeSlide {
                     case HIGHIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.fullExtension);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
 
                         intakeSlideMotor.setPower(power);

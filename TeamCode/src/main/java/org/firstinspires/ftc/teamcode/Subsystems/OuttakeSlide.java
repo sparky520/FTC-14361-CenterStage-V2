@@ -13,6 +13,8 @@ import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 public class OuttakeSlide {
     DcMotorEx rightOuttakeSlide, leftOuttakeSlide;
     private final int countsPerRev = 384;
+    double power = .7;
+
 
     public OuttakeSlide(HardwareMap hardwareMap) {
         rightOuttakeSlide = hardwareMap.get(DcMotorEx.class, "rightOuttakeSlide");
@@ -23,6 +25,11 @@ public class OuttakeSlide {
         leftOuttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+
+        rightOuttakeSlide.setTargetPositionTolerance(5);
+        leftOuttakeSlide.setTargetPositionTolerance(5);
     }
 
     public void setOuttakeSlidePosition(extensionState extensionState, outtakeSlidesState outtakeSlidesState) {
@@ -38,6 +45,9 @@ public class OuttakeSlide {
                         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+                        leftOuttakeSlide.setPower(power);
+                        rightOuttakeSlide.setPower(power);
+
                         extensionState = extensionState.extended;
                         break;
                     case MEDIUMOUT:
@@ -47,6 +57,9 @@ public class OuttakeSlide {
                         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         extensionState = extensionState.extended;
+
+                        leftOuttakeSlide.setPower(power);
+                        rightOuttakeSlide.setPower(power);
                         break;
                     case STATION:
                         leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.GROUNDLEFT);
@@ -55,6 +68,9 @@ public class OuttakeSlide {
                         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         extensionState = extensionState.retracted;
+
+                        leftOuttakeSlide.setPower(power);
+                        rightOuttakeSlide.setPower(power);
                         break;
                 }
             }

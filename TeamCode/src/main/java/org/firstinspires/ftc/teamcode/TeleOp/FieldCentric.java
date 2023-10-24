@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
+import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
@@ -35,6 +36,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
         telemetry.addLine("Left Slide Position: " + bot.getOuttakeLeftSlidePosition() + " ticks");
         telemetry.addLine("Right Slide Position: " + bot.getOuttakeRightSlidePosition() + " ticks");
+        telemetry.addLine("Intake Slide Position" + bot.getIntakeSlidePosition() );
         telemetry.addLine("Wrist Position: " + bot.wrist.getWristPosition());
         telemetry.update();
         driver.readButtons();
@@ -74,6 +76,15 @@ public class FieldCentric extends OpMode {
         }
         if(operator.wasJustPressed(GamepadKeys.Button.Y)){
             bot.setVirtualFourBarPosition(virtualFourBarState.intaking);
+        }
+        if(operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+            bot.setOuttakeSlidesState(outtakeSlidesState.HIGHOUT, extensionState.extending);
+        }
+        if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+            bot.setOuttakeSlidesState(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+        }
+        if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
+            bot.setOuttakeSlidesState(outtakeSlidesState.STATION, extensionState.extending);
         }
 
 

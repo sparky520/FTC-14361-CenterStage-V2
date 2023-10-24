@@ -32,8 +32,10 @@ public class Robot {
         //arm = new Arm(hardwareMap);
         //claw = new Claw(hardwareMap);
         wrist = new Wrist(hardwareMap);
+        virtualFourBar = new virtualFourBar(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
+
 
     }
 
