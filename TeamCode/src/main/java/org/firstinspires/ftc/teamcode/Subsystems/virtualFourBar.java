@@ -9,8 +9,8 @@ import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 public class virtualFourBar {
     private Servo leftVirtualFourBar, rightVirtualFourBar;
     public  virtualFourBar(HardwareMap hardwareMap){
-        leftVirtualFourBar = hardwareMap.get(Servo.class, "leftVirtualFourBar");
-        rightVirtualFourBar = hardwareMap.get(Servo.class, "rightVirtualFourBar");
+        leftVirtualFourBar = hardwareMap.servo.get("leftVirtualFourBar");
+        rightVirtualFourBar = hardwareMap.servo.get("rightVirtualFourBar");
     }
     public void setVirtualFourBarPosition(virtualFourBarState virtualFourBarState){
         switch(virtualFourBarState){
@@ -29,5 +29,7 @@ public class virtualFourBar {
 
             }
         }
+
+
     }
 

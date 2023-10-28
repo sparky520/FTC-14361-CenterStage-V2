@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
@@ -19,6 +20,7 @@ public class FieldCentric extends OpMode {
     private GamepadEx driver, operator;
 
     private Robot bot;
+    virtualFourBarState v4bState = virtualFourBarState.intaking;
     @Override
     public void init() {
         runTime = new ElapsedTime();
@@ -72,12 +74,31 @@ public class FieldCentric extends OpMode {
         if(operator.wasJustPressed(GamepadKeys.Button.B)){
             bot.setWristPosition(wristState.sideways);
         }*/
-        if(operator.wasJustPressed(GamepadKeys.Button.X)){
-            bot.setVirtualFourBarPosition(virtualFourBarState.outtaking);
-        }
-        if(operator.wasJustPressed(GamepadKeys.Button.Y)){
+        if(operator.wasJustPressed(GamepadKeys.Button.X)) {
+
             bot.setVirtualFourBarPosition(virtualFourBarState.intaking);
+
         }
+            if(operator.wasJustPressed(GamepadKeys.Button.Y)){
+                bot.setVirtualFourBarPosition(virtualFourBarState.outtaking);
+
+               /* if(v4bState == virtualFourBarState.outtaking){
+                    v4bState = virtualFourBarState.intaking;
+                    bot.setVirtualFourBarPosition(v4bState);
+              }
+                else if(v4bState == virtualFourBarState.intaking){
+                    v4bState = virtualFourBarState.outtaking;
+                    bot.setVirtualFourBarPosition(v4bState);
+                }
+                */
+
+            }
+
+
+
+        //if(operator.wasJustPressed(GamepadKeys.Button.Y)){
+           // bot.setVirtualFourBarPosition(virtualFourBarState.intaking);
+        //}
         if(operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
             bot.setOuttakeSlidesState(outtakeSlidesState.HIGHOUT, extensionState.extending);
         }

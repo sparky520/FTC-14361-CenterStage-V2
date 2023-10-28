@@ -86,6 +86,13 @@ public class Robot {
         return wrist.getWristPosition();
     }
 
+    public virtualFourBarState getVirtualFourBarState(){
+        return virtualFourBarState;
+    }
+
+    public void setOuttakeSlide(){}
+
+
 
 
 
