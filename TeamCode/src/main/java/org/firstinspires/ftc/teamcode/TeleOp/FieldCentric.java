@@ -75,14 +75,23 @@ public class FieldCentric extends OpMode {
             bot.setWristPosition(wristState.sideways);
         }*/
         if(operator.wasJustPressed(GamepadKeys.Button.X)) {
-
-            bot.setVirtualFourBarPosition(virtualFourBarState.intaking);
+            if (bot.getVirtualFourBarState().equals(virtualFourBarState.outtaking)) {
+                bot.setVirtualFourBarPosition(virtualFourBarState.intaking);
+            }
+            else if(bot.getVirtualFourBarState().equals(virtualFourBarState.intaking)){
+                bot.setVirtualFourBarPosition(virtualFourBarState.outtaking);
+                telemetry.addLine("crawt");
+            }
+            else{
+                bot.setVirtualFourBarPosition(virtualFourBarState.intaking);
+                telemetry.addLine("meow");
 
         }
-            if(operator.wasJustPressed(GamepadKeys.Button.Y)){
-                bot.setVirtualFourBarPosition(virtualFourBarState.outtaking);
 
-               /* if(v4bState == virtualFourBarState.outtaking){
+            }
+
+            if(operator.wasJustPressed(GamepadKeys.Button.Y)){
+                if(v4bState == virtualFourBarState.outtaking){
                     v4bState = virtualFourBarState.intaking;
                     bot.setVirtualFourBarPosition(v4bState);
               }
@@ -90,8 +99,6 @@ public class FieldCentric extends OpMode {
                     v4bState = virtualFourBarState.outtaking;
                     bot.setVirtualFourBarPosition(v4bState);
                 }
-                */
-
             }
 
 
