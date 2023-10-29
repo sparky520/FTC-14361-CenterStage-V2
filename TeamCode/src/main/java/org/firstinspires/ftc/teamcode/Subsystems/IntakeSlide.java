@@ -31,7 +31,6 @@ public class IntakeSlide {
     {
         switch(extensionState){
             case retracted:
-                intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
 
                 break;
             case extending:

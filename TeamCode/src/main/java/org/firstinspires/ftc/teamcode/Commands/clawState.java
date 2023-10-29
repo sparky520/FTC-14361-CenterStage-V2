@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands;
 public enum clawState {
     leftOpen,
     rightOpen,
-    leftclose,
+    leftClose,
     rightClose,
     open,
     close,
