@@ -66,7 +66,7 @@ public class Claw {
             case close:
                 close();
                 break;
-            case leftclose:
+            case leftClose:
                 leftClose();
                 break;
             case rightClose:

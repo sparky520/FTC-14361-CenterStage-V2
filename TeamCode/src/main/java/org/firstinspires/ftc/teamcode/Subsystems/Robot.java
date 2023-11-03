@@ -10,6 +10,9 @@ import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
+import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
+
+
 
 public class Robot {
     public IntakeSlide intakeSlide;
@@ -26,7 +29,8 @@ public class Robot {
     public virtualFourBarState virtualFourBarState;
     public virtualFourBarExtensionState virtualFourBarExtensionState;
     public extensionState extensionState;
-
+    public activeIntake activeIntake;
+    public activeIntakeState activeIntakeState;
 
     Telemetry telemetry;
 
@@ -72,7 +76,7 @@ public class Robot {
     }
     public void setOuttakeSlidesState(outtakeSlidesState outtakeSlidesState)
     {
-        this.outtakeSlidesState = this.outtakeSlidesState;
+        this.outtakeSlidesState = outtakeSlidesState;
     }
 
 
@@ -121,6 +125,10 @@ public class Robot {
     public virtualFourBarExtensionState getVirtualFourBarExtensionState(){
         return virtualFourBarExtensionState;
     }
+    public void setVirtualFourBarExtensionState(virtualFourBarExtensionState virtualFourBarExtensionState){
+        this.virtualFourBarExtensionState = virtualFourBarExtensionState;
+    }
+
 
 
     public void setClawPosition(clawState clawState){
@@ -134,6 +142,20 @@ public class Robot {
     public clawState getClawState(){
         return clawState;
     }
+
+    public void setActiveIntake(activeIntakeState activeIntakeState){
+        activeIntake.setActiveIntakePosition(activeIntakeState);
+    }
+
+    public activeIntakeState getActiveIntakeState(){
+        return activeIntakeState;
+    }
+
+    public void setActiveIntakeState(activeIntakeState activeIntakeState){
+        this.activeIntakeState = activeIntakeState;
+    }
+
+
 
 }
 

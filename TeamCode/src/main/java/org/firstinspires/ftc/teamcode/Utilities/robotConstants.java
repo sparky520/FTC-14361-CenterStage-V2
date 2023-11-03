@@ -15,7 +15,7 @@ public class robotConstants
         public static int MEDIUMLEFT = -1100;
         public static int LOWLEFT = 0;
         public static int GROUNDLEFT = 0;
-        public static int HIGHRIGHT = 1800;
+        public static int HIGHRIGHT = 1700;
         public static int MEDIUMRIGHT = 1100;
         public static int LOWRIGHT = 0;
         public static int GROUNDRIGHT = 0;
@@ -41,10 +41,10 @@ public class robotConstants
         public static double intakeAuto = 0.0;
         public static double intakeTeleOp = 0.0;
 
-        public static double leftClose = 0;
-        public static double rightClose = 0;
+        public static double leftClose = .3;
+        public static double rightClose = .7;
         public static double leftOpen = 0;
-        public static double rightOpen = 0;
+        public static double rightOpen = 1;
 
         public static double outWristRotation = 0.0;
         public static double sideWristRotation = 0.0;
@@ -77,11 +77,17 @@ public class robotConstants
         public static double wristNormal = 0;
     }
     public static class VirtualFourBar{
-        public static double intakingLeft = 1;
-        public static double intakingRight = 1;
+        public static double intakingLeft = 0;
+        public static double intakingRight = 0;
 
-        public static double outtakingRight = 0;
+        public static double outtakingRight = .5;
 
-        public static double outtakingLeft = 0;
+        public static double outtakingLeft = .5;
+
+        public static double initLeft = .7;
+        public static double initRight = .8;
+
+
+        //.1 AND 0 are lined up
     }
 }
