@@ -11,13 +11,16 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int HIGHLEFT = -1700;
-        public static int MEDIUMLEFT = -1100;
-        public static int LOWLEFT = 0;
+        public static int HIGHLEFT = 1850;
+        public static int HIGHRIGHT = 1850;
+
+        public static int MEDIUMLEFT = 1500;
+        public static int MEDIUMRIGHT = 1500;
+
+        public static int LOWLEFT = 1000;
+        public static int LOWRIGHT = 1000;
+
         public static int GROUNDLEFT = 0;
-        public static int HIGHRIGHT = 1700;
-        public static int MEDIUMRIGHT = 1100;
-        public static int LOWRIGHT = 0;
         public static int GROUNDRIGHT = 0;
     }
 
@@ -30,10 +33,16 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int fullExtension = -3800;
-        public static int mediumExtension = -2200;
+
+//        public static int fullExtension = -3600;
+//        public static int mediumExtension = -1200;
+//        public static int shortExtension = -500;
+
+        // first comp length below
+        public static int fullExtension = -900;
+        public static int mediumExtension = -450;
         public static int shortExtension = 0;
-        public static int retracted = 0;
+        public static int retracted = 10;
     }
 
     public static class Claw
