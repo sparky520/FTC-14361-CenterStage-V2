@@ -1,18 +1,26 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 
 public class Claw {
-    private Servo leftHand, rightHand;
+    private ServoEx leftHand, rightHand;
+    //private Servo leftHand, rightHand;
 
     public Claw(HardwareMap hardwareMap)
     {
-        leftHand = hardwareMap.servo.get("leftHand");
-        rightHand = hardwareMap.servo.get("rightHand");
+        leftHand = new SimpleServo(hardwareMap, "leftHand",0, 360, AngleUnit.DEGREES);
+        rightHand = new SimpleServo(hardwareMap, "rightHand",0, 360, AngleUnit.DEGREES);
+        leftHand.setInverted(true);
+        rightHand.setInverted(true);
+        //leftHand = hardwareMap.servo.get("leftHand");
+      //  rightHand = hardwareMap.servo.get("rightHand");
     }
 
     public void leftOpen()
@@ -82,5 +90,11 @@ public class Claw {
                 close();
         }
 
+    }
+    public double getRightClawPosition(){
+        return rightHand.getPosition();
+    }
+    public double getLeftClawPosition(){
+        return leftHand.getPosition();
     }
 }

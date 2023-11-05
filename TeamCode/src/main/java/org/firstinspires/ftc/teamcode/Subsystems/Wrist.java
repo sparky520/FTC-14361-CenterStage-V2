@@ -12,6 +12,7 @@ public class Wrist {
     public Wrist(HardwareMap hardwareMap){
 
         servo = hardwareMap.get(Servo.class, "wristServo");
+
     }
     public void setWristPosition(wristState wristState){
         switch(wristState){

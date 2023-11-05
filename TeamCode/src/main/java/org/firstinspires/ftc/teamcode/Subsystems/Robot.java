@@ -44,6 +44,7 @@ public class Robot {
         virtualFourBar = new virtualFourBar(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
+        activeIntake = new activeIntake(hardwareMap);
 
 
     }
@@ -143,7 +144,7 @@ public class Robot {
         return clawState;
     }
 
-    public void setActiveIntake(activeIntakeState activeIntakeState){
+    public void setActiveIntakePosition(activeIntakeState activeIntakeState){
         activeIntake.setActiveIntakePosition(activeIntakeState);
     }
 
