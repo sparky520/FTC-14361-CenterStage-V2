@@ -50,7 +50,8 @@ public class FieldCentric extends OpMode {
     // ---------------------------- LOOPING ---------------------------- //
 
     @Override
-    public void loop() {
+    public void loop()
+    {
         telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
         telemetry.addLine("Left Slide Position: " + bot.getOuttakeLeftSlidePosition() + " ticks");
         telemetry.addLine("Right Slide Position: " + bot.getOuttakeRightSlidePosition() + " ticks");
@@ -120,7 +121,7 @@ public class FieldCentric extends OpMode {
 
         if(operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON))
         {
-            if (bot.getWristState() != null && bot.getClawState().equals(clawState.open))
+            if (bot.getClawState() != null && bot.getClawState().equals(clawState.open))
             {
                 bot.setClawPosition(clawState.close);
                 bot.setClawState(clawState.close);
