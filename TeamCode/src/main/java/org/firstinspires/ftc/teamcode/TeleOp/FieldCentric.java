@@ -128,7 +128,7 @@ public class FieldCentric extends OpMode {
         }
 
 
-            if (operator.wasJustPressed(GamepadKeys.Button.X)) {
+         /*  if (operator.wasJustPressed(GamepadKeys.Button.X)) {
                 if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.outtaking)) {
                     bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
                     bot.setVirtualFourBarState(virtualFourBarState.intaking);
@@ -137,7 +137,7 @@ public class FieldCentric extends OpMode {
                         bot.setWristState(wristState.sideways);
                         bot.setWristPosition(wristState.sideways);
                      }*/
-                    if (bot.getVirtualFourBarExtensionState() != null && bot.getVirtualFourBarExtensionState().equals(virtualFourBarExtensionState.extending)) {
+                /*    if (bot.getVirtualFourBarExtensionState() != null && bot.getVirtualFourBarExtensionState().equals(virtualFourBarExtensionState.extending)) {
                        // for (int i = 0; i <= 50; i++) {
 
                             bot.setWristState(wristState.normal);
@@ -183,9 +183,73 @@ public class FieldCentric extends OpMode {
                 }
             }
 
+*/
+        if (operator.wasJustPressed(GamepadKeys.Button.X)) {
+            if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.outtaking)) {
+                bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+                bot.setVirtualFourBarState(virtualFourBarState.init);
+                  /*  while(bot.getVirtualFourBarExtensionState() != null && bot.getVirtualFourBarExtensionState().equals(virtualFourBarExtensionState.extending))
+                    {
+                        bot.setWristState(wristState.sideways);
+                        bot.setWristPosition(wristState.sideways);
+                     }*/
+                if (bot.getVirtualFourBarExtensionState() != null && bot.getVirtualFourBarExtensionState().equals(virtualFourBarExtensionState.extending)) {
+                    // for (int i = 0; i <= 50; i++) {
+
+                    bot.setWristState(wristState.normal);
+                    bot.setWristPosition(wristState.normal);
+                    // }
+                }
+
+                bot.setWristState(wristState.sideways);
+                bot.setWristPosition(wristState.sideways);
+            } else if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.intaking)) {
+                bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
+                bot.setVirtualFourBarState(virtualFourBarState.outtaking);
+
+                if (bot.getVirtualFourBarExtensionState() != null && bot.getVirtualFourBarExtensionState().equals(virtualFourBarExtensionState.extending)) {
+                    // for (int i = 0; i <= 50; i++) {
+
+                    bot.setWristState(wristState.normal);
+                    bot.setWristPosition(wristState.normal);
+
+                    // }
+
+                }
+                bot.setWristState(wristState.sideways);
+                bot.setWristPosition(wristState.sideways);
+            } else if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.init)) {
+                bot.setWristState(wristState.normal);
+                bot.setWristPosition(wristState.normal);
+
+                bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
+                bot.setVirtualFourBarState(virtualFourBarState.intaking);
 
 
-            if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
+
+            } else {
+                bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+                bot.setVirtualFourBarExtensionState(virtualFourBarExtensionState.extending);
+                bot.setVirtualFourBarState(virtualFourBarState.init);
+                if (bot.getVirtualFourBarExtensionState() != null && bot.getVirtualFourBarExtensionState().equals(virtualFourBarExtensionState.extending)) {
+                    //  for (int i = 0; i <= 50; i++) {
+
+                    bot.setWristState(wristState.normal);
+                    bot.setWristPosition(wristState.normal);
+                    //}
+
+                }
+
+
+                bot.setWristState(wristState.sideways);
+                bot.setWristPosition(wristState.sideways);
+
+
+            }
+        }
+
+
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
                 if (bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.STATION)) {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
                     bot.setOuttakeSlidesState(outtakeSlidesState.MEDIUMOUT);
