@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 

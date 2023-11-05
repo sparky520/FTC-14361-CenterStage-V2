@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 public class Claw {
     private ServoEx leftHand, rightHand;
