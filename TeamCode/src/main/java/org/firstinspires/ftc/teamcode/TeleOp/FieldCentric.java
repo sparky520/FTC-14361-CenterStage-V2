@@ -78,12 +78,15 @@ public class FieldCentric extends OpMode {
             if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.STATION)) {
                 bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
                 bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
+
             } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.MEDIUMIN)) {
                 bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
                 bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
+
             } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.HIGHIN)) {
                 bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
                 bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
+
             } else {
                 bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
                 bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -95,13 +98,15 @@ public class FieldCentric extends OpMode {
             if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.HIGHIN)) {
                 bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
                 bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
+
             } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.MEDIUMIN)) {
                 bot.setIntakeSlideState(intakeSlidesState.STATION);
                 bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-            } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.STATION)) {
 
+            } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.STATION)) {
                 bot.setIntakeSlideState(intakeSlidesState.STATION);
                 bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
+
             } else {
                 bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
                 bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -203,7 +208,8 @@ public class FieldCentric extends OpMode {
 
                 bot.setWristState(wristState.sideways);
                 bot.setWristPosition(wristState.sideways);
-            } else if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.intaking)) {
+
+                } else if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.intaking)) {
                 bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
                 bot.setVirtualFourBarState(virtualFourBarState.outtaking);
 
@@ -218,7 +224,8 @@ public class FieldCentric extends OpMode {
                 }
                 bot.setWristState(wristState.sideways);
                 bot.setWristPosition(wristState.sideways);
-            } else if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.init)) {
+
+                } else if (bot.virtualFourBarState != null && bot.getVirtualFourBarState().equals(virtualFourBarState.init)) {
                 bot.setWristState(wristState.normal);
                 bot.setWristPosition(wristState.normal);
 
@@ -227,7 +234,7 @@ public class FieldCentric extends OpMode {
 
 
 
-            } else {
+                } else {
                 bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                 bot.setVirtualFourBarExtensionState(virtualFourBarExtensionState.extending);
                 bot.setVirtualFourBarState(virtualFourBarState.init);
@@ -251,14 +258,17 @@ public class FieldCentric extends OpMode {
 
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
                 if (bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.STATION)) {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
-                    bot.setOuttakeSlidesState(outtakeSlidesState.MEDIUMOUT);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
+                    bot.setOuttakeSlidesState(outtakeSlidesState.HIGHOUT);
+
                 } else if (bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.MEDIUMOUT)) {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
                     bot.setOuttakeSlidesState(outtakeSlidesState.HIGHOUT);
+
                 } else if (bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.HIGHOUT)) {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extended);
                     bot.setOuttakeSlidesState(outtakeSlidesState.HIGHOUT);
+
                 } else {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setOuttakeSlidesState(outtakeSlidesState.STATION);
@@ -270,12 +280,15 @@ public class FieldCentric extends OpMode {
                 if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.HIGHIN)) {
                     bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
                     bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
+
                 } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.MEDIUMIN)) {
                     bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
                     bot.setIntakeSlideState(intakeSlidesState.STATION);
+
                 } else if (bot.getIntakeSlideState() != null && bot.getIntakeSlideState().equals(intakeSlidesState.STATION)) {
                     bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
                     bot.setIntakeSlideState(intakeSlidesState.STATION);
+
                 } else {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setOuttakeSlidesState(outtakeSlidesState.STATION);
@@ -286,9 +299,11 @@ public class FieldCentric extends OpMode {
                 if (bot.getClawState() != null && bot.getClawState().equals(clawState.rightClose)) {
                     bot.setClawPosition(clawState.rightOpen);
                     bot.setClawState(clawState.rightOpen);
+
                 } else if (bot.getClawState() != null && bot.getClawState().equals(clawState.rightOpen)) {
                     bot.setClawPosition(clawState.rightClose);
                     bot.setClawState(clawState.rightClose);
+
                 } else {
                     bot.setClawPosition(clawState.rightClose);
                     bot.setClawState(clawState.rightClose);
@@ -299,9 +314,11 @@ public class FieldCentric extends OpMode {
                 if (bot.getClawState() != null && bot.getClawState().equals(clawState.leftClose)) {
                     bot.setClawPosition(clawState.leftOpen);
                     bot.setClawState(clawState.leftOpen);
+
                 } else if (bot.getClawState() != null && bot.getClawState().equals(clawState.leftOpen)) {
                     bot.setClawPosition(clawState.leftClose);
                     bot.setClawState(clawState.leftClose);
+
                 } else {
                     bot.setClawPosition(clawState.leftClose);
                     bot.setClawState(clawState.leftClose);
@@ -312,9 +329,11 @@ public class FieldCentric extends OpMode {
                 if (bot.getClawState() != null && bot.getClawState().equals(clawState.close)) {
                     bot.setClawPosition(clawState.open);
                     bot.setClawState(clawState.open);
+
                 } else if (bot.getClawState() != null && bot.getClawState().equals(clawState.open)) {
                     bot.setClawPosition(clawState.close);
                     bot.setClawState(clawState.close);
+
                 } else {
                     bot.setClawPosition(clawState.close);
                     bot.setClawState(clawState.close);
@@ -324,9 +343,11 @@ public class FieldCentric extends OpMode {
                 if (bot.getActiveIntakeState() != null && bot.getActiveIntakeState().equals(activeIntakeState.active)) {
                     bot.setActiveIntakePosition(activeIntakeState.inactive);
                     bot.setActiveIntakeState(activeIntakeState.inactive);
+
                 } else if (bot.getClawState() != null && bot.getActiveIntakeState().equals(activeIntakeState.inactive)) {
                     bot.setActiveIntakePosition(activeIntakeState.active);
                     bot.setActiveIntakeState(activeIntakeState.inactive);
+
                 } else {
                     bot.setActiveIntakePosition(activeIntakeState.inactive);
                     bot.setActiveIntakeState(activeIntakeState.inactive);
@@ -336,6 +357,7 @@ public class FieldCentric extends OpMode {
                 if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active) || bot.getActiveIntakeState().equals(activeIntakeState.inactive))) {
                     bot.setActiveIntakePosition(activeIntakeState.activeReverse);
                     bot.setActiveIntakeState(activeIntakeState.activeReverse);
+
                 } else {
 
                     bot.setActiveIntakePosition(activeIntakeState.inactive);
@@ -347,8 +369,8 @@ public class FieldCentric extends OpMode {
                 if (bot.getActiveIntakeState() != null && ((bot.getActiveIntakeState().equals(activeIntakeState.active)) || bot.getActiveIntakeState().equals(activeIntakeState.inactive))) {
                     bot.setActiveIntakePosition(activeIntakeState.activeReverse);
                     bot.setActiveIntakeState(activeIntakeState.activeReverse);
-                } else {
 
+                } else {
                     bot.setActiveIntakePosition(activeIntakeState.inactive);
                     bot.setActiveIntakeState(activeIntakeState.inactive);
 
@@ -359,6 +381,7 @@ public class FieldCentric extends OpMode {
                  if (bot.getActiveIntakeState() != null && ((bot.getActiveIntakeState().equals(activeIntakeState.activeReverse)) || bot.getActiveIntakeState().equals(activeIntakeState.inactive))) {
                      bot.setActiveIntakePosition(activeIntakeState.active);
                      bot.setActiveIntakeState(activeIntakeState.active);
+
             }      else {
 
                     bot.setActiveIntakePosition(activeIntakeState.inactive);
@@ -370,6 +393,7 @@ public class FieldCentric extends OpMode {
             if (bot.getActiveIntakeState() != null && ((bot.getActiveIntakeState().equals(activeIntakeState.active)) || bot.getActiveIntakeState().equals(activeIntakeState.inactive))) {
                 bot.setActiveIntakePosition(activeIntakeState.activeReverse);
                 bot.setActiveIntakeState(activeIntakeState.activeReverse);
+
             } else {
 
                 bot.setActiveIntakePosition(activeIntakeState.inactive);
