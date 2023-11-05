@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.Utilities.RobotConstants;
 
 public class IntakeSlide {
     DcMotorEx intakeSlideMotor;
@@ -36,7 +36,7 @@ public class IntakeSlide {
             case extending:
                 switch(inExtendState){
                     case HIGHIN:
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.fullExtension);
+                        intakeSlideMotor.setTargetPosition(RobotConstants.IntakeSlide.fullExtension);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -48,7 +48,7 @@ public class IntakeSlide {
                         extensionState = extensionState.extended;
                         break;
                     case MEDIUMIN:
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.mediumExtension);
+                        intakeSlideMotor.setTargetPosition(RobotConstants.IntakeSlide.mediumExtension);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -62,7 +62,7 @@ public class IntakeSlide {
                     case STATION:
 
 
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
+                        intakeSlideMotor.setTargetPosition(RobotConstants.IntakeSlide.retracted);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 

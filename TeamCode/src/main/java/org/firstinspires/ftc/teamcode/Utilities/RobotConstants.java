@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Utilities;
 
-public class robotConstants
+public class RobotConstants
 {
     public static class OuttakeSlide
     {
@@ -45,7 +45,7 @@ public class robotConstants
         // first comp length below
 
         public static int shortExtension = 0;
-        public static int retracted = 10;
+        public static int retracted = -2;
     }
 
     public static class Claw
@@ -84,11 +84,15 @@ public class robotConstants
     {
         public static int climbPosition = 0;
     }
-    public static class Wrist{
+
+    public static class Wrist
+    {
         public static double wristSideways = .33;
         public static double wristNormal = .67;
     }
-    public static class VirtualFourBar{
+
+    public static class VirtualFourBar
+    {
         public static double intakingLeft = .48;
         public static double intakingRight = .45;
 
@@ -99,8 +103,5 @@ public class robotConstants
 
         public static double initLeft = .43;
         public static double initRight = .4;
-
-
-        //.1 AND 0 are lined up
     }
 }

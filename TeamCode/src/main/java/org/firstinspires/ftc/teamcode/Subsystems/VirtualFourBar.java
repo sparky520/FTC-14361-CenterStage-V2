@@ -1,29 +1,27 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.initLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.initRight;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.intakingLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.intakingRight;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.outtakingLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.outtakingRight;
+import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.initLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.initRight;
+import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.intakingLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.intakingRight;
+import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.outtakingLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.outtakingRight;
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 
-public class virtualFourBar {
+public class VirtualFourBar {
     private ServoEx leftVirtualFourBar, rightVirtualFourBar;
 
     public virtualFourBarExtensionState virtualFourBarExtension;
     double minAngle = 0, maxAngle= 360;
 
-    public virtualFourBar(HardwareMap hardwareMap) {
+    public VirtualFourBar(HardwareMap hardwareMap) {
       //  leftVirtualFourBar = hardwareMap.servo.get("leftVirtualFourBar");
        // rightVirtualFourBar = hardwareMap.servo.get("rightVirtualFourBar");
 

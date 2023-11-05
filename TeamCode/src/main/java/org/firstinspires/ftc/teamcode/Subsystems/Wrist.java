@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Commands.wristState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.Utilities.RobotConstants;
 
 public class Wrist {
 
@@ -17,18 +17,17 @@ public class Wrist {
     public void setWristPosition(wristState wristState){
         switch(wristState){
             case normal:
-                servo.setPosition(robotConstants.Wrist.wristNormal);
+                servo.setPosition(RobotConstants.Wrist.wristNormal);
                 break;
             case sideways:
-                servo.setPosition(robotConstants.Wrist.wristSideways);
+                servo.setPosition(RobotConstants.Wrist.wristSideways);
                 break;
             default:
-                servo.setPosition(robotConstants.Wrist.wristNormal);
+                servo.setPosition(RobotConstants.Wrist.wristNormal);
         }
     }
     public double getWristPosition(){
-        double position = servo.getPosition();
-        return position;
+        return servo.getPosition();
     }
 
 }
