@@ -71,10 +71,10 @@ public Mecanum(HardwareMap hardwareMap){
     {
 
 
-        leftFront.setPower(leftFrontPower * offset + .1);
-        leftRear.setPower(leftRearPower * offset + .1);
-        rightFront.setPower(rightFrontPower * offset + .1);
-        rightRear.setPower(rightRearPower * offset + .1);
+        leftFront.setPower(leftFrontPower * offset);
+        leftRear.setPower(leftRearPower * offset );
+        rightFront.setPower(rightFrontPower * offset);
+        rightRear.setPower(rightRearPower * offset );
     }
     public void setMotorSlowDownPower()
     {

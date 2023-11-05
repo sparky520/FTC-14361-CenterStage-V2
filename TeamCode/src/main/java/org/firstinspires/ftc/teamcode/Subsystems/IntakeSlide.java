@@ -23,7 +23,7 @@ public class IntakeSlide {
 
 
         //Stop and reset encoders doesnt work?
-        //intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
     }
@@ -31,7 +31,6 @@ public class IntakeSlide {
     {
         switch(extensionState){
             case retracted:
-                intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
 
                 break;
             case extending:
