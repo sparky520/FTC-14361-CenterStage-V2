@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum outtakeSlidesState {
-
-HIGHOUT,
-    MEDIUMOUT,
+public enum IntakeSlidesState {
+    HIGHIN,
+    MEDIUMIN,
     STATION
 }

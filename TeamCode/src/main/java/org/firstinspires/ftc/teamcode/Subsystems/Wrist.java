@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Commands.wristState;
+import org.firstinspires.ftc.teamcode.Commands.WristState;
 import org.firstinspires.ftc.teamcode.Utilities.RobotConstants;
 
 public class Wrist {
@@ -14,7 +14,7 @@ public class Wrist {
         servo = hardwareMap.get(Servo.class, "wristServo");
 
     }
-    public void setWristPosition(wristState wristState){
+    public void setWristPosition(WristState wristState){
         switch(wristState){
             case normal:
                 servo.setPosition(RobotConstants.Wrist.wristNormal);

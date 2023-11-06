@@ -34,8 +34,8 @@ public class RobotConstants
         public static double ticksPerRevolution = 0.0;
 
 
-        public static int fullExtension = 700;
-        public static int mediumExtension = 380;
+        public static int HIGHEXTENSION = 700;
+        public static int MEDIUMEXTENSION = 380;
 
 
 //        public static int fullExtension = -3600;
@@ -44,8 +44,8 @@ public class RobotConstants
 
         // first comp length below
 
-        public static int shortExtension = 0;
-        public static int retracted = -2;
+        public static int LOWEXTENSION = 0;
+        public static int RETRACTED = -2;
     }
 
     public static class Claw
@@ -70,8 +70,8 @@ public class RobotConstants
 
     public static class ActiveIntake
     {
-        public static int active = 0;
-        public static int deactivate = 0;
+        public static int active = 1;
+        public static int reverseActive = -1;
     }
 
     public static class Drone
@@ -99,7 +99,6 @@ public class RobotConstants
         public static double outtakingRight = .1;
 
         public static double outtakingLeft = .13;
-
 
         public static double initLeft = .43;
         public static double initRight = .4;

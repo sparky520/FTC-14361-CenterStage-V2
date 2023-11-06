@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Commands.armState;
+import org.firstinspires.ftc.teamcode.Commands.ArmState;
 import org.firstinspires.ftc.teamcode.Utilities.RobotConstants;
 
 public class Arm {
@@ -17,7 +17,7 @@ public class Arm {
 
     }
 
-    public void setPosition(armState state){
+    public void setPosition(ArmState state){
         switch (state){
             case intaking:
                     leftArm.setPosition(RobotConstants.Arm.intake);
