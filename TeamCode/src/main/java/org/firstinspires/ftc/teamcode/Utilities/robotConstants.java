@@ -13,6 +13,7 @@ public class robotConstants
 
         public static int HIGHLEFT = 1850;
         public static int HIGHRIGHT = 1850;
+        //sometimes the encoder values go negative so you might have to change those
 
         public static int MEDIUMLEFT = 1500;
         public static int MEDIUMRIGHT = 1500;
