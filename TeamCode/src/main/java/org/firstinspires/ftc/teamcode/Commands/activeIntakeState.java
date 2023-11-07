@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum ActiveIntakeState {
+public enum activeIntakeState {
     active,
     inactive,
     activeReverse

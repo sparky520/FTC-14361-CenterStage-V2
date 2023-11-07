@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum OuttakeSlidesState {
+public enum outtakeSlidesState {
 
 HIGHOUT,
     MEDIUMOUT,

@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum WristState {
+public enum wristState {
     sideways,
     normal
 }

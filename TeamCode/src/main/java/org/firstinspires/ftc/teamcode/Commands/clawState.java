@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum ClawState {
+public enum clawState {
     leftOpen,
     rightOpen,
     leftClose,
