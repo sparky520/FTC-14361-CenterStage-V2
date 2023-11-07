@@ -51,12 +51,12 @@ public class Robot {
     {
         intakeSlide.setPosition(extensionState,intakeSlidesState);
     }
-    public intakeSlidesState getIntakeSlideState()
+    public intakeSlidesState getintakeSlideState()
     {
         return intakeSlidesState;
     }
 
-    public void setIntakeSlideState(intakeSlidesState intakeSlidesState){
+    public void setintakeSlideState(intakeSlidesState intakeSlidesState){
         this.intakeSlidesState = intakeSlidesState;
     }
     public double getIntakeSlidePosition(){
@@ -79,12 +79,12 @@ public class Robot {
         this.outtakeSlidesState = outtakeSlidesState;
     }
 
-    public void setExtensionState(extensionState extensionState)
+    public void setextensionState(extensionState extensionState)
     {
         this.extensionState = extensionState;
     }
 
-    public extensionState getExtensionState()
+    public extensionState getextensionState()
     {
         return extensionState;
     }
@@ -104,12 +104,12 @@ public class Robot {
         wrist.setWristPosition(wristState);
     }
 
-    public void setWristState(wristState wristState)
+    public void setwristState(wristState wristState)
     {
         this.wristState = wristState;
     }
 
-    public wristState getWristState()
+    public wristState getwristState()
     {
         return wristState;
     }
@@ -134,12 +134,12 @@ public class Robot {
         return virtualFourBarState;
     }
 
-    public virtualFourBarExtensionState getVirtualFourBarExtensionState()
+    public virtualFourBarExtensionState getVirtualFourBarextensionState()
     {
         return virtualFourBarExtensionState;
     }
 
-    public void setVirtualFourBarExtensionState(virtualFourBarExtensionState virtualFourBarExtensionState)
+    public void setVirtualFourBarextensionState(virtualFourBarExtensionState virtualFourBarExtensionState)
     {
         this.virtualFourBarExtensionState = virtualFourBarExtensionState;
     }
@@ -204,12 +204,12 @@ public class Robot {
         activeIntake.setActiveIntakePosition(activeIntakeState);
     }
 
-    public activeIntakeState getActiveIntakeState()
+    public activeIntakeState getactiveIntakeState()
     {
         return activeIntakeState;
     }
 
-    public void setActiveIntakeState(activeIntakeState activeIntakeState)
+    public void setactiveIntakeState(activeIntakeState activeIntakeState)
     {
         this.activeIntakeState = activeIntakeState;
     }

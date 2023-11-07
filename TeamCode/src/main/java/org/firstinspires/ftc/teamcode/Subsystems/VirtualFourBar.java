@@ -55,7 +55,7 @@ public class VirtualFourBar {
                         rightVirtualFourBar.setPosition(initRight);
                 }
         }
-        public virtualFourBarExtensionState getVirtualFourBarExtensionState () {
+        public virtualFourBarExtensionState getVirtualFourBarextensionState () {
             return virtualFourBarExtension;
         }
 
