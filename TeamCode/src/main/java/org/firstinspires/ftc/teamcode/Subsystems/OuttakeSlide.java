@@ -12,14 +12,14 @@ import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 
 
-public class outtakeSlide
+public class OuttakeSlide
 {
     DcMotorEx rightouttakeSlide, leftouttakeSlide;
     private final int countsPerRev = 384;
     double power = .9;
 
 
-    public outtakeSlide(HardwareMap hardwareMap) {
+    public OuttakeSlide(HardwareMap hardwareMap) {
         rightouttakeSlide = hardwareMap.get(DcMotorEx.class, "rightOuttakeSlide");
         leftouttakeSlide = hardwareMap.get(DcMotorEx.class, "leftOuttakeSlide");
 

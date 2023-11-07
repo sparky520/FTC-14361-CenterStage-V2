@@ -8,13 +8,6 @@ import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingRight;
 
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingRight;
-
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
@@ -24,13 +17,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 
-public class virtualFourBar
+public class VirtualFourBar
 {
     private ServoEx leftvirtualFourBar, rightvirtualFourBar;
     public virtualFourBarExtensionState virtualFourBarExtension;
     double minAngle = 0, maxAngle= 360;
 
-    public virtualFourBar(HardwareMap hardwareMap)
+    public VirtualFourBar(HardwareMap hardwareMap)
     {
         rightvirtualFourBar = new SimpleServo(hardwareMap, "rightvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
         leftvirtualFourBar = new SimpleServo(hardwareMap, "leftvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
@@ -38,7 +31,7 @@ public class virtualFourBar
         leftvirtualFourBar.setInverted(true);
     }
 
-    public void setvirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
+    public void setVirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
     {
         switch (virtualFourBarState)
         {

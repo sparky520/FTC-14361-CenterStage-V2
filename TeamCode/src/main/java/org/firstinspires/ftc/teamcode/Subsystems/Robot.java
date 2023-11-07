@@ -15,12 +15,12 @@ import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
 
 
 public class Robot {
-    public intakeSlide intakeSlide;
-    public org.firstinspires.ftc.teamcode.Subsystems.outtakeSlide outtakeSlide;
+    public IntakeSlide intakeSlide;
+    public OuttakeSlide outtakeSlide;
     public Mecanum driveTrain;
     public Wrist wrist;
     public Claw claw;
-    public org.firstinspires.ftc.teamcode.Subsystems.virtualFourBar virtualFourBar;
+    public VirtualFourBar virtualFourBar;
 
     public intakeSlidesState intakeSlidesState;
     public outtakeSlidesState outtakeSlidesState;
@@ -29,7 +29,7 @@ public class Robot {
     public virtualFourBarState virtualFourBarState;
     public virtualFourBarExtensionState virtualFourBarExtensionState;
     public extensionState extensionState;
-    public org.firstinspires.ftc.teamcode.Subsystems.activeIntake activeIntake;
+    public ActiveIntake activeIntake;
     public activeIntakeState activeIntakeState;
 
     Telemetry telemetry;
@@ -41,32 +41,32 @@ public class Robot {
         driveTrain = new Mecanum(hardwareMap);
         claw = new Claw(hardwareMap);
         wrist = new Wrist(hardwareMap);
-        virtualFourBar = new virtualFourBar(hardwareMap);
-        outtakeSlide = new outtakeSlide(hardwareMap);
-        intakeSlide = new intakeSlide(hardwareMap);
-        activeIntake = new activeIntake(hardwareMap);
+        virtualFourBar = new VirtualFourBar(hardwareMap);
+        outtakeSlide = new OuttakeSlide(hardwareMap);
+        intakeSlide = new IntakeSlide(hardwareMap);
+        activeIntake = new ActiveIntake(hardwareMap);
     }
 
-    public void setintakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
+    public void setIntakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
     {
         intakeSlide.setPosition(extensionState,intakeSlidesState);
     }
 
 
 
-    public intakeSlidesState getintakeSlideState()
+    public intakeSlidesState getIntakeSlideState()
     {
         return intakeSlidesState;
     }
 
 
-    public void setintakeSlideState(intakeSlidesState intakeSlidesState)
+    public void setIntakeSlideState(intakeSlidesState intakeSlidesState)
     {
 
         this.intakeSlidesState = intakeSlidesState;
     }
 
-    public double getintakeSlidePosition()
+    public double getIntakeSlidePosition()
     {
         return intakeSlide.getIntakeSlidePosition();
     }
@@ -135,12 +135,12 @@ public class Robot {
         return wrist.getWristPosition();
     }
 
-    public void setvirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
+    public void setVirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
     {
-        virtualFourBar.setvirtualFourBarPosition(virtualFourBarState, virtualFourBarExtensionState);
+        virtualFourBar.setVirtualFourBarPosition(virtualFourBarState, virtualFourBarExtensionState);
     }
 
-    public void setvirtualFourBarState(virtualFourBarState virtualFourBarState)
+    public void setVirtualFourBarState(virtualFourBarState virtualFourBarState)
     {
         this.virtualFourBarState = virtualFourBarState;
     }
@@ -157,7 +157,7 @@ public class Robot {
         return virtualFourBarExtensionState;
     }
 
-    public void setvirtualFourBarExtensionState(virtualFourBarExtensionState virtualFourBarExtensionState)
+    public void setVirtualFourBarExtensionState(virtualFourBarExtensionState virtualFourBarExtensionState)
 
     {
         this.virtualFourBarExtensionState = virtualFourBarExtensionState;
@@ -188,32 +188,32 @@ public class Robot {
         claw.rightClose();
     }
 
-    public void setclawState(clawState clawState)
+    public void setClawState(clawState clawState)
     {
         this.clawState = clawState;
     }
 
-    public void setLeftclawState(clawState leftclawState)
+    public void setLeftClawState(clawState leftclawState)
     {
         this.leftclawState = leftclawState;
     }
 
-    public void setRightclawState(clawState rightclawState)
+    public void setRightClawState(clawState rightclawState)
     {
         this.rightclawState = rightclawState;
     }
 
-    public clawState getclawState()
+    public clawState getClawState()
     {
         return clawState;
     }
 
-    public clawState getLeftclawState()
+    public clawState getLeftClawState()
     {
         return leftclawState;
     }
 
-    public clawState getRightclawState()
+    public clawState getRightClawState()
     {
         return rightclawState;
     }
@@ -224,7 +224,7 @@ public class Robot {
     }
 
 
-    public activeIntakeState getactiveIntakeState()
+    public activeIntakeState getActiveIntakeState()
 
     {
         return activeIntakeState;
@@ -232,7 +232,7 @@ public class Robot {
 
 
 
-    public void setactiveIntakeState(activeIntakeState activeIntakeState)
+    public void setActiveIntakeState(activeIntakeState activeIntakeState)
 
     {
         this.activeIntakeState = activeIntakeState;

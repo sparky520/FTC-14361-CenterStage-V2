@@ -8,12 +8,12 @@ import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
 import org.firstinspires.ftc.teamcode.util.robotConstants;
 
-public class intakeSlide {
+public class IntakeSlide {
     DcMotorEx intakeSlideMotor;
     private final int countsPerRev = 384;
     double power = .7;
 
-    public intakeSlide(HardwareMap hardwareMap) {
+    public IntakeSlide(HardwareMap hardwareMap) {
 
         intakeSlideMotor = hardwareMap.get(DcMotorEx.class, "intakeSlideMotor");
 
