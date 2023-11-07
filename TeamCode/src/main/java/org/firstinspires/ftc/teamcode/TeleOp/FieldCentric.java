@@ -38,7 +38,7 @@ public class FieldCentric extends OpMode {
         bot.setVirtualFourBarState(virtualFourBarState.init);
 
         bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-        bot.setIntakeSlideState(intakeSlidesState.STATION);
+        bot.setintakeSlideState(intakeSlidesState.STATION);
 
         bot.setClawPosition(clawState.open);
         bot.setClawState(clawState.open);
@@ -56,7 +56,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Right Slide Position: " + bot.getOuttakeRightSlidePosition() + " ticks");
         telemetry.addLine("Intake Slide Position" + bot.getIntakeSlidePosition());
         telemetry.addLine("Wrist Position: " + bot.wrist.getWristPosition());
-        telemetry.addLine("State of V4B" + bot.virtualFourBar.getVirtualFourBarExtensionState());
+        telemetry.addLine("State of V4B" + bot.virtualFourBar.getVirtualFourBarextensionState());
         telemetry.addLine("Right Claw Position" + bot.claw.getRightClawPosition());
         telemetry.addLine("Left Claw Position" + bot.claw.getLeftClawPosition());
         telemetry.update();
@@ -86,33 +86,33 @@ public class FieldCentric extends OpMode {
 
         if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP))
         {
-            bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
+            bot.setintakeSlideState(intakeSlidesState.HIGHIN);
             bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
         }
 
         if(driver.wasJustPressed(GamepadKeys.Button.DPAD_LEFT))
         {
-            bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
+            bot.setintakeSlideState(intakeSlidesState.MEDIUMIN);
             bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
         }
 
         if(driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
         {
             bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-            bot.setIntakeSlideState(intakeSlidesState.STATION);
+            bot.setintakeSlideState(intakeSlidesState.STATION);
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.A))
         {
-            if (bot.getActiveIntakeState() != null && bot.getActiveIntakeState().equals(activeIntakeState.active))
+            if (bot.getactiveIntakeState() != null && bot.getactiveIntakeState().equals(activeIntakeState.active))
             {
                 bot.setActiveIntakePosition(activeIntakeState.inactive);
-                bot.setActiveIntakeState(activeIntakeState.inactive);
+                bot.setactiveIntakeState(activeIntakeState.inactive);
             }
             else
             {
                 bot.setActiveIntakePosition(activeIntakeState.active);
-                bot.setActiveIntakeState(activeIntakeState.active);
+                bot.setactiveIntakeState(activeIntakeState.active);
             }
         }
 
@@ -134,15 +134,15 @@ public class FieldCentric extends OpMode {
 
         if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON))
         {
-            if (bot.getWristState() != null && bot.getWristState().equals(wristState.normal))
+            if (bot.getwristState() != null && bot.getwristState().equals(wristState.normal))
             {
                 bot.setWristPosition(wristState.sideways);
-                bot.setWristState(wristState.sideways);
+                bot.setwristState(wristState.sideways);
             }
             else
             {
                 bot.setWristPosition(wristState.normal);
-                bot.setWristState(wristState.normal);
+                bot.setwristState(wristState.normal);
             }
         }
 
