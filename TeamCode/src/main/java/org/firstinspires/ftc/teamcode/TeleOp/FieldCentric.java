@@ -289,5 +289,4 @@ public class FieldCentric extends OpMode {
                 }
             }
         }
-    }
-}
+
