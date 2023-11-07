@@ -146,6 +146,21 @@ public class FieldCentric extends OpMode {
             }
         }
 
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
+        {
+            if (bot.getwristState() != null && bot.getwristState().equals(wristState.normal))
+            {
+                bot.setWristPosition(wristState.sideways);
+                bot.setwristState(wristState.sideways);
+            }
+            else
+            {
+                bot.setWristPosition(wristState.normal);
+                bot.setwristState(wristState.normal);
+            }
+        }
+
+
         if(operator.wasJustPressed(GamepadKeys.Button.DPAD_UP))
         {
             bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extended);
