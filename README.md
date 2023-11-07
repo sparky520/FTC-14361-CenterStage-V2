@@ -82,7 +82,7 @@ The readme.md file located in the [/TeamCode/src/main/java/org/firstinspires/ftc
 ### Enhancements
 * Adds support for the DFRobot HuskyLens Vision Sensor.
 * Blocks teams can now perform webcam calibration.
-    * Added a Block for System.currentTimeMillis (under Utilities/Time)
+    * Added a Block for System.currentTimeMillis (under util/Time)
     * Added a Block for VisionPortal.saveNextFrameRaw (under Vision/VisionPortal)
     * Added a new sample Blocks OpMode called UtilityCameraFrameCapture.
 * The RobotDriveByGyro sample has been updated to use the new universal IMU interface.  It now supports both IMU types.
@@ -142,7 +142,7 @@ The readme.md file located in the [/TeamCode/src/main/java/org/firstinspires/ftc
     * Vuforia will be removed in a future release.
     * Updated TensorFlow dependencies.
     * Added support for webcam camera controls to blocks.
-    * The Blocks editor's toolbox now has a Vision category, directly above the Utilities category.
+    * The Blocks editor's toolbox now has a Vision category, directly above the util category.
 * Related documentation for associated technologies can be found at
     * [AprilTag Introduction](https://ftc-docs.firstinspires.org/apriltag-intro)
     * [AprilTag SDK Guide](https://ftc-docs.firstinspires.org/apriltag-sdk)
@@ -1120,7 +1120,7 @@ Changes include:
      - Added blocks support for AdafruitBNO055IMU.
      - Added Download OpMode button to FtcBocks.html.
      - Added support for copying blocks in one OpMode and pasting them in an other OpMode. The clipboard content is stored on the phone, so the programming mode server must be running.
-     - Modified Utilities section of the toolbox.
+     - Modified util section of the toolbox.
      - In Programming Mode, display information about the active connections.
      - Fixed paste location when workspace has been scrolled.
      - Added blocks support for the android Accelerometer.
