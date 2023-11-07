@@ -102,12 +102,12 @@ public class Robot {
 
     public double getOuttakeLeftSlidePosition()
     {
-        return outtakeSlide.getLeftouttakeSlideMotorPosition();
+        return outtakeSlide.getLeftOuttakeSlideMotorPosition();
     }
 
     public double getOuttakeRightSlidePosition()
     {
-        return outtakeSlide.getRightouttakeSlideMotorPosition();
+        return outtakeSlide.getRightOuttakeSlideMotorPosition();
     }
 
     public void setWristPosition(wristState wristState)

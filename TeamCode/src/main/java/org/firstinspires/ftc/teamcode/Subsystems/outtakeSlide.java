@@ -78,12 +78,12 @@ public class outtakeSlide
                 break;
         }
     }
-    public double getLeftouttakeSlideMotorPosition()
+    public double getLeftOuttakeSlideMotorPosition()
     {
         return leftouttakeSlide.getCurrentPosition();
     }
 
-    public double getRightouttakeSlideMotorPosition()
+    public double getRightOuttakeSlideMotorPosition()
     {
         return rightouttakeSlide.getCurrentPosition();
     }

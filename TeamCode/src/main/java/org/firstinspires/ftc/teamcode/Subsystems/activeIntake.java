@@ -19,10 +19,10 @@ public class activeIntake
         switch (activeIntakeState)
         {
             case active:
-                activeIntake.setPower(robotConstants.ActiveIntake.active);
+                activeIntake.setPower(robotConstants.activeIntake.active);
                 break;
             case activeReverse:
-                activeIntake.setPower(robotConstants.ActiveIntake.reverseActive);
+                activeIntake.setPower(robotConstants.activeIntake.reverseActive);
                 break;
             case inactive:
                 activeIntake.setPower(0);
