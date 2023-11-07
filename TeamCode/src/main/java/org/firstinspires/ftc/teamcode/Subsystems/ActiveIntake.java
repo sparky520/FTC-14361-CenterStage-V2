@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
 
-public class activeIntake {
-    double power = 1;
+public class ActiveIntake {
+    double power = .4;
    DcMotorEx activeIntake;
-    public activeIntake(HardwareMap hardwareMap) {
+    public ActiveIntake(HardwareMap hardwareMap) {
         activeIntake = hardwareMap.get(DcMotorEx.class, "activeIntake");
 
     }

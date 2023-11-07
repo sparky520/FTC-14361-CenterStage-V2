@@ -27,8 +27,7 @@ public class Wrist {
         }
     }
     public double getWristPosition(){
-        double position = servo.getPosition();
-        return position;
+        return servo.getPosition();
     }
 
 }
