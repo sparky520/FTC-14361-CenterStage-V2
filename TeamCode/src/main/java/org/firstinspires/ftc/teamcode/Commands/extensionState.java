@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum extensionState {
+public enum ExtensionState {
     extended,
     retracted,
     extending

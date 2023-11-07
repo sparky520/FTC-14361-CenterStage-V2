@@ -1,54 +1,42 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import static java.lang.Math.round;
-
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import java.text.DecimalFormat;
 
-public class Mecanum {
+public class Mecanum
+{
     private DcMotorEx leftFront, leftRear, rightFront, rightRear;
     private double leftFrontPower, leftRearPower, rightFrontPower,rightRearPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
-    private double slowOffset = .5;
 
-    DecimalFormat df = new DecimalFormat("#.##"); // This rounds to two decimal places
+    DecimalFormat df = new DecimalFormat("#.##");
+    // This rounds to two decimal places
+    BNO055IMU imu;
+    BNO055IMU.Parameters parameters;
 
-
-BNO055IMU imu;
-BNO055IMU.Parameters parameters;
-
-public Mecanum(HardwareMap hardwareMap){
-
-    leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-    leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-    rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-    rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-
-    leftRear.setDirection(DcMotorEx.Direction.REVERSE);
-    leftFront.setDirection(DcMotorEx.Direction.REVERSE);
-
-
-
-
-    imu = hardwareMap.get(BNO055IMU.class, "cIMU");
-    // this is making a new object called 'parameters' that we use to hold the angle the imu is at
-    parameters = new BNO055IMU.Parameters();
-    parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-    imu.initialize(parameters);
-
-}
-    public void resetIMU()
+    public Mecanum(HardwareMap hardwareMap)
     {
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
+        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+
+        leftRear.setDirection(DcMotorEx.Direction.REVERSE);
+        leftFront.setDirection(DcMotorEx.Direction.REVERSE);
+
+        imu = hardwareMap.get(BNO055IMU.class, "cIMU");
+        // this is making a new object called 'parameters' that we use to hold the angle the imu is at
+        parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         imu.initialize(parameters);
     }
 
-    public void drive(GamepadEx gamepad1){
+    public void drive(GamepadEx gamepad1)
+    {
         y = gamepad1.getLeftY();
         x = gamepad1.getLeftX();
         rx = gamepad1.getRightX();
@@ -63,31 +51,35 @@ public Mecanum(HardwareMap hardwareMap){
         leftRearPower = (rotY - rotX + rx) / denominator;
         rightFrontPower = (rotY - rotX - rx) / denominator;
         rightRearPower = (rotY + rotX - rx) / denominator;
-
-
     }
 
     public void setMotorPower()
     {
-
-
         leftFront.setPower(leftFrontPower * offset);
         leftRear.setPower(leftRearPower * offset );
         rightFront.setPower(rightFrontPower * offset);
         rightRear.setPower(rightRearPower * offset );
     }
-    public void setMotorSlowDownPower()
+    public void setSlowDownMotorPower()
     {
-        leftFront.setPower(leftFrontPower * slowOffset);
-        leftRear.setPower(leftRearPower * slowOffset);
-        rightFront.setPower(rightFrontPower * slowOffset);
-        rightRear.setPower(rightRearPower * slowOffset);
-    }
-    public void setMotorPowerRounded(){
-        leftFront.setPower(round(leftFrontPower));
-        leftRear.setPower(round(leftRearPower));
-        rightFront.setPower(round(rightFrontPower));
-        rightRear.setPower(round(rightRearPower));
+        offset = 1.1 * 0.5;
     }
 
+    public void setFullPower()
+    {
+        offset = 1.1;
+    }
+
+    public void resetIMU()
+    {
+        imu.initialize(parameters);
+    }
+
+//    public void setMotorPowerRounded()
+//    {
+//        leftFront.setPower(round(leftFrontPower));
+//        leftRear.setPower(round(leftRearPower));
+//        rightFront.setPower(round(rightFrontPower));
+//        rightRear.setPower(round(rightRearPower));
+//    }
 }

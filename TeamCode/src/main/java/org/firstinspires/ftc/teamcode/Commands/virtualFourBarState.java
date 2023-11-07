@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum virtualFourBarState {
+public enum VirtualFourBarState {
     intaking,
     outtaking,
     init

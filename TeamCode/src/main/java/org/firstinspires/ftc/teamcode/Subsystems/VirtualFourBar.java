@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.initLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.initRight;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.intakingLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.intakingRight;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.outtakingLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.outtakingRight;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.virtualFourBar.initLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.virtualFourBar.initRight;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.virtualFourBar.intakingLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.virtualFourBar.intakingRight;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.virtualFourBar.outtakingLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.virtualFourBar.outtakingRight;
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
@@ -15,51 +15,43 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 
-public class VirtualFourBar {
-    private ServoEx leftVirtualFourBar, rightVirtualFourBar;
-
+public class virtualFourBar
+{
+    private ServoEx leftvirtualFourBar, rightvirtualFourBar;
     public virtualFourBarExtensionState virtualFourBarExtension;
     double minAngle = 0, maxAngle= 360;
 
-    public VirtualFourBar(HardwareMap hardwareMap) {
-      //  leftVirtualFourBar = hardwareMap.servo.get("leftVirtualFourBar");
-       // rightVirtualFourBar = hardwareMap.servo.get("rightVirtualFourBar");
-
-        rightVirtualFourBar = new SimpleServo(hardwareMap, "rightVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
-        leftVirtualFourBar = new SimpleServo(hardwareMap, "leftVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+    public virtualFourBar(HardwareMap hardwareMap)
+    {
+        rightvirtualFourBar = new SimpleServo(hardwareMap, "rightvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        leftvirtualFourBar = new SimpleServo(hardwareMap, "leftvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
     }
 
-    public void setVirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState) {
-
-        switch (virtualFourBarState) {
+    public void setvirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
+    {
+        switch (virtualFourBarState)
+        {
             case outtaking:
-                leftVirtualFourBar.setPosition(outtakingLeft);
-                rightVirtualFourBar.setPosition(outtakingRight);
-               /*if(virtualFourBarExtending(leftVirtualFourBar,outtakingLeft) || virtualFourBarExtending(rightVirtualFourBar,outtakingRight)){
-                    virtualFourBarExtension = virtualFourBarExtensionState.extending;
-                }*/
+                leftvirtualFourBar.setPosition(outtakingLeft);
+                rightvirtualFourBar.setPosition(outtakingRight);
 
                 virtualFourBarExtension = virtualFourBarExtensionState.station;
 
                 break;
             case intaking:
-                leftVirtualFourBar.setPosition(intakingLeft);
-                rightVirtualFourBar.setPosition(intakingRight);
-               /*if(virtualFourBarExtending(leftVirtualFourBar,intakingLeft) || virtualFourBarExtending(rightVirtualFourBar,intakingRight)){
-                   virtualFourBarExtension = virtualFourBarExtensionState.extending;
-               }*/
+                leftvirtualFourBar.setPosition(intakingLeft);
+                rightvirtualFourBar.setPosition(intakingRight);
+
                 virtualFourBarExtension = virtualFourBarExtensionState.station;
-                    break;
-                    default:
-                        leftVirtualFourBar.setPosition(initLeft);
-                        rightVirtualFourBar.setPosition(initRight);
-                }
-        }
-        public virtualFourBarExtensionState getVirtualFourBarextensionState () {
-            return virtualFourBarExtension;
+                break;
+            default:
+                leftvirtualFourBar.setPosition(initLeft);
+                rightvirtualFourBar.setPosition(initRight);
         }
 
-        public boolean virtualFourBarExtending (ServoEx v4b, double target) {
+
+
+    /*    public boolean virtualFourBarExtending (ServoEx v4b, double target) {
             double marginOfError = Math.abs(v4b.getPosition()+5-target);
             if(marginOfError > .05){
                 return true;
@@ -68,8 +60,29 @@ public class VirtualFourBar {
                 return false;
             }
         }
+*/
 
     }
+
+    public virtualFourBarExtensionState getvirtualFourBarExtensionState()
+    {
+        return virtualFourBarExtension;
+    }
+
+    public boolean virtualFourBarExtending(ServoEx v4b, double target)
+    {
+        double marginOfError = Math.abs(v4b.getPosition() + 5 - target);
+
+        if(marginOfError > .05)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 
 
 

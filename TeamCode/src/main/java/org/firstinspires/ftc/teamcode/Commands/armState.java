@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum armState {
+public enum ArmState {
     intaking,
     outtaking,
 }
