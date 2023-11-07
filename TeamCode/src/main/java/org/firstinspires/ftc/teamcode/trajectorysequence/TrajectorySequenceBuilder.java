@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.trajectorysequence;
 
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.path.PathContinuityViolationException;
@@ -582,14 +583,14 @@ public class TrajectorySequenceBuilder {
 
             if (segment instanceof WaitSegment) {
                 WaitSegment thisSegment = (WaitSegment) segment;
-                
+
                 List<TrajectoryMarker> newMarkers = new ArrayList<>(thisSegment.getMarkers());
                 newMarkers.add(new TrajectoryMarker(segmentOffsetTime, marker.getCallback()));
 
                 newSegment = new WaitSegment(thisSegment.getStartPose(), thisSegment.getDuration(), newMarkers);
             } else if (segment instanceof TurnSegment) {
                 TurnSegment thisSegment = (TurnSegment) segment;
-                
+
                 List<TrajectoryMarker> newMarkers = new ArrayList<>(thisSegment.getMarkers());
                 newMarkers.add(new TrajectoryMarker(segmentOffsetTime, marker.getCallback()));
 
