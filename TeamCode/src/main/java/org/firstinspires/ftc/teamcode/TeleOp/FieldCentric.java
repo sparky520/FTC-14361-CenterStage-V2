@@ -36,8 +36,8 @@ public class FieldCentric extends OpMode {
         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
         bot.setVirtualFourBarState(virtualFourBarState.init);
 
-        bot.setIntakeSlidePosition(-10);
-        bot.setIntakeSlideState(intakeSlidesState.STATION);
+        //bot.setIntakeSlidePosition(-15);
+        //bot.setIntakeSlideState(intakeSlidesState.STATION);
 
         bot.setClawPosition(clawState.open);
         bot.setClawState(clawState.open);
@@ -55,9 +55,9 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Right Slide Position: " + bot.getOuttakeRightSlidePosition() + " ticks");
         telemetry.addLine("Intake Slide Position" + bot.getIntakeSlidePosition());
         telemetry.addLine("Wrist Position: " + bot.wrist.getWristPosition());
-        telemetry.addLine("State of V4B" + bot.virtualFourBar.getvirtualFourBarExtensionState());
-        telemetry.addLine("Right Claw Position" + bot.claw.getRightClawPosition());
-        telemetry.addLine("Left Claw Position" + bot.claw.getLeftClawPosition());
+        telemetry.addLine("State of V4B: init / " + bot.virtualFourBar.getvirtualFourBarExtensionState());
+        telemetry.addLine("Right Claw Position: " + bot.claw.getRightClawPosition());
+        telemetry.addLine("Left Claw Position: " + bot.claw.getLeftClawPosition());
         telemetry.update();
 
         driver.readButtons();
@@ -193,6 +193,7 @@ public class FieldCentric extends OpMode {
 
                         bot.setWristState(wristState.sideways);
                         bot.setWristPosition(wristState.sideways);
+
                     } else if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.intaking)) {
                         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                         bot.setVirtualFourBarState(virtualFourBarState.init);
@@ -204,6 +205,7 @@ public class FieldCentric extends OpMode {
 
                         bot.setWristState(wristState.normal);
                         bot.setWristPosition(wristState.normal);
+
                     } else if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.init)) {
                         if(bot.getvirtualFourBarState() != null && (bot.getClawState().equals(clawState.close) || bot.getClawState().equals(clawState.rightClose) || bot.getClawState().equals(clawState.leftClose))){
                             bot.setWristState(wristState.sideways);

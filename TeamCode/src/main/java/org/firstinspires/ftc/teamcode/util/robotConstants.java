@@ -94,13 +94,23 @@ public class robotConstants
 
     public static class virtualFourBar
     {
-        public static double intakingLeft = .52;
-        public static double intakingRight = .48;
+        public static double intakingLeft = .5;
+        public static double intakingRight = .65;
 
         public static double outtakingLeft = .85;
-        public static double outtakingRight = .1;
+        public static double outtakingRight = .15;
 
-        public static double initLeft = .58;
-        public static double initRight = .41;
+        public static double initLeft = .45;
+        public static double initRight = .55;
+
+        // right: .58
+        // left: .41
+
+        /*
+        Robot is EVEN at both sides at:
+
+        L: .64
+        R: .45
+         */
     }
 }

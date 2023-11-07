@@ -64,7 +64,7 @@ public class IntakeSlide {
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        intakeSlideMotor.setPower(power);
+                        intakeSlideMotor.setPower(0.8);
                         //PIDMotorPower(robotConstants.IntakeSlide.retracted);
 
 
