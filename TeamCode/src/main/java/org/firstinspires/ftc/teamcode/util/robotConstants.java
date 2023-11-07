@@ -46,7 +46,7 @@ public class robotConstants
         // first comp length below
 
         public static int lowExtension = 0;
-        public static int retracted = -10;
+        public static int retracted = -15;
     }
 
     public static class Claw

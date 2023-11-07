@@ -51,18 +51,17 @@ public class Robot {
     {
         intakeSlide.setPosition(extensionState,intakeSlidesState);
     }
-
-
-
+    public void setIntakeSlidePosition(int pos)
+    {
+        intakeSlide.setPosition(pos);
+    }
     public intakeSlidesState getIntakeSlideState()
     {
         return intakeSlidesState;
     }
 
-
     public void setIntakeSlideState(intakeSlidesState intakeSlidesState)
     {
-
         this.intakeSlidesState = intakeSlidesState;
     }
 
