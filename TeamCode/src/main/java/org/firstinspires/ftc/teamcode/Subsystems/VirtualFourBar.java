@@ -23,8 +23,10 @@ public class virtualFourBar
 
     public virtualFourBar(HardwareMap hardwareMap)
     {
-        rightvirtualFourBar = new SimpleServo(hardwareMap, "rightvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
-        leftvirtualFourBar = new SimpleServo(hardwareMap, "leftvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        rightvirtualFourBar = new SimpleServo(hardwareMap, "rightVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        leftvirtualFourBar = new SimpleServo(hardwareMap, "leftVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+
+        leftvirtualFourBar.setInverted(true);
     }
 
     public void setvirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
@@ -83,10 +85,3 @@ public class virtualFourBar
         }
     }
 }
-
-
-
-
-
-
-

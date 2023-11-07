@@ -20,8 +20,8 @@ public class outtakeSlide
 
 
     public outtakeSlide(HardwareMap hardwareMap) {
-        rightouttakeSlide = hardwareMap.get(DcMotorEx.class, "rightouttakeSlide");
-        leftouttakeSlide = hardwareMap.get(DcMotorEx.class, "leftouttakeSlide");
+        rightouttakeSlide = hardwareMap.get(DcMotorEx.class, "rightOuttakeSlide");
+        leftouttakeSlide = hardwareMap.get(DcMotorEx.class, "leftOuttakeSlide");
 
         rightouttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftouttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
