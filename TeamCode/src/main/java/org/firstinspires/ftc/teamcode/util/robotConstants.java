@@ -69,7 +69,7 @@ public class robotConstants
         public static double intake = 0.0;
     }
 
-    public static class ActiveIntake
+    public static classactiveIntake
     {
         public static int active = 1;
         public static int reverseActive = -1;

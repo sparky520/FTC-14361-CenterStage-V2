@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
-import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
-public class ActiveIntake
+public class activeIntake
 {
    DcMotorEx activeIntake;
-    public ActiveIntake(HardwareMap hardwareMap)
+    public activeIntake(HardwareMap hardwareMap)
     {
         activeIntake = hardwareMap.get(DcMotorEx.class, "activeIntake");
     }

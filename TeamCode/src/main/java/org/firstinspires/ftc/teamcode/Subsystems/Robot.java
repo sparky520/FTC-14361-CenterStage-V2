@@ -29,7 +29,7 @@ public class Robot {
     public virtualFourBarState virtualFourBarState;
     public virtualFourBarExtensionState virtualFourBarExtensionState;
     public extensionState extensionState;
-    public ActiveIntake activeIntake;
+    public org.firstinspires.ftc.teamcode.Subsystems.activeIntake activeIntake;
     public activeIntakeState activeIntakeState;
 
     Telemetry telemetry;
@@ -44,7 +44,7 @@ public class Robot {
         virtualFourBar = new virtualFourBar(hardwareMap);
         outtakeSlide = new outtakeSlide(hardwareMap);
         intakeSlide = new intakeSlide(hardwareMap);
-        activeIntake = new ActiveIntake(hardwareMap);
+        activeIntake = new activeIntake(hardwareMap);
     }
 
     public void setintakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
