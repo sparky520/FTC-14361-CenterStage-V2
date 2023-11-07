@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.util;
 
 public class robotConstants
 {
-    public static class OuttakeSlide
+    public static class outtakeSlide
     {
         public static double P = 0.0;
         public static double I = 0.0;
@@ -13,6 +13,7 @@ public class robotConstants
 
         public static int HIGHLEFT = 1850;
         public static int HIGHRIGHT = 1850;
+        //sometimes the encoder values go negative so you might have to change those
 
         public static int MEDIUMLEFT = 1500;
         public static int MEDIUMRIGHT = 1500;
@@ -24,7 +25,7 @@ public class robotConstants
         public static int GROUNDRIGHT = 0;
     }
 
-    public static class IntakeSlide
+    public static class intakeSlide
     {
         public static double P = 0.5;
         public static double I = 0.5;
@@ -34,7 +35,7 @@ public class robotConstants
         public static double ticksPerRevolution = 0.0;
 
 
-        public static int fullExtension = 700;
+        public static int highExtension = 700;
         public static int mediumExtension = 380;
 
 
@@ -44,7 +45,7 @@ public class robotConstants
 
         // first comp length below
 
-        public static int shortExtension = 0;
+        public static int lowExtension = 0;
         public static int retracted = -2;
     }
 
@@ -70,8 +71,8 @@ public class robotConstants
 
     public static class ActiveIntake
     {
-        public static int active = 0;
-        public static int deactivate = 0;
+        public static int active = 1;
+        public static int reverseActive = -1;
     }
 
     public static class Drone
@@ -91,17 +92,15 @@ public class robotConstants
         public static double wristNormal = .67;
     }
 
-    public static class VirtualFourBar
+    public static class virtualFourBar
     {
-        public static double intakingLeft = .48;
-        public static double intakingRight = .45;
+        public static double intakingLeft = .51;
+        public static double intakingRight = .5;
 
+        public static double outtakingLeft = .85;
         public static double outtakingRight = .1;
 
-        public static double outtakingLeft = .13;
-
-
-        public static double initLeft = .43;
-        public static double initRight = .4;
+        public static double initLeft = .56;
+        public static double initRight = .43;
     }
 }

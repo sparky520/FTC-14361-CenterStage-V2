@@ -4,73 +4,73 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 
 
-public class OuttakeSlide {
-    DcMotorEx rightOuttakeSlide, leftOuttakeSlide;
+
+public class outtakeSlide
+{
+    DcMotorEx rightouttakeSlide, leftouttakeSlide;
     private final int countsPerRev = 384;
     double power = .9;
 
 
-    public OuttakeSlide(HardwareMap hardwareMap) {
-        rightOuttakeSlide = hardwareMap.get(DcMotorEx.class, "rightOuttakeSlide");
-        leftOuttakeSlide = hardwareMap.get(DcMotorEx.class, "leftOuttakeSlide");
+    public outtakeSlide(HardwareMap hardwareMap) {
+        rightouttakeSlide = hardwareMap.get(DcMotorEx.class, "rightOuttakeSlide");
+        leftouttakeSlide = hardwareMap.get(DcMotorEx.class, "leftOuttakeSlide");
 
+        rightouttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftouttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        rightOuttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftOuttakeSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
-
-        rightOuttakeSlide.setTargetPositionTolerance(5);
-        leftOuttakeSlide.setTargetPositionTolerance(5);
+        rightouttakeSlide.setTargetPositionTolerance(5);
+        leftouttakeSlide.setTargetPositionTolerance(5);
     }
 
-    public void setOuttakeSlidePosition(extensionState extensionState, outtakeSlidesState outtakeSlidesState) {
-        switch (extensionState) {
+    public void setOuttakeSlidePosition(extensionState extensionState, outtakeSlidesState outtakeSlidesState)
+    {
+        switch(extensionState)
+        {
             case retracted:
                 break;
-            case extending: {
-                switch (outtakeSlidesState) {
+            case extending:
+            {
+                switch (outtakeSlidesState)
+                {
                     case HIGHOUT:
-                        leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.HIGHLEFT);
-                        rightOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.HIGHRIGHT);
+                        leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.HIGHLEFT);
+                        rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.HIGHRIGHT);
 
-                        leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        leftOuttakeSlide.setPower(power);
-                        rightOuttakeSlide.setPower(power);
-
-                        extensionState = extensionState.extended;
+                        leftouttakeSlide.setPower(power);
+                        rightouttakeSlide.setPower(power);
                         break;
                     case MEDIUMOUT:
-                        leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.MEDIUMLEFT);
-                        rightOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.MEDIUMRIGHT);
+                        leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.MEDIUMLEFT);
+                        rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.MEDIUMRIGHT);
 
-                        leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        extensionState = extensionState.extended;
+                        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        leftOuttakeSlide.setPower(power);
-                        rightOuttakeSlide.setPower(power);
+                        leftouttakeSlide.setPower(power);
+                        rightouttakeSlide.setPower(power);
                         break;
                     case STATION:
-                        leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.GROUNDLEFT);
-                        rightOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.GROUNDRIGHT);
+                        leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.GROUNDLEFT);
+                        rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.GROUNDRIGHT);
 
-                        leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        extensionState = extensionState.retracted;
+                        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        leftOuttakeSlide.setPower(power);
-                        rightOuttakeSlide.setPower(power);
+                        leftouttakeSlide.setPower(power);
+                        rightouttakeSlide.setPower(power);
                         break;
                 }
             }
@@ -78,13 +78,14 @@ public class OuttakeSlide {
                 break;
         }
     }
-    public double getLeftOuttakeSlideMotorPosition () {
-        double position = leftOuttakeSlide.getCurrentPosition();
-        return position;
+    public double getLeftouttakeSlideMotorPosition()
+    {
+        return leftouttakeSlide.getCurrentPosition();
     }
-    public double getRightOuttakeSlideMotorPosition(){
-        double position = rightOuttakeSlide.getCurrentPosition();
-        return position;
+
+    public double getRightouttakeSlideMotorPosition()
+    {
+        return rightouttakeSlide.getCurrentPosition();
     }
 }
 

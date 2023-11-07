@@ -4,21 +4,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
 import org.firstinspires.ftc.teamcode.util.robotConstants;
 
-
-
-
-public class IntakeSlide
-{
+public class intakeSlide {
     DcMotorEx intakeSlideMotor;
     private final int countsPerRev = 384;
     double power = .7;
 
-    public IntakeSlide(HardwareMap hardwareMap) {
+    public intakeSlide(HardwareMap hardwareMap) {
 
         intakeSlideMotor = hardwareMap.get(DcMotorEx.class, "intakeSlideMotor");
 
@@ -26,55 +21,68 @@ public class IntakeSlide
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeSlideMotor.setTargetPositionTolerance(5);
 
+
+        //Stop and reset encoders doesnt work?
         intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
     }
     public void setPosition(extensionState extensionState, intakeSlidesState inExtendState)
     {
-        switch(extensionState)
-        {
+        switch(extensionState){
             case retracted:
+
                 break;
             case extending:
-                switch(inExtendState)
-                {
+                switch(inExtendState){
                     case HIGHIN:
-
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.fullExtension);
-
-
+                        intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.highExtension);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
+
                         intakeSlideMotor.setPower(power);
+                        // setPIDMotorPower(robotConstants.IntakeSlide.fullExtension);
+
+                        extensionState = extensionState.extended;
                         break;
                     case MEDIUMIN:
-
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.mediumExtension);
-
+                        intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.mediumExtension);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
                         intakeSlideMotor.setPower(power);
+
+                        //setPIDMotorPower(robotConstants.IntakeSlide.mediumExtension);
+                        extensionState = extensionState.extended;
+
                         break;
                     case STATION:
 
 
-
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
-
+                        intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.retracted);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                         intakeSlideMotor.setPower(power);
+                        //PIDMotorPower(robotConstants.IntakeSlide.retracted);
+
+
+                        extensionState = extensionState.retracted;
                         break;
+
+
                 }
             case extended:
                 break;
         }
     }
 
-    public double getIntakeSlidePosition()
-    {
-        return intakeSlideMotor.getCurrentPosition();
+    public double getIntakeSlidePosition(){
+        double position = intakeSlideMotor.getCurrentPosition();
+        return position;
     }
+
 }
