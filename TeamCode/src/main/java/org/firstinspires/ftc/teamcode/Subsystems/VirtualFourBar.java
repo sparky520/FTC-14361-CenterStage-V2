@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.initLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.initRight;
-import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.intakingLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.intakingRight;
-import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.outtakingLeft;
-import static org.firstinspires.ftc.teamcode.Utilities.RobotConstants.VirtualFourBar.outtakingRight;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.initLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.initRight;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.intakingLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.intakingRight;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.outtakingLeft;
+import static org.firstinspires.ftc.teamcode.Utilities.robotConstants.VirtualFourBar.outtakingRight;
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;

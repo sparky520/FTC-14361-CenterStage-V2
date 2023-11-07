@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
-import org.firstinspires.ftc.teamcode.Utilities.RobotConstants;
+import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 
 
 
@@ -39,8 +39,8 @@ public class OuttakeSlide {
             case extending: {
                 switch (outtakeSlidesState) {
                     case HIGHOUT:
-                        leftOuttakeSlide.setTargetPosition(RobotConstants.OuttakeSlide.HIGHLEFT);
-                        rightOuttakeSlide.setTargetPosition(RobotConstants.OuttakeSlide.HIGHRIGHT);
+                        leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.HIGHLEFT);
+                        rightOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.HIGHRIGHT);
 
                         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -51,8 +51,8 @@ public class OuttakeSlide {
                         extensionState = extensionState.extended;
                         break;
                     case MEDIUMOUT:
-                        leftOuttakeSlide.setTargetPosition(RobotConstants.OuttakeSlide.MEDIUMLEFT);
-                        rightOuttakeSlide.setTargetPosition(RobotConstants.OuttakeSlide.MEDIUMRIGHT);
+                        leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.MEDIUMLEFT);
+                        rightOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.MEDIUMRIGHT);
 
                         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -62,8 +62,8 @@ public class OuttakeSlide {
                         rightOuttakeSlide.setPower(power);
                         break;
                     case STATION:
-                        leftOuttakeSlide.setTargetPosition(RobotConstants.OuttakeSlide.GROUNDLEFT);
-                        rightOuttakeSlide.setTargetPosition(RobotConstants.OuttakeSlide.GROUNDRIGHT);
+                        leftOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.GROUNDLEFT);
+                        rightOuttakeSlide.setTargetPosition(robotConstants.OuttakeSlide.GROUNDRIGHT);
 
                         leftOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightOuttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);

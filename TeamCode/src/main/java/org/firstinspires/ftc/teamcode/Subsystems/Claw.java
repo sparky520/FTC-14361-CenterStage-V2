@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
-import org.firstinspires.ftc.teamcode.Utilities.RobotConstants;
+import org.firstinspires.ftc.teamcode.Utilities.robotConstants;
 
 public class Claw {
     private ServoEx leftHand, rightHand;
@@ -24,34 +24,34 @@ public class Claw {
 
     public void leftOpen()
     {
-        leftHand.setPosition(RobotConstants.Claw.leftOpen);
+        leftHand.setPosition(robotConstants.Claw.leftOpen);
     }
 
     public void rightOpen()
     {
-        rightHand.setPosition(RobotConstants.Claw.rightOpen);
+        rightHand.setPosition(robotConstants.Claw.rightOpen);
     }
 
     public void open()
     {
-        leftHand.setPosition(RobotConstants.Claw.leftOpen);
-        rightHand.setPosition(RobotConstants.Claw.rightOpen);
+        leftHand.setPosition(robotConstants.Claw.leftOpen);
+        rightHand.setPosition(robotConstants.Claw.rightOpen);
     }
 
     public void leftClose()
     {
-        leftHand.setPosition(RobotConstants.Claw.leftClose);
+        leftHand.setPosition(robotConstants.Claw.leftClose);
     }
 
     public void rightClose()
     {
-        rightHand.setPosition(RobotConstants.Claw.rightClose);
+        rightHand.setPosition(robotConstants.Claw.rightClose);
     }
 
     public void close()
     {
-        leftHand.setPosition(RobotConstants.Claw.leftClose);
-        rightHand.setPosition(RobotConstants.Claw.rightClose);
+        leftHand.setPosition(robotConstants.Claw.leftClose);
+        rightHand.setPosition(robotConstants.Claw.rightClose);
     }
 
     public double getLeftHandPosition()
