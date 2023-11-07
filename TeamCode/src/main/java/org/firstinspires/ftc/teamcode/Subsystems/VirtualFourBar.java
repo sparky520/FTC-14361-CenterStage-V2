@@ -19,16 +19,16 @@ import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 
 public class VirtualFourBar
 {
-    private ServoEx leftvirtualFourBar, rightvirtualFourBar;
+    private ServoEx leftVirtualFourBar, rightVirtualFourBar;
     public virtualFourBarExtensionState virtualFourBarExtension;
     double minAngle = 0, maxAngle= 360;
 
     public VirtualFourBar(HardwareMap hardwareMap)
     {
-        rightvirtualFourBar = new SimpleServo(hardwareMap, "rightvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
-        leftvirtualFourBar = new SimpleServo(hardwareMap, "leftvirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        rightVirtualFourBar = new SimpleServo(hardwareMap, "rightVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        leftVirtualFourBar = new SimpleServo(hardwareMap, "leftVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
 
-        leftvirtualFourBar.setInverted(true);
+        leftVirtualFourBar.setInverted(true);
     }
 
     public void setVirtualFourBarPosition(virtualFourBarState virtualFourBarState, virtualFourBarExtensionState virtualFourBarExtensionState)
@@ -36,21 +36,21 @@ public class VirtualFourBar
         switch (virtualFourBarState)
         {
             case outtaking:
-                leftvirtualFourBar.setPosition(outtakingLeft);
-                rightvirtualFourBar.setPosition(outtakingRight);
+                leftVirtualFourBar.setPosition(outtakingLeft);
+                rightVirtualFourBar.setPosition(outtakingRight);
 
                 virtualFourBarExtension = virtualFourBarExtensionState.station;
 
                 break;
             case intaking:
-                leftvirtualFourBar.setPosition(intakingLeft);
-                rightvirtualFourBar.setPosition(intakingRight);
+                leftVirtualFourBar.setPosition(intakingLeft);
+                rightVirtualFourBar.setPosition(intakingRight);
 
                 virtualFourBarExtension = virtualFourBarExtensionState.station;
                 break;
             default:
-                leftvirtualFourBar.setPosition(initLeft);
-                rightvirtualFourBar.setPosition(initRight);
+                leftVirtualFourBar.setPosition(initLeft);
+                rightVirtualFourBar.setPosition(initRight);
         }
 
 
