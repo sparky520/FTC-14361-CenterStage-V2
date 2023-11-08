@@ -18,7 +18,7 @@ public class robotConstants
         public static int MEDIUMLEFT = 1100;
         public static int MEDIUMRIGHT = 1100;
 
-        public static int LOWLEFT = 1000;
+        public static int LOWLEFT = -1000;
         public static int LOWRIGHT = 1000;
 
         public static int GROUNDLEFT = 0;
@@ -103,9 +103,11 @@ public class robotConstants
         public static double intakingRight = .588;
 
         public static double outtakingLeft = .16;
-        public static double outtakingRight = .2;
+        public static double outtakingRight = .23;
 
         public static double initLeft = .4;
+        //.45
+        //.55
         public static double initRight = .5;
 
         // right: .58

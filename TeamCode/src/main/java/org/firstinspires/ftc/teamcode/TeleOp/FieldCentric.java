@@ -36,8 +36,8 @@ public class FieldCentric extends OpMode {
         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
         bot.setVirtualFourBarState(virtualFourBarState.init);
 
-        //bot.setIntakeSlidePosition(-15);
-        //bot.setIntakeSlideState(intakeSlidesState.STATION);
+        bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
+        bot.setIntakeSlideState(intakeSlidesState.STATION);
 
         bot.setClawPosition(clawState.open);
         bot.setClawState(clawState.open);
@@ -70,6 +70,7 @@ public class FieldCentric extends OpMode {
 
         if (driver.wasJustPressed(GamepadKeys.Button.START)) {
             bot.driveTrain.resetIMU();
+
         }
 
         if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
@@ -166,10 +167,10 @@ public class FieldCentric extends OpMode {
 //                bot.setWristState(wristState.normal);
 //            }
 //        }
-                if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extended);
-                    bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
-                }
+              if(operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+                  bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
+                  bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
+              }
 
                 if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)) {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
