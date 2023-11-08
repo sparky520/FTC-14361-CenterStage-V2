@@ -72,16 +72,15 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.resetIMU();
         }
 
+        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
+        {
+            bot.driveTrain.setSlowDownMotorPower();
+        }
 
-//        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
-//        {
-//            bot.driveTrain.setSlowDownMotorPower();
-//        }
-//
-//        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1)
-//        {
-//            bot.driveTrain.setFullPower();
-//        {
+        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1)
+        {
+            bot.driveTrain.setFullPower();
+        {
 
         if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP))
         {
@@ -127,8 +126,9 @@ public class FieldCentric extends OpMode {
                 bot.setActiveIntakeState(activeIntakeState.activeReverse);
             }
         }
-        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
-            bot.driveTrain.setSlowDownMotorPower();
+        if (driver.wasJustPressed(GamepadKeys.Button.X))
+        {
+            bot.intakeSlide.forceThatJawn();
         }
 
                 // --------------------------- OPERATOR CODE --------------------------- //
