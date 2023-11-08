@@ -195,6 +195,21 @@ public class FieldCentric extends OpMode {
                         bot.setWristPosition(wristState.sideways);
 
                     } else if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.intaking)) {
+                        /*
+                         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+                        bot.setVirtualFourBarState(virtualFourBarState.init);
+
+                        sleep(200);
+
+                        bot.setWristState(wristState.sideways);
+                        bot.setWristPosition(wristState.sideways);
+
+                        sleep(200);
+
+                        bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
+                        bot.setVirtualFourBarState(virtualFourBarState.outtaking);
+                         */
+
                         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                         bot.setVirtualFourBarState(virtualFourBarState.init);
 

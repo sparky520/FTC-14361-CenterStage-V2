@@ -46,7 +46,7 @@ public class robotConstants
         // first comp length below
 
         public static int lowExtension = 0;
-        public static int retracted = -15;
+        public static int retracted = -10;
     }
 
     public static class Claw
@@ -54,10 +54,10 @@ public class robotConstants
         public static double intakeAuto = 0.0;
         public static double intakeTeleOp = 0.0;
 
-        public static double leftClose = .5;
-        public static double rightClose = .63;
-        public static double leftOpen = .585;
-        public static double rightOpen = .56;
+        public static double leftClose = .25;
+        public static double rightClose = .9;
+        public static double leftOpen = .57;
+        public static double rightOpen = .54;
 
         public static double outWristRotation = 0.0;
         public static double sideWristRotation = 0.0;
@@ -90,15 +90,20 @@ public class robotConstants
     {
         public static double wristSideways = .33;
         public static double wristNormal = .67;
+
+        // scale is from .33 (0) to .67 (1) so there no overshoot at all
+
+        // side: .33
+        // norm: .67
     }
 
     public static class virtualFourBar
     {
-        public static double intakingLeft = .5;
-        public static double intakingRight = .65;
+        public static double intakingLeft = .486;
+        public static double intakingRight = .588;
 
-        public static double outtakingLeft = .85;
-        public static double outtakingRight = .15;
+        public static double outtakingLeft = .16;
+        public static double outtakingRight = .2;
 
         public static double initLeft = .45;
         public static double initRight = .55;
