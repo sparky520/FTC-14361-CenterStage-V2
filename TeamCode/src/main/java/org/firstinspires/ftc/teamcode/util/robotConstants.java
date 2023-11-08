@@ -11,14 +11,14 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int HIGHLEFT = 1850;
+        public static int HIGHLEFT = -1850;
         public static int HIGHRIGHT = 1850;
         //sometimes the encoder values go negative so you might have to change those
 
-        public static int MEDIUMLEFT = 1500;
+        public static int MEDIUMLEFT = -1500;
         public static int MEDIUMRIGHT = 1500;
 
-        public static int LOWLEFT = 1000;
+        public static int LOWLEFT = -1000;
         public static int LOWRIGHT = 1000;
 
         public static int GROUNDLEFT = 0;
@@ -46,7 +46,7 @@ public class robotConstants
         // first comp length below
 
         public static int lowExtension = 0;
-        public static int retracted = -10;
+        public static int retracted = -2;
     }
 
     public static class Claw
@@ -54,10 +54,10 @@ public class robotConstants
         public static double intakeAuto = 0.0;
         public static double intakeTeleOp = 0.0;
 
-        public static double leftClose = .25;
-        public static double rightClose = .9;
-        public static double leftOpen = .57;
-        public static double rightOpen = .54;
+        public static double leftClose = .7;
+        public static double rightClose = .3;
+        public static double leftOpen = .53;
+        public static double rightOpen = .58;
 
         public static double outWristRotation = 0.0;
         public static double sideWristRotation = 0.0;
@@ -88,7 +88,7 @@ public class robotConstants
 
     public static class Wrist
     {
-        public static double wristSideways = .33;
+        public static double wristSideways = 1;
         public static double wristNormal = .67;
 
         // scale is from .33 (0) to .67 (1) so there no overshoot at all
@@ -103,10 +103,12 @@ public class robotConstants
         public static double intakingRight = .588;
 
         public static double outtakingLeft = .16;
-        public static double outtakingRight = .2;
+        public static double outtakingRight = .23;
 
-        public static double initLeft = .45;
-        public static double initRight = .55;
+        public static double initLeft = .4;
+        //.45
+        //.55
+        public static double initRight = .5;
 
         // right: .58
         // left: .41
