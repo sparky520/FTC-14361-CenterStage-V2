@@ -15,8 +15,8 @@ public class robotConstants
         public static int HIGHRIGHT = 1850;
         //sometimes the encoder values go negative so you might have to change those
 
-        public static int MEDIUMLEFT = -1500;
-        public static int MEDIUMRIGHT = 1500;
+        public static int MEDIUMLEFT = 1100;
+        public static int MEDIUMRIGHT = 1100;
 
         public static int LOWLEFT = -1000;
         public static int LOWRIGHT = 1000;
@@ -71,8 +71,8 @@ public class robotConstants
 
     public static class activeIntake
     {
-        public static int active = 1;
-        public static int reverseActive = -1;
+        public static double active = 0.2;
+        public static double reverseActive = -0.2;
     }
 
     public static class Drone
