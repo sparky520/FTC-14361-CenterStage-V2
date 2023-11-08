@@ -60,13 +60,11 @@ public class IntakeSlide {
 
                         break;
                     case STATION:
-
-
                         intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.retracted);
                         intakeSlideMotor.setTargetPositionTolerance(5);
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        intakeSlideMotor.setPower(power);
+                        intakeSlideMotor.setPower(0.8);
                         //PIDMotorPower(robotConstants.IntakeSlide.retracted);
 
 
@@ -78,6 +76,16 @@ public class IntakeSlide {
             case extended:
                 break;
         }
+    }
+
+    public void setPosition(int pos)
+    {
+        intakeSlideMotor.setTargetPosition(pos);
+        intakeSlideMotor.setTargetPositionTolerance(5);
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        intakeSlideMotor.setPower(power);
+        // setPIDMotorPower(robotConstants.IntakeSlide.fullExtension);
     }
 
     public double getIntakeSlidePosition(){
