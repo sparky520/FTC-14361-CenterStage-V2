@@ -87,7 +87,9 @@ public class IntakeSlide {
     {
         intakeSlideMotor.setTargetPosition(100);
         setMaxPower();
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         intakeSlideMotor.setTargetPosition(-4);
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         setNormalPower();
     }
 }
