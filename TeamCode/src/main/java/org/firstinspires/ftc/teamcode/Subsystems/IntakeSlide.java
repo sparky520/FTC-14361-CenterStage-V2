@@ -12,6 +12,8 @@ public class IntakeSlide {
     DcMotorEx intakeSlideMotor;
     private final int countsPerRev = 384;
     double power = .7;
+    int retractedVal = robotConstants.intakeSlide.retracted;
+    int timer = 0;
 
     public IntakeSlide(HardwareMap hardwareMap) {
 
@@ -46,7 +48,7 @@ public class IntakeSlide {
                         intakeSlideMotor.setPower(power);
                         break;
                     case STATION:
-                        intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.retracted);
+                        intakeSlideMotor.setTargetPosition(retractedVal);
 
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -85,9 +87,21 @@ public class IntakeSlide {
 
     public void forceThatJawn()
     {
-        intakeSlideMotor.setTargetPosition(100);
-        setMaxPower();
-        intakeSlideMotor.setTargetPosition(-4);
-        setNormalPower();
+        intakeSlideMotor.setTargetPosition(-8);
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        intakeSlideMotor.setPower(1);
+    }
+
+    public void addTick()
+    {
+        timer++;
+
+        retractedVal = retractedVal + 5;
+    }
+
+    public int getAddedAmount()
+    {
+        return timer * 5;
     }
 }
