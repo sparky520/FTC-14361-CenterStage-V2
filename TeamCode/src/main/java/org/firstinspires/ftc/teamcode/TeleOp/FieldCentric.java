@@ -14,7 +14,10 @@ import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+
 import org.firstinspires.ftc.teamcode.util.robotConstants.intakeSlide;
+
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
@@ -61,6 +64,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("State of V4B: init / " + bot.virtualFourBar.getvirtualFourBarExtensionState());
         telemetry.addLine("Right Claw Position: " + bot.claw.getRightClawPosition());
         telemetry.addLine("Left Claw Position: " + bot.claw.getLeftClawPosition());
+        telemetry.addLine("Intake Slide Encoder Tick Count " + count);
         telemetry.update();
 
         driver.readButtons();
@@ -71,35 +75,34 @@ public class FieldCentric extends OpMode {
 
         // ---------------------------- DRIVER CODE ---------------------------- //
 
-        if (driver.wasJustPressed(GamepadKeys.Button.START)) {
+        if (driver.wasJustPressed(GamepadKeys.Button.START))
+        {
             bot.driveTrain.resetIMU();
-
         }
 
+        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
+        {
+            bot.driveTrain.setSlowDownMotorPower();
+        }
 
-//        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
-//        {
-//            bot.driveTrain.setSlowDownMotorPower();
-//        }
-//
-//        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1)
-//        {
-//            bot.driveTrain.setFullPower();
-//        {
+        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1)
+        {
+            bot.driveTrain.setFullPower();
+        {
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP))
+        if(driver.wasJustPressed(GamepadKeys.Button.Y))
         {
             bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
             bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_LEFT))
+        if(driver.wasJustPressed(GamepadKeys.Button.X))
         {
             bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
             bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
+        if(driver.wasJustPressed(GamepadKeys.Button.A))
         {
             bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
             bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -110,7 +113,9 @@ public class FieldCentric extends OpMode {
             bot.intakeSlide.setPosition(intakeSlide.retracted+ count);
         }
 
-        if (driver.wasJustPressed(GamepadKeys.Button.A))
+
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
+
         {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active)))
             {
@@ -123,7 +128,7 @@ public class FieldCentric extends OpMode {
                 bot.setActiveIntakeState(activeIntakeState.active);
             }
         }
-        if (driver.wasJustPressed(GamepadKeys.Button.Y))
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP))
         {
             if (bot.getActiveIntakeState() != null && bot.getActiveIntakeState().equals(activeIntakeState.activeReverse))
             {
@@ -136,11 +141,16 @@ public class FieldCentric extends OpMode {
                 bot.setActiveIntakeState(activeIntakeState.activeReverse);
             }
         }
-        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
-            bot.driveTrain.setSlowDownMotorPower();
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
+        {
+            bot.intakeSlide.forceThatJawn();
         }
 
 
+            if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
+                count -= 5;
+                bot.intakeSlide.setPosition(robotConstants.intakeSlide.retracted + count);
+            }
 
 
                 // --------------------------- OPERATOR CODE --------------------------- //
@@ -328,4 +338,5 @@ public class FieldCentric extends OpMode {
                 }
             }
         }
+    }}
 
