@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.util.robotConstants.intakeSlide;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
@@ -21,6 +22,7 @@ public class FieldCentric extends OpMode {
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
+    private int count = 0;
 
     @Override
     public void init() {
@@ -54,6 +56,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Left Slide Position: " + bot.getOuttakeLeftSlidePosition() + " ticks");
         telemetry.addLine("Right Slide Position: " + bot.getOuttakeRightSlidePosition() + " ticks");
         telemetry.addLine("Intake Slide Position" + bot.getIntakeSlidePosition());
+        telemetry.addLine("Intake Slide Count " + count);
         telemetry.addLine("Wrist Position: " + bot.wrist.getWristPosition());
         telemetry.addLine("State of V4B: init / " + bot.virtualFourBar.getvirtualFourBarExtensionState());
         telemetry.addLine("Right Claw Position: " + bot.claw.getRightClawPosition());
@@ -100,6 +103,11 @@ public class FieldCentric extends OpMode {
         {
             bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
             bot.setIntakeSlideState(intakeSlidesState.STATION);
+        }
+
+        if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
+            count-= 5;
+            bot.intakeSlide.setPosition(intakeSlide.retracted+ count);
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.A))
@@ -149,6 +157,8 @@ public class FieldCentric extends OpMode {
                         bot.setClawState(clawState.open);
                     }
                 }
+
+
 
                 if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
                     if (bot.getWristState() != null && bot.getWristState().equals(wristState.normal)) {

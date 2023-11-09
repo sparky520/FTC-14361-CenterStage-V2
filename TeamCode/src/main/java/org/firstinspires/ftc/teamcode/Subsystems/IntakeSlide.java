@@ -81,7 +81,7 @@ public class IntakeSlide {
     public void setPosition(int pos)
     {
         intakeSlideMotor.setTargetPosition(pos);
-      
+
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(power);

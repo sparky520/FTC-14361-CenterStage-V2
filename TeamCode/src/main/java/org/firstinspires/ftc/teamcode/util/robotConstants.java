@@ -71,8 +71,8 @@ public class robotConstants
 
     public static class activeIntake
     {
-        public static double active = .2;
-        public static double reverseActive = -.2;
+        public static double active = .3;
+        public static double reverseActive = -.3;
     }
 
     public static class Drone
