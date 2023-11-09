@@ -58,6 +58,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("State of V4B: init / " + bot.virtualFourBar.getvirtualFourBarExtensionState());
         telemetry.addLine("Right Claw Position: " + bot.claw.getRightClawPosition());
         telemetry.addLine("Left Claw Position: " + bot.claw.getLeftClawPosition());
+        telemetry.addLine("Encoder Tick Added: " + bot.intakeSlide.getAddedAmount());
         telemetry.update();
 
         driver.readButtons();
@@ -132,6 +133,10 @@ public class FieldCentric extends OpMode {
             bot.intakeSlide.forceThatJawn();
         }
 
+        if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON))
+        {
+            bot.intakeSlide.blah();
+        }
                 // --------------------------- OPERATOR CODE --------------------------- //
 
 
