@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
@@ -21,6 +22,7 @@ public class FieldCentric extends OpMode {
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
+    private int count = 0;
 
     @Override
     public void init() {
@@ -58,7 +60,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("State of V4B: init / " + bot.virtualFourBar.getvirtualFourBarExtensionState());
         telemetry.addLine("Right Claw Position: " + bot.claw.getRightClawPosition());
         telemetry.addLine("Left Claw Position: " + bot.claw.getLeftClawPosition());
-        telemetry.addLine("Encoder Tick Added: " + bot.intakeSlide.getAddedAmount());
+        telemetry.addLine("Intake Slide Encoder Tick Count " + count);
         telemetry.update();
 
         driver.readButtons();
@@ -133,10 +135,11 @@ public class FieldCentric extends OpMode {
             bot.intakeSlide.forceThatJawn();
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON))
-        {
-            bot.intakeSlide.addTick();
-        }
+            if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
+                count -= 5;
+                bot.intakeSlide.setPosition(robotConstants.intakeSlide.retracted + count);
+            }
+
                 // --------------------------- OPERATOR CODE --------------------------- //
 
 
