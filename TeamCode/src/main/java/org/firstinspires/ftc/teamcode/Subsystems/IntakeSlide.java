@@ -64,7 +64,7 @@ public class IntakeSlide {
 
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        intakeSlideMotor.setPower(0.8);
+                        intakeSlideMotor.setPower(power);
                         //PIDMotorPower(robotConstants.IntakeSlide.retracted);
 
 
@@ -81,7 +81,7 @@ public class IntakeSlide {
     public void setPosition(int pos)
     {
         intakeSlideMotor.setTargetPosition(pos);
-        intakeSlideMotor.setTargetPositionTolerance(5);
+      
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(power);
@@ -92,5 +92,13 @@ public class IntakeSlide {
         double position = intakeSlideMotor.getCurrentPosition();
         return position;
     }
+
+    public void forceSlidePosition(){
+        intakeSlideMotor.setTargetPosition(-8);
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        intakeSlideMotor.setPower(1);
+    }
+
+
 
 }

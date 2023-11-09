@@ -132,6 +132,11 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.setSlowDownMotorPower();
         }
 
+        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
+            bot.intakeSlide.forceSlidePosition();
+        }
+
+
                 // --------------------------- OPERATOR CODE --------------------------- //
 
 
@@ -182,7 +187,7 @@ public class FieldCentric extends OpMode {
                     bot.setOuttakeSlideState(outtakeSlidesState.STATION);
                 }
 
-               if (operator.wasJustPressed(GamepadKeys.Button.X)) {
+               if (operator.wasJustPressed(GamepadKeys.Button.B)) {
                     if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.outtaking)) {
                         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                         bot.setVirtualFourBarState(virtualFourBarState.init);
@@ -273,6 +278,14 @@ public class FieldCentric extends OpMode {
 
                     bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
                     bot.setVirtualFourBarState(virtualFourBarState.intaking);
+                }
+                if(operator.wasJustPressed(GamepadKeys.Button.X)){
+
+                    bot.setWristState(wristState.normal);
+                    bot.setWristPosition(wristState.normal);
+
+                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+                    bot.setVirtualFourBarState(virtualFourBarState.init);
                 }
 
                 if (operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
