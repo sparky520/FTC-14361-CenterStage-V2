@@ -87,15 +87,13 @@ public class IntakeSlide {
 
     public void forceThatJawn()
     {
-        intakeSlideMotor.setTargetPosition(100);
-        setMaxPower();
+        intakeSlideMotor.setTargetPosition(-8);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        intakeSlideMotor.setTargetPosition(-4);
-        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        setNormalPower();
+
+        intakeSlideMotor.setPower(1);
     }
-    y
-    public void blah()
+
+    public void addTick()
     {
         timer++;
 
@@ -104,6 +102,6 @@ public class IntakeSlide {
 
     public int getAddedAmount()
     {
-        return timer;
+        return timer * 5;
     }
 }

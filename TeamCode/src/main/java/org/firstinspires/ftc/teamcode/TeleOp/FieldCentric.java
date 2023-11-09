@@ -84,25 +84,25 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.setFullPower();
         {
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP))
+        if(driver.wasJustPressed(GamepadKeys.Button.Y))
         {
             bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
             bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_LEFT))
+        if(driver.wasJustPressed(GamepadKeys.Button.X))
         {
             bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
             bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
+        if(driver.wasJustPressed(GamepadKeys.Button.A))
         {
             bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
             bot.setIntakeSlideState(intakeSlidesState.STATION);
         }
 
-        if (driver.wasJustPressed(GamepadKeys.Button.A))
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
         {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active)))
             {
@@ -115,7 +115,7 @@ public class FieldCentric extends OpMode {
                 bot.setActiveIntakeState(activeIntakeState.active);
             }
         }
-        if (driver.wasJustPressed(GamepadKeys.Button.Y))
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP))
         {
             if (bot.getActiveIntakeState() != null && bot.getActiveIntakeState().equals(activeIntakeState.activeReverse))
             {
@@ -128,14 +128,14 @@ public class FieldCentric extends OpMode {
                 bot.setActiveIntakeState(activeIntakeState.activeReverse);
             }
         }
-        if (driver.wasJustPressed(GamepadKeys.Button.X))
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
         {
             bot.intakeSlide.forceThatJawn();
         }
 
         if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON))
         {
-            bot.intakeSlide.blah();
+            bot.intakeSlide.addTick();
         }
                 // --------------------------- OPERATOR CODE --------------------------- //
 
