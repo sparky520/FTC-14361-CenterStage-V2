@@ -85,7 +85,8 @@ public class FieldCentric extends OpMode {
 
         if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
             bot.driveTrain.setFullPower();
-            {
+        }
+
 
                 if (driver.wasJustPressed(GamepadKeys.Button.Y)) {
                     bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
@@ -106,7 +107,7 @@ public class FieldCentric extends OpMode {
                 if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
                     count -= 5;
                     bot.intakeSlide.setPosition(intakeSlide.retracted + count);
-
+                }
 
                     if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
                         if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
@@ -319,8 +320,8 @@ public class FieldCentric extends OpMode {
                     }
                 }
             }
-        }
-    }
-}
+
+
+
 
 
