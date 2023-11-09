@@ -11,15 +11,17 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int HIGHLEFT = -1000;
-        public static int HIGHRIGHT = 1000;
+
+        public static int HIGHLEFT = -1200;
+        public static int HIGHRIGHT = 1200;
         //sometimes the encoder values go negative so you might have to change those
 
-        public static int MEDIUMLEFT = -450;
-        public static int MEDIUMRIGHT = 450;
+        public static int MEDIUMLEFT = -900;
+        public static int MEDIUMRIGHT = 900;
 
-        public static int LOWLEFT = -500;
-        public static int LOWRIGHT = 500;
+        public static int LOWLEFT = -450;
+        public static int LOWRIGHT = 450;
+
 
         public static int GROUNDLEFT = 0;
         public static int GROUNDRIGHT = 0;
@@ -71,8 +73,10 @@ public class robotConstants
 
     public static class activeIntake
     {
-        public static double active = 0.3;
-        public static double reverseActive = -0.3;
+
+        public static double active = .3;
+        public static double reverseActive = -.3;
+
     }
 
     public static class Drone

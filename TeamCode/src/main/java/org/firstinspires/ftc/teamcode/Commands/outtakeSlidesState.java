@@ -4,5 +4,6 @@ public enum outtakeSlidesState {
 
 HIGHOUT,
     MEDIUMOUT,
+    LOWOUT,
     STATION
 }

@@ -52,7 +52,15 @@ public class IntakeSlide {
 
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
+                        intakeSlideMotor.setPower(power);
+                        //PIDMotorPower(robotConstants.IntakeSlide.retracted);
+
+
+                        extensionState = extensionState.retracted;
+
                         intakeSlideMotor.setPower(0.8);
+
                         break;
                 }
             case extended:
@@ -62,7 +70,7 @@ public class IntakeSlide {
 
     public void setPosition(int pos) {
         intakeSlideMotor.setTargetPosition(pos);
-        intakeSlideMotor.setTargetPositionTolerance(5);
+
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(power);
@@ -73,6 +81,16 @@ public class IntakeSlide {
         return position;
     }
 
+
+    public void forceSlidePosition(){
+        intakeSlideMotor.setTargetPosition(-8);
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        intakeSlideMotor.setPower(1);
+    }
+
+
+
+
     public void setMaxPower() {
         power = 1;
     }
@@ -81,10 +99,5 @@ public class IntakeSlide {
         power = .7;
     }
 
-    public void forceThatJawn() {
-        intakeSlideMotor.setTargetPosition(-8);
-        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        intakeSlideMotor.setPower(1);
-    }
 }
