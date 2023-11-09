@@ -60,8 +60,10 @@ public class IntakeSlide {
                         extensionState = extensionState.retracted;
 
 
-
           break;
+
+
+
                 }
             case extended:
                 break;
@@ -83,22 +85,14 @@ public class IntakeSlide {
 
 
 
-
-
-
-    public void setMaxPower() {
-        power = 1;
-    }
-
-    public void setNormalPower() {
-        power = .7;
-    }
-
     public void forceThatJawn() {
         intakeSlideMotor.setTargetPosition(-8);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(1);
     }
+
+
+
 
 }
