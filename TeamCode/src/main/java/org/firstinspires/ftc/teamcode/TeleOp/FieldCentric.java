@@ -105,7 +105,7 @@ public class FieldCentric extends OpMode {
             bot.setIntakeSlideState(intakeSlidesState.STATION);
         }
 
-        if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
+        if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
             count-= 5;
             bot.intakeSlide.setPosition(intakeSlide.retracted+ count);
         }
@@ -140,9 +140,7 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.setSlowDownMotorPower();
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
-            bot.intakeSlide.forceSlidePosition();
-        }
+
 
 
                 // --------------------------- OPERATOR CODE --------------------------- //
@@ -195,6 +193,10 @@ public class FieldCentric extends OpMode {
                 if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setOuttakeSlideState(outtakeSlidesState.STATION);
+                }
+                if(operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
+                    count-= 5;
+                    bot.intakeSlide.setPosition(intakeSlide.retracted+ count);
                 }
 
                if (operator.wasJustPressed(GamepadKeys.Button.B)) {
