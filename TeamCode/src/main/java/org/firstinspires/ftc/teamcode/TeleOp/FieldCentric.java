@@ -69,9 +69,9 @@ public class FieldCentric extends OpMode {
 
         // ---------------------------- DRIVER CODE ---------------------------- //
 
-        if (driver.wasJustPressed(GamepadKeys.Button.START)) {
+        if (driver.wasJustPressed(GamepadKeys.Button.START))
+        {
             bot.driveTrain.resetIMU();
-
         }
 
         if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
