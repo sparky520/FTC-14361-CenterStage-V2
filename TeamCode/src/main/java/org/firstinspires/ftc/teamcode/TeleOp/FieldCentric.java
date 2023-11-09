@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
@@ -137,41 +140,35 @@ public class FieldCentric extends OpMode {
         {
             bot.intakeSlide.addTick();
         }
-                // --------------------------- OPERATOR CODE --------------------------- //
+
+        if(driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER))
+        {
+            bot.drone.launch();
+        }
+
+        // --------------------------- OPERATOR CODE --------------------------- //
 
 
-                if (operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
-                    if (bot.getClawState() != null && bot.getClawState().equals(clawState.open)) {
-                        bot.setClawPosition(clawState.close);
-                        bot.setClawState(clawState.close);
-                    } else {
-                        bot.setClawPosition(clawState.open);
-                        bot.setClawState(clawState.open);
-                    }
+            if (operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
+                if (bot.getClawState() != null && bot.getClawState().equals(clawState.open)) {
+                    bot.setClawPosition(clawState.close);
+                    bot.setClawState(clawState.close);
+                } else {
+                    bot.setClawPosition(clawState.open);
+                    bot.setClawState(clawState.open);
                 }
+            }
 
-                if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
-                    if (bot.getWristState() != null && bot.getWristState().equals(wristState.normal)) {
-                        bot.setWristPosition(wristState.sideways);
-                        bot.setWristState(wristState.sideways);
-                    } else {
-                        bot.setWristPosition(wristState.normal);
-                        bot.setWristState(wristState.normal);
-                    }
+            if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
+                if (bot.getWristState() != null && bot.getWristState().equals(wristState.normal)) {
+                    bot.setWristPosition(wristState.sideways);
+                    bot.setWristState(wristState.sideways);
+                } else {
+                    bot.setWristPosition(wristState.normal);
+                    bot.setWristState(wristState.normal);
                 }
-//        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
-//        {
-//            if (bot.getWristState() != null && bot.getWristState().equals(wristState.normal))
-//            {
-//                bot.setWristPosition(wristState.sideways);
-//                bot.setWristState(wristState.sideways);
-//            }
-//            else
-//            {
-//                bot.setWristPosition(wristState.normal);
-//                bot.setWristState(wristState.normal);
-//            }
-//        }
+            }
+
               if(operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
                   bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
                   bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
@@ -301,5 +298,6 @@ public class FieldCentric extends OpMode {
                 }
             }
         }
-    }}
+    }
+}
 
