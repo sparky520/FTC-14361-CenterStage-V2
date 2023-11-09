@@ -59,9 +59,11 @@ public class IntakeSlide {
 
                         extensionState = extensionState.retracted;
 
-                        intakeSlideMotor.setPower(0.8);
 
-                        break;
+          break;
+
+
+
                 }
             case extended:
                 break;
@@ -82,22 +84,15 @@ public class IntakeSlide {
     }
 
 
-    public void forceSlidePosition(){
+
+    public void forceThatJawn() {
         intakeSlideMotor.setTargetPosition(-8);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         intakeSlideMotor.setPower(1);
     }
 
 
-
-
-    public void setMaxPower() {
-        power = 1;
-    }
-
-    public void setNormalPower() {
-        power = .7;
-    }
 
 
 }
