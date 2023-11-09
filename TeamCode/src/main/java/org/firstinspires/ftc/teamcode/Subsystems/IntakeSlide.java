@@ -25,14 +25,14 @@ public class IntakeSlide {
 
         intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
-    public void setPosition(extensionState extensionState, intakeSlidesState inExtendState)
-    {
-        switch(extensionState){
+
+    public void setPosition(extensionState extensionState, intakeSlidesState inExtendState) {
+        switch (extensionState) {
             case retracted:
 
                 break;
             case extending:
-                switch(inExtendState){
+                switch (inExtendState) {
                     case HIGHIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.highExtension);
 
@@ -60,8 +60,7 @@ public class IntakeSlide {
         }
     }
 
-    public void setPosition(int pos)
-    {
+    public void setPosition(int pos) {
         intakeSlideMotor.setTargetPosition(pos);
         intakeSlideMotor.setTargetPositionTolerance(5);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -69,39 +68,23 @@ public class IntakeSlide {
         intakeSlideMotor.setPower(power);
     }
 
-    public double getIntakeSlidePosition()
-    {
+    public double getIntakeSlidePosition() {
         double position = intakeSlideMotor.getCurrentPosition();
         return position;
     }
 
-    public void setMaxPower()
-    {
+    public void setMaxPower() {
         power = 1;
     }
 
-    public void setNormalPower()
-    {
+    public void setNormalPower() {
         power = .7;
     }
 
-    public void forceThatJawn()
-    {
+    public void forceThatJawn() {
         intakeSlideMotor.setTargetPosition(-8);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(1);
-    }
-
-    public void addTick()
-    {
-        timer++;
-
-        retractedVal = retractedVal + 5;
-    }
-
-    public int getAddedAmount()
-    {
-        return timer * 5;
     }
 }
