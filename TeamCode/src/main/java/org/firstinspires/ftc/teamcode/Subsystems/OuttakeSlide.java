@@ -62,6 +62,16 @@ public class OuttakeSlide
                         leftouttakeSlide.setPower(power);
                         rightouttakeSlide.setPower(power);
                         break;
+                    case LOWOUT:
+                        leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.LOWLEFT);
+                        rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.LOWRIGHT);
+
+                        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                        leftouttakeSlide.setPower(power);
+                        rightouttakeSlide.setPower(power);
+                        break;
                     case STATION:
                         leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.GROUNDLEFT);
                         rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.GROUNDRIGHT);

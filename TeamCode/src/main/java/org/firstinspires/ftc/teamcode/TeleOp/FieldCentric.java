@@ -181,13 +181,20 @@ public class FieldCentric extends OpMode {
 //            }
 //        }
               if(operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-                  bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
-                  bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
+                  if(bot.getOuttakeState()!= null && bot.getOuttakeState().equals(outtakeSlidesState.MEDIUMOUT)){
+                      bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
+                      bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
+                  }
+                  else {
+                      bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+                      bot.setOuttakeSlideState(outtakeSlidesState.MEDIUMOUT);
+                  }
+
               }
 
                 if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)) {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
-                    bot.setOuttakeSlideState(outtakeSlidesState.MEDIUMOUT);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                    bot.setOuttakeSlideState(outtakeSlidesState.LOWOUT);
                 }
 
                 if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
