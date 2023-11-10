@@ -89,7 +89,6 @@ public class Claw
             default:
                 close();
         }
-
     }
     public double getRightClawPosition()
     {

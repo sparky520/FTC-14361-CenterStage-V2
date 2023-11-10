@@ -22,7 +22,7 @@ public class Robot {
     public Wrist wrist;
     public Claw claw;
     public VirtualFourBar virtualFourBar;
-
+    public Drone drone;
     public intakeSlidesState intakeSlidesState;
     public outtakeSlidesState outtakeSlidesState;
     public wristState wristState;
@@ -47,6 +47,7 @@ public class Robot {
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
         activeIntake = new ActiveIntake(hardwareMap);
+        drone = new Drone(hardwareMap);
     }
 
     public void setIntakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
