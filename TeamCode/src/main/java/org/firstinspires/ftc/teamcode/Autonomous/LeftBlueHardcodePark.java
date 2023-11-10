@@ -58,8 +58,11 @@ public class LeftBlueHardcodePark extends LinearOpMode {
 
         while(opModeIsActive()){
 
-            backwards(.6, .5);
+            backwards(.5, .15);
             stopMotors();
+            strafeLeft(.5, 1.2);
+            stopMotors();
+            break;
 
 
         }
