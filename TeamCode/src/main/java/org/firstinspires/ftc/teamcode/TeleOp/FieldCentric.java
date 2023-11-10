@@ -303,11 +303,11 @@ public class FieldCentric extends OpMode {
             }
         }
 
-//                  if(operator.wasJustPressed(GamepadKeys.Button.X))
-//                  {
-//                      bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
-//                      bot.setVirtualFourBarState(virtualFourBarState.init);
-//                  }
+//     if(operator.wasJustPressed(GamepadKeys.Button.X))
+//     {
+//         bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+//         bot.setVirtualFourBarState(virtualFourBarState.init);
+//      }
 
         if(operator.wasJustPressed(GamepadKeys.Button.Y))
         {
