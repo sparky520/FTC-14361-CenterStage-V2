@@ -57,7 +57,7 @@ public class FieldCentric extends OpMode {
         bot.setSlowDownState(slowDownState.FULL);
     }
 
-    // ---------------------------- LOOPING ---------------------------- //
+        // ---------------------------- LOOPING ---------------------------- //
 
     @Override
     public void loop()
