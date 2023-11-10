@@ -338,7 +338,7 @@ public class FieldCentric extends OpMode {
 
         if(operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER))
         {
-            if (bot.getLeftClawState() != null && bot.getLeftClawState().equals(clawState.leftOpen))
+            if(bot.getLeftClawState() != null && bot.getLeftClawState().equals(clawState.leftOpen))
             {
                 bot.setCloseLeftClawPosition();
                 bot.setLeftClawState(clawState.leftClose);

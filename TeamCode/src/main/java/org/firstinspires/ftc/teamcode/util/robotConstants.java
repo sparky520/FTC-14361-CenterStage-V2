@@ -74,15 +74,9 @@ public class robotConstants
     public static class activeIntake
     {
 
-        public static double active = .3;
-        public static double reverseActive = -.3;
+        public static double active = 0.3;
+        public static double reverseActive = -0.3;
 
-    }
-
-    public static class Drone
-    {
-        public static double launchPosition = 0.0;
-        public static  double loadedPosition = 0.0;
     }
 
     public static class Climb
@@ -93,7 +87,7 @@ public class robotConstants
     public static class Wrist
     {
         public static double wristSideways = 1;
-        public static double wristNormal = .67;
+        public static double wristNormal = 0.67;
 
         // scale is from .33 (0) to .67 (1) so there no overshoot at all
 
@@ -103,16 +97,16 @@ public class robotConstants
 
     public static class virtualFourBar
     {
-        public static double intakingLeft = .486;
-        public static double intakingRight = .588;
+        public static double intakingLeft = 0.486;
+        public static double intakingRight = 0.588;
 
-        public static double outtakingLeft = .16;
-        public static double outtakingRight = .23;
+        public static double outtakingLeft = 0.16;
+        public static double outtakingRight = 0.23;
 
-        public static double initLeft = .4;
+        public static double initLeft = 0.4;
         //.45
         //.55
-        public static double initRight = .5;
+        public static double initRight = 0.5;
 
         // right: .58
         // left: .41

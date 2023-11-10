@@ -62,7 +62,7 @@ public class Mecanum
     }
     public void setSlowDownMotorPower()
     {
-        offset = 1.1 * 0.5;
+        offset = 1.1 * 0.65;
     }
 
     public void setFullPower()
