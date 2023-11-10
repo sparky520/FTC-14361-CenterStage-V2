@@ -12,9 +12,6 @@ public class Arm {
     {
         leftArm = hardwareMap.servo.get("leftArm");
         rightArm = hardwareMap.servo.get("rightArm");
-
-
-
     }
 
     public void setPosition(armState state){
@@ -29,6 +26,4 @@ public class Arm {
                 break;
         }
     }
-
-
 }

@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum armState
+public enum slowDownState
 {
-    intaking,outtaking,
+    FULL, SLOW
 }
