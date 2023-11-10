@@ -22,17 +22,19 @@ public class IntakeSlide {
         intakeSlideMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-
         intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+
     public void setPosition(extensionState extensionState, intakeSlidesState inExtendState)
     {
-        switch(extensionState){
+        switch (extensionState)
+        {
             case retracted:
 
                 break;
             case extending:
-                switch(inExtendState){
+                switch (inExtendState)
+                {
                     case HIGHIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.highExtension);
 
@@ -52,7 +54,7 @@ public class IntakeSlide {
 
                         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                        intakeSlideMotor.setPower(0.8);
+                        intakeSlideMotor.setPower(power);
                         break;
                 }
             case extended:
@@ -60,48 +62,23 @@ public class IntakeSlide {
         }
     }
 
-    public void setPosition(int pos)
-    {
+    public void setPosition(int pos) {
         intakeSlideMotor.setTargetPosition(pos);
-        intakeSlideMotor.setTargetPositionTolerance(5);
+
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(power);
     }
 
-    public double getIntakeSlidePosition()
-    {
+    public double getIntakeSlidePosition() {
         double position = intakeSlideMotor.getCurrentPosition();
         return position;
     }
 
-    public void setMaxPower()
-    {
-        power = 1;
-    }
-
-    public void setNormalPower()
-    {
-        power = .7;
-    }
-
-    public void forceThatJawn()
-    {
+    public void forceThatJawn() {
         intakeSlideMotor.setTargetPosition(-8);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         intakeSlideMotor.setPower(1);
-    }
-
-    public void addTick()
-    {
-        timer++;
-
-        retractedVal = retractedVal + 5;
-    }
-
-    public int getAddedAmount()
-    {
-        return timer * 5;
     }
 }
