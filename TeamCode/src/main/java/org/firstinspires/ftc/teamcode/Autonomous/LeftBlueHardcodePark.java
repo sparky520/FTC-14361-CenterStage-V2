@@ -48,17 +48,18 @@ public class LeftBlueHardcodePark extends LinearOpMode {
 
 
         // i dunno if this is even a real thing i can do
-        while(!opModeIsActive()) {
-            // lil bit of experimental code (if this works i am suoper cool)
-            voltageTelem();
-        }
+//        while(!opModeIsActive()) {
+//            // lil bit of experimental code (if this works i am suoper cool)
+//            voltageTelem();
+//        }
 
 
         waitForStart();
 
         while(opModeIsActive()){
 
-            backwards(.6, .25);
+            backwards(.6, .5);
+            stopMotors();
 
 
         }
@@ -67,7 +68,7 @@ public class LeftBlueHardcodePark extends LinearOpMode {
 
     // drive forward
     private void forward(double mult, double sec){
-        double timer = ( getRuntime() + 1.5);
+        double timer = ( getRuntime() + sec);
 
         while (time > getRuntime()) {
             rightFront.setPower(mult);
@@ -83,7 +84,7 @@ public class LeftBlueHardcodePark extends LinearOpMode {
     }
 
     private void backwards(double mult, double sec) {
-        double timer = ( getRuntime() + 1.5);
+        double timer = ( getRuntime() + sec);
 
         while (timer > getRuntime()) {
             rightFront.setPower(mult * -1);
@@ -111,79 +112,85 @@ public class LeftBlueHardcodePark extends LinearOpMode {
         leftRear.setPower(mult * -1);
         runFor(sec);
     }
+        private void stopMotors() {
+            rightFront.setPower(0);
+            leftFront.setPower(0);
+            rightRear.setPower(0);
+            leftRear.setPower(0);
+        }
 
-    private void runFor(double sec){
+        private void runFor(double sec){
         //sleeps for given time, so the program can run. FTC sleep means keep doing what you are doing, not stop everything
         sleep((long) (1000 * sec));
 
     }
-    public double getBatteryVoltage() {
-        double result = Double.POSITIVE_INFINITY;
-        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
-            double voltage = sensor.getVoltage();
-            if (voltage > 0) {
-                result = Math.min(result, voltage);
-            }
-        }
-        return result;
-    }
-
-    /*
-    The method below, when called, should:
-    get the current voltage & filter it into a category,
-    store the category in a String
-    place it in the right Switch Case
-    which will change the speed multiplier
-    and make consistent speed across all voltages
-    (in theory)
-     */
-    public void voltageTelem(){
-
-        batteryVoltage = getBatteryVoltage();
-        boolean voltNotFound = false;
-
-        if (batteryVoltage >= 14) {
-            voltageCategory = "Above 14V";
-
-        } else if (batteryVoltage >= 13) {
-            voltageCategory = "13-14V";
-
-        } else if (batteryVoltage >= 12) {
-            voltageCategory = "12-13V";
-
-        } else if (batteryVoltage >= 11) {
-            voltageCategory = "11-12V";
-
-        } else {
-
-            voltageCategory = "Below 11V";
-        }
-
-        switch (voltageCategory) {
-            case "Above 14V":
-                mult = 0.8;
-                break;
-            case "13-14V":
-                mult = 0.85;
-                break;
-            case "12-13V":
-                mult = 0.9;
-                break;
-            case "11-12V":
-                mult = 1;
-                break;
-            default:
-                telemetry.addLine("Cannot obtain voltage / Voltage too weak");
-                voltNotFound = true;
-        }
-
-        if(!voltNotFound){
-            telemetry.addData("Current battery voltage: ", batteryVoltage);
-            telemetry.addData("Current speed multiplier: ", mult);
-        }
-
-        telemetry.update();
-    }
+//    public double getBatteryVoltage() {
+//        double result = Double.POSITIVE_INFINITY;
+//        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
+//            double voltage = sensor.getVoltage();
+//            if (voltage > 0) {
+//                result = Math.min(result, voltage);
+//            }
+//        }
+//        return result;
+//    }
+//
+//    /*
+//    The method below, when called, should:
+//    get the current voltage & filter it into a category,
+//    store the category in a String
+//    place it in the right Switch Case
+//    which will change the speed multiplier
+//    and make consistent speed across all voltages
+//    (in theory)
+//     */
+//    public void voltageTelem(){
+//
+//        batteryVoltage = getBatteryVoltage();
+//        boolean voltNotFound = false;
+//
+//        if (batteryVoltage >= 14) {
+//            voltageCategory = "Above 14V";
+//
+//        } else if (batteryVoltage >= 13) {
+//            voltageCategory = "13-14V";
+//
+//        } else if (batteryVoltage >= 12) {
+//            voltageCategory = "12-13V";
+//
+//        } else if (batteryVoltage >= 11) {
+//            voltageCategory = "11-12V";
+//
+//        } else {
+//
+//            voltageCategory = "Below 11V";
+//        }
+//
+//        switch (voltageCategory) {
+//            case "Above 14V":
+//                mult = 0.8;
+//                break;
+//            case "13-14V":
+//                mult = 0.85;
+//                break;
+//            case "12-13V":
+//                mult = 0.9;
+//                break;
+//            case "11-12V":
+//                mult = 1;
+//                break;
+//            default:
+//                telemetry.addLine("Cannot obtain voltage / Voltage too weak");
+//                voltNotFound = true;
+//        }
+//
+//        if(!voltNotFound){
+//            telemetry.addData("Current battery voltage: ", batteryVoltage);
+//            telemetry.addData("Current speed multiplier: ", mult);
+//        }
+//
+//        telemetry.update();
+//    }
 
 }
 
