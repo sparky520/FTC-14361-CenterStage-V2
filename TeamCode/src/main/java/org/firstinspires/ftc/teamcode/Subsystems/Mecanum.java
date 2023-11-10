@@ -62,7 +62,7 @@ public class Mecanum
     }
     public void setSlowDownMotorPower()
     {
-        offset = 1.1 * 0.5;
+        offset = 1.1 * 0.65;
     }
 
     public void setFullPower()
@@ -75,11 +75,4 @@ public class Mecanum
         imu.initialize(parameters);
     }
 
-//    public void setMotorPowerRounded()
-//    {
-//        leftFront.setPower(round(leftFrontPower));
-//        leftRear.setPower(round(leftRearPower));
-//        rightFront.setPower(round(rightFrontPower));
-//        rightRear.setPower(round(rightRearPower));
-//    }
 }

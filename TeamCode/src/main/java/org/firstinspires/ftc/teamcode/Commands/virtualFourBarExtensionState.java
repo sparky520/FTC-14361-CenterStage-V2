@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum virtualFourBarExtensionState {
-    station,
-    extending
+public enum virtualFourBarExtensionState
+{
+    station,extending
 }
