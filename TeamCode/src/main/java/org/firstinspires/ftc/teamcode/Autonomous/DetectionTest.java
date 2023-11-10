@@ -31,7 +31,7 @@ public class DetectionTest extends OpMode {
 
         bDetection = new BlueDetection();
 
-        bDetection.initTfod(hardwareMap, telemetry);
+
     }
 
         public void init_loop() {
@@ -54,11 +54,15 @@ public class DetectionTest extends OpMode {
 
             } else {
                 // if the model doesn't detect middle or left, ong we're just gambling
+             telemetry.addLine("No Objects Detected. Right Blue is selected by default");
+              telemetry.update();
                 scoreRightTSE = true;
             }
 
-
             telemetry.update();
+
+            if(!blueCurrentRecognitions.isEmpty())
+                blueCurrentRecognitions.clear();
         }
 
 

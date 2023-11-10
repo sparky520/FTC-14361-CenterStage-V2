@@ -121,7 +121,7 @@ public class BlueDetection {
 
         // Set confidence threshold for TFOD recognitions, at any time.
 
-        tfod.setMinResultConfidence(0.85f);
+        tfod.setMinResultConfidence(0.80f);
 
         // Disable or re-enable the TFOD processor at any time.
         visionPortal.setProcessorEnabled(tfod, true);
