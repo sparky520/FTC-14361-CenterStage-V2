@@ -17,7 +17,7 @@ public class BlueDetection {
 
     // TFOD_MODEL_ASSET points to a model file stored in the project Asset location,
     // this is only used for Android Studio when using models in Assets.
-    private static final String TFOD_MODEL_ASSET = "MiddleDuckTest.tflite";
+    private static final String TFOD_MODEL_ASSET = "BlueComp1.tflite";
     // TFOD_MODEL_FILE points to a model file stored onboard the Robot Controller's storage,
     // this is used when uploading models directly to the RC using the model upload interface.
     /*
@@ -38,19 +38,19 @@ public class BlueDetection {
 
     // Define the labels recognized in the model for TFOD (must be in training order!)
     private static final String[] LABELS = {
-            "MiddleBlue",
-            "LeftBlue"
+            "LeftBlue",
+            "MiddleBlue"
     };
 
     /**
      * The variable to store our instance of the TensorFlow Object Detection processor.
      */
-    private TfodProcessor tfod;
+    public TfodProcessor tfod;
 
     /**
      * The variable to store our instance of the vision portal.
      */
-    private VisionPortal visionPortal;
+    public VisionPortal visionPortal;
 
     public void initTfod(HardwareMap hardwareMap) {
 
@@ -152,5 +152,30 @@ public class BlueDetection {
 
     }   // end method telemetryTfod()
 
+    public double getXPosition(){
+        List<Recognition> currentRecognitions = tfod.getRecognitions();
+
+        if(!currentRecognitions.isEmpty()){
+            for (Recognition recognition : currentRecognitions) {
+                double x = (recognition.getLeft() + recognition.getRight()) / 2;
+                return x;
+            }
+        }
+
+        return -1;
+    }
+
+    public double getYPosition(){
+        List<Recognition> currentRecognitions = tfod.getRecognitions();
+
+        if(!currentRecognitions.isEmpty()){
+            for (Recognition recognition : currentRecognitions) {
+                double y = (recognition.getTop() + recognition.getBottom()) / 2;
+                return y;
+            }
+        }
+
+        return -1;
+    }
 
 }
