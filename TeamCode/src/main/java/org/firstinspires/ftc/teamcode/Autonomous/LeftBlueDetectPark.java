@@ -32,6 +32,8 @@ public class LeftBlueDetectPark extends OpMode {
         backRight = hardwareMap.get(DcMotorEx.class, "rightRear");
         frontRight = hardwareMap.get(DcMotorEx.class, "rightFront");
 
+        
+
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
         backRight.setDirection(DcMotorEx.Direction.REVERSE);
 

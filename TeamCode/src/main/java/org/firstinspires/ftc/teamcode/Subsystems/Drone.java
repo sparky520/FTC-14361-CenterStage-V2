@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class Drone
 {
-    private ServoEx droneServo;
+   /* private ServoEx droneServo;
     public Drone(HardwareMap hardwareMap)
     {
         droneServo = new SimpleServo(hardwareMap, "droneServo",0, 360, AngleUnit.DEGREES);
@@ -18,5 +18,5 @@ public class Drone
     public void launch()
     {
         droneServo.setPosition(1);
-    }
+    }*/
 }

@@ -47,7 +47,7 @@ public class Robot {
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
         activeIntake = new ActiveIntake(hardwareMap);
-        drone = new Drone(hardwareMap);
+       // drone = new Drone(hardwareMap);
     }
 
     public void setIntakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
@@ -160,55 +160,20 @@ public class Robot {
         claw.setClawPosition(clawState);
     }
 
-    public void setOpenLeftClawPosition()
-    {
-        claw.leftOpen();
-    }
 
-    public void setOpenRightClawPosition()
-    {
-        claw.rightOpen();
-    }
-
-    public void setCloseLeftClawPosition()
-    {
-        claw.leftClose();
-    }
-
-    public void setCloseRightClawPosition()
-    {
-        claw.rightClose();
-    }
 
     public void setClawState(clawState clawState)
     {
         this.clawState = clawState;
     }
 
-    public void setLeftClawState(clawState leftclawState)
-    {
-        this.leftclawState = leftclawState;
-    }
 
-    public void setRightClawState(clawState rightclawState)
-    {
-        this.rightclawState = rightclawState;
-    }
 
     public clawState getClawState()
     {
         return clawState;
     }
 
-    public clawState getLeftClawState()
-    {
-        return leftclawState;
-    }
-
-    public clawState getRightClawState()
-    {
-        return rightclawState;
-    }
 
     public void setActiveIntakePosition(activeIntakeState activeIntakeState)
     {
