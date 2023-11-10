@@ -88,28 +88,25 @@ public class FieldCentric extends OpMode {
         }
 
 
-                if (driver.wasJustPressed(GamepadKeys.Button.Y)) {
+                if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
                     bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
                     bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
                 }
 
-                if (driver.wasJustPressed(GamepadKeys.Button.X)) {
+                if (driver.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
                     bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
                     bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
                 }
 
-                if (driver.wasJustPressed(GamepadKeys.Button.A)) {
+                if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
                     bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
                     bot.setIntakeSlideState(intakeSlidesState.STATION);
                 }
 
 
-                if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
-                    count -= 5;
-                    bot.intakeSlide.setPosition(intakeSlide.retracted + count);
-                }
 
-                    if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
+
+                    if (driver.wasJustPressed(GamepadKeys.Button.A)) {
                         if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
                             bot.setActiveIntakePosition(activeIntakeState.inactive);
                             bot.setActiveIntakeState(activeIntakeState.inactive);
@@ -118,7 +115,7 @@ public class FieldCentric extends OpMode {
                             bot.setActiveIntakeState(activeIntakeState.active);
                         }
                     }
-                    if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
+                    if (driver.wasJustPressed(GamepadKeys.Button.Y)) {
                         if (bot.getActiveIntakeState() != null && bot.getActiveIntakeState().equals(activeIntakeState.activeReverse)) {
                             bot.setActiveIntakePosition(activeIntakeState.inactive);
                             bot.setActiveIntakeState(activeIntakeState.inactive);
@@ -127,7 +124,7 @@ public class FieldCentric extends OpMode {
                             bot.setActiveIntakeState(activeIntakeState.activeReverse);
                         }
                     }
-                    if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
+                    if (driver.wasJustPressed(GamepadKeys.Button.X)) {
                         bot.intakeSlide.forceThatJawn();
                     }
 
