@@ -1,103 +1,85 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
+import static android.os.SystemClock.sleep;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
-@Autonomous (name="caveman type parking")
-public class LeftBlueHardcodePark extends LinearOpMode {
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import org.firstinspires.ftc.teamcode.Subsystems.BlueDetection;
 
-    /*
-    *** NOTE ***
-    THIS CODE IS MADE TO PARK LEFT WHEN WE ARE
-    LEFT BLUE ALLIANCE, AND THATS IT
-    (this is hardcoded and created without Roadrunner)
-     */
-    private DcMotorEx rightFront, leftFront, rightRear, leftRear;
+import java.util.List;
 
+@Autonomous
+public class LeftBlueDetectPark extends OpMode {
+    private BlueDetection bDetection;
+    private List<Recognition> blueCurrentRecognitions;
+
+    private String middleTSE, leftTSE;
+    private Boolean scoreMiddleTSE, scoreLeftTSE, scoreRightTSE;
+    private DcMotorEx frontRight, frontLeft, backRight, backLeft;
     double mult = 1.0;
     double batteryVoltage;
     String voltageCategory;
-
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void init() {
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+        frontLeft = hardwareMap.get(DcMotorEx.class, "leftFront");
+        backLeft = hardwareMap.get(DcMotorEx.class, "leftRear");
+        backRight = hardwareMap.get(DcMotorEx.class, "rightRear");
+        frontRight = hardwareMap.get(DcMotorEx.class, "rightFront");
 
-        leftRear.setDirection(DcMotorEx.Direction.REVERSE);
-        leftFront.setDirection(DcMotorEx.Direction.REVERSE);
+        frontRight.setDirection(DcMotorEx.Direction.REVERSE);
+        backRight.setDirection(DcMotorEx.Direction.REVERSE);
 
-        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
-//        // this will initialize all of our encoders- not useful
-        // for this class
-//        List<LynxModule> allHubs = hardwareMap.getAll(LynxModule.class);
-//
-//        for (LynxModule hub : allHubs) {
-//            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
-//        }
-
-
-        // i dunno if this is even a real thing i can do
-        while(!opModeIsActive()) {
-            // lil bit of experimental code (if this works i am suoper cool)
-            voltageTelem();
-        }
-
-
-        waitForStart();
-
-        while(opModeIsActive()){
-
-            backwards(.6, .25);
-
-
-        }
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
-    // drive forward
-    private void forward(double mult, double sec){
-        double timer = ( getRuntime() + 1.5);
+    public void init_loop() {
 
-        while (time > getRuntime()) {
-            rightFront.setPower(mult);
-            leftFront.setPower(mult); //mult changes the speed the motors go. Slower is more consistent
-            rightRear.setPower(mult);
-            leftRear.setPower(mult);
-            //runFor(sec); //runs for this amount of time
+    }
+
+
+
+    @Override
+    public void loop() {
+
+
+    }
+
+
+    private void forward(double mult, double sec){
+        frontRight.setPower(mult);
+        frontLeft.setPower(mult); //mult changes the speed the motors go. Slower is more consistent
+        backRight.setPower(mult);
+        backLeft.setPower(mult);
+        runFor(sec); //runs for this amount of time
         /* Mecanum forward (+ means forward, - means backwards)
          + +
          + +
         */
-        }
     }
 
     private void backwards(double mult, double sec) {
-        double timer = ( getRuntime() + 1.5);
-
-        while (timer > getRuntime()) {
-            rightFront.setPower(mult * -1);
-            leftFront.setPower(mult * -1);
-            rightRear.setPower(mult * -1);
-            leftRear.setPower(mult * -1);
-        }
+        frontRight.setPower(mult * -1);
+        frontLeft.setPower(mult * -1);
+        backRight.setPower(mult * -1);
+        backLeft.setPower(mult * -1);
+        runFor(sec);
     }
     // drive left
     private void strafeLeft(double mult, double sec) {
-        rightFront.setPower(mult * 1);
-        leftFront.setPower(mult * -1);
-        rightRear.setPower(mult * -1);
-        leftRear.setPower(mult * 1);
+        frontRight.setPower(mult * 1);
+        frontLeft.setPower(mult * -1);
+        backRight.setPower(mult * -1);
+        backLeft.setPower(mult * 1);
         runFor(sec);
     }
 
@@ -105,10 +87,10 @@ public class LeftBlueHardcodePark extends LinearOpMode {
 
     // drive right
     private void strafeRight(double mult, double sec) {
-        rightFront.setPower(mult * -1);
-        leftFront.setPower(mult * 1);
-        rightRear.setPower(mult * 1);
-        leftRear.setPower(mult * -1);
+        frontRight.setPower(mult * -1);
+        frontLeft.setPower(mult * 1);
+        backRight.setPower(mult * 1);
+        backLeft.setPower(mult * -1);
         runFor(sec);
     }
 
@@ -184,6 +166,4 @@ public class LeftBlueHardcodePark extends LinearOpMode {
 
         telemetry.update();
     }
-
 }
-

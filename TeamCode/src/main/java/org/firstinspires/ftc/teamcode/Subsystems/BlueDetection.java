@@ -5,6 +5,7 @@ import android.util.Size;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
@@ -52,7 +53,7 @@ public class BlueDetection {
      */
     public VisionPortal visionPortal;
 
-    public void initTfod(HardwareMap hardwareMap) {
+    public void initTfod(HardwareMap hardwareMap, Telemetry telemetry) {
 
         telemetry.addData(">", "Inside Detection initTFOD Model Method");
         telemetry.update();
@@ -130,7 +131,7 @@ public class BlueDetection {
     /**
      * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
      */
-    public void telemetryTfod() {
+    public void telemetryTfod(Telemetry telemetry) {
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
 
@@ -151,7 +152,7 @@ public class BlueDetection {
         }   // end for() loop
     }   // end method telemetryTfod()
 
-    public double getXPosition(){
+    public double getXPosition(Telemetry telemetry){
         List<Recognition> currentRecognitions = tfod.getRecognitions();
 
         if(!currentRecognitions.isEmpty()){
@@ -163,7 +164,7 @@ public class BlueDetection {
         return -1;
     }
 
-    public double getYPosition(){
+    public double getYPosition(Telemetry telemetry){
         List<Recognition> currentRecognitions = tfod.getRecognitions();
 
         if(!currentRecognitions.isEmpty()){

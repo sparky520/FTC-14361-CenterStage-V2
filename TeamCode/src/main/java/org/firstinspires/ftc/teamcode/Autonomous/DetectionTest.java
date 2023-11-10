@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.Autonomouse;
+package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.Subsystems.BlueDetection;
 
@@ -30,7 +31,7 @@ public class DetectionTest extends OpMode {
 
         bDetection = new BlueDetection();
 
-        bDetection.initTfod(hardwareMap);
+        bDetection.initTfod(hardwareMap, telemetry);
     }
 
         public void init_loop() {
@@ -38,7 +39,7 @@ public class DetectionTest extends OpMode {
             blueCurrentRecognitions = bDetection.tfod.getRecognitions();
 
             if (!blueCurrentRecognitions.isEmpty()) {
-                bDetection.telemetryTfod();
+                bDetection.telemetryTfod(telemetry);
                 telemetry.update();
 
                 for (Recognition recognition : blueCurrentRecognitions) {
