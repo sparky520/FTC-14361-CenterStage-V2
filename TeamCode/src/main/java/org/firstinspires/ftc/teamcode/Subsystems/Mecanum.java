@@ -75,11 +75,4 @@ public class Mecanum
         imu.initialize(parameters);
     }
 
-//    public void setMotorPowerRounded()
-//    {
-//        leftFront.setPower(round(leftFrontPower));
-//        leftRear.setPower(round(leftRearPower));
-//        rightFront.setPower(round(rightFrontPower));
-//        rightRear.setPower(round(rightRearPower));
-//    }
 }
