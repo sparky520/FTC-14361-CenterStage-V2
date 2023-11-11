@@ -103,8 +103,8 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
                 closeClaw(1);
 
-                forward(.6,1.2);
-                strafeLeft(.7, 2.5);
+                forward(.6,1);
+                strafeLeft(.7, 2);
                 rotateRight(1, .55);
                 //180 degree rotation mult 1 .5 sec
                 stopMotors();
