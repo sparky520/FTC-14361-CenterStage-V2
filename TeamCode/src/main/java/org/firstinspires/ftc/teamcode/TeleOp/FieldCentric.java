@@ -54,6 +54,8 @@ public class FieldCentric extends OpMode {
         bot.setLeftClawState(clawState.leftOpen);
         bot.setRightClawState(clawState.rightOpen);
 
+        bot.setDrone();
+
         bot.setSlowDownState(slowDownState.FULL);
     }
 
@@ -71,6 +73,8 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("State of V4B: init / " + bot.virtualFourBar.getvirtualFourBarExtensionState());
         telemetry.addLine("Right Claw Position: " + bot.claw.getRightClawPosition());
         telemetry.addLine("Left Claw Position: " + bot.claw.getLeftClawPosition());
+        telemetry.addLine("Servo Power" + bot.drone.getInfo());
+
         telemetry.addLine("Intake Slide Encoder Tick Count " + count);
         telemetry.update();
 
@@ -89,25 +93,39 @@ public class FieldCentric extends OpMode {
 
         if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1)
         {
-            if (bot.getSlowDownState() != null && (bot.getSlowDownState().equals(slowDownState.FULL))) {
-                bot.setSlowDownState(slowDownState.SLOW);
-                bot.driveTrain.setSlowDownMotorPower();
-            } else {
                 bot.setSlowDownState(slowDownState.FULL);
                 bot.driveTrain.setFullPower();
-            }
+        }
+
+        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1)
+        {
+                bot.setSlowDownState(slowDownState.SLOW);
+                bot.driveTrain.setSlowDownMotorPower();
         }
 
         if(driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER))
         {
+                if(bot.getvirtualFourBarState().equals(virtualFourBarState.intaking)){
+                    bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
+                    bot.setIntakeSlideState(intakeSlidesState.STATION);
+                }
+                else{
             bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
             bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
+            }
+
         }
 
         if(driver.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON))
         {
-            bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
-            bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
+            if(bot.getvirtualFourBarState().equals(virtualFourBarState.intaking)){
+                bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
+                bot.setIntakeSlideState(intakeSlidesState.STATION);
+            }
+            else {
+                bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
+                bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
+            }
         }
 
         if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER))
@@ -155,10 +173,10 @@ public class FieldCentric extends OpMode {
             bot.intakeSlide.setPosition(intakeSlide.retracted + count);
         }
 
-      /*  if(driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
+        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
         {
-            bot.drone.launch();
-        }*/
+            bot.launchDrone();
+        }
 
         // --------------------------- OPERATOR CODE --------------------------- //
 

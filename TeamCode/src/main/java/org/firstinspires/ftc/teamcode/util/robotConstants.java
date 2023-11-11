@@ -74,8 +74,8 @@ public class robotConstants
     public static class activeIntake
     {
 
-        public static double active = 0.3;
-        public static double reverseActive = -0.3;
+        public static double active = -0.35;
+        public static double reverseActive = 0.35;
 
     }
 
@@ -97,10 +97,10 @@ public class robotConstants
 
     public static class virtualFourBar
     {
-        public static double intakingLeft = 0.486;
+        public static double intakingLeft = 0.5;
         //.486
         //.588
-        public static double intakingRight = 0.588;
+        public static double intakingRight = 0.6;
 
         public static double outtakingLeft = 0.16;
         public static double outtakingRight = 0.23;

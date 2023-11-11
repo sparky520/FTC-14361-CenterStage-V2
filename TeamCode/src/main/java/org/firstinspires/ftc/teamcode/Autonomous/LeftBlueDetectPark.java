@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.BlueDetection;
 
 import java.util.List;
 
+
 @Autonomous
 public class LeftBlueDetectPark extends OpMode {
     private BlueDetection bDetection;
@@ -31,8 +32,6 @@ public class LeftBlueDetectPark extends OpMode {
         backLeft = hardwareMap.get(DcMotorEx.class, "leftRear");
         backRight = hardwareMap.get(DcMotorEx.class, "rightRear");
         frontRight = hardwareMap.get(DcMotorEx.class, "rightFront");
-
-        
 
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
         backRight.setDirection(DcMotorEx.Direction.REVERSE);

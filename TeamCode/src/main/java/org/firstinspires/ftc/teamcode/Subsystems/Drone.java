@@ -17,6 +17,15 @@ public class Drone
 
     public void launch()
     {
+        droneServo.setPosition(.5);
+    }
+
+    public void resetDrone(){
         droneServo.setPosition(1);
     }
+
+    public double getInfo(){
+      return  droneServo.getPosition();
+    }
 }
+

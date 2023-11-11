@@ -47,7 +47,7 @@ public class Robot {
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
         activeIntake = new ActiveIntake(hardwareMap);
-       // drone = new Drone(hardwareMap);
+       drone = new Drone(hardwareMap);
     }
 
     public void setIntakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
@@ -234,6 +234,15 @@ public class Robot {
     {
         this.slowDownState = slowDownState;
     }
+
+    public void setDrone(){
+        drone.resetDrone();
+    }
+    public void launchDrone(){
+        drone.launch();
+    }
+
+
 }
 
 

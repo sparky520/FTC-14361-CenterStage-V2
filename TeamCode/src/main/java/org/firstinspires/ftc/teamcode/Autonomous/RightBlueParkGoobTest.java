@@ -2,13 +2,13 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeftAuton;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRight;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRightAuton;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingRight;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -19,11 +19,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.util.robotConstants;
 
-@Autonomous(name="HardCode RightBlue park")
+@Autonomous(name="RightBlueParkGoobTest")
 
-public class RightBlueHardcodePark extends LinearOpMode{
+public class RightBlueParkGoobTest extends LinearOpMode{
 
 
         /*
@@ -43,6 +44,7 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
         @Override
         public void runOpMode() throws InterruptedException {
+            SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
             frontLeft = hardwareMap.get(DcMotorEx.class, "leftFront");
             backLeft = hardwareMap.get(DcMotorEx.class, "leftRear");
@@ -66,6 +68,10 @@ public class RightBlueHardcodePark extends LinearOpMode{
             leftHand.setInverted(true);
             rightHand.setInverted(true);
 
+            Pose2d toTape = new Pose2d(-5, 10);
+
+            Pose2d toBoard = new Pose2d(0,10, Math.toRadians(190));
+
             frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
             backLeft.setDirection(DcMotorEx.Direction.REVERSE);
 
@@ -74,6 +80,17 @@ public class RightBlueHardcodePark extends LinearOpMode{
             backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+            Trajectory goToTape = drive.trajectoryBuilder(toTape)
+            // .forward(5)
+            //   .strafeLeft(10)
+               .build();
+
+            Trajectory goToBoard = drive.trajectoryBuilder(toBoard)
+            //  .forward(5)
+            // .strafeLeft(10)
+
+             .build();
 
 //        // this will initialize all of our encoders- not useful
             // for this class
@@ -95,6 +112,8 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
             while(opModeIsActive()){
 
+
+                drive.followTrajectory(goToTape);
                 setWristNormal(.5);
                 retractSlide(.5);
 
@@ -103,12 +122,14 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
                 closeClaw(1);
 
-                backwards(1,1);
-                rotateRight(1, 1);
-                strafeLeft(.7, 2);
+                drive.followTrajectory(goToBoard);
+
+            //    backwards(1,.75);
+              //  rotateRight(1, .55);
+                //forward(1, .75);
 
                 //180 degree rotation mult 1 .5 sec
-                stopMotors();
+               // stopMotors();
 
                 setV4BInit(.5);
                 setWristSideways(1);
@@ -120,7 +141,7 @@ public class RightBlueHardcodePark extends LinearOpMode{
               setWristSideways(.5);
               setV4BInit(.5);
 
-              strafeLeft(.5,.25);
+
 
 
 
