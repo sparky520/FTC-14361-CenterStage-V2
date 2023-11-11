@@ -31,7 +31,8 @@ public class LeftBlueParkGoobTest extends LinearOpMode {
     String voltageCategory;
     private ServoEx leftVirtualFourBar, rightVirtualFourBar, leftHand, rightHand;
     private Servo wristServo;
-    double minAngle = 0, maxAngle= 360;
+    double minAngle = 0;
+    double maxAngle = 360;
 
     @Override
     public void runOpMode() {
@@ -55,11 +56,7 @@ public class LeftBlueParkGoobTest extends LinearOpMode {
         leftHand.setInverted(true);
         rightHand.setInverted(true);
 
-        Pose2d toTape = new Pose2d(-5, 10);
 
-        Pose2d toBoard = new Pose2d(0,10, Math.toRadians(190));
-
-        drive.setPoseEstimate(myPose);
 
         Trajectory Traj1 = drive.trajectoryBuilder(myPose)
                 .strafeRight(45)
@@ -68,7 +65,11 @@ public class LeftBlueParkGoobTest extends LinearOpMode {
         waitForStart();
 
         if(isStopRequested()) return;
-        while(opModeIsActive()){
+
+        drive.followTrajectory(Traj1);
+     //   drive.followTrajectory(Traj1);
+
+
 
             setWristNormal(.5);
             openClaw(.25);
@@ -76,7 +77,10 @@ public class LeftBlueParkGoobTest extends LinearOpMode {
             closeClaw(.25);
             setV4BInit(.25);
 
-            drive.followTrajectory(Traj1);
+            setWristNormal(.25);
+            setV4BOuttaking(.25);
+
+
 
 
 
@@ -84,7 +88,7 @@ public class LeftBlueParkGoobTest extends LinearOpMode {
         }
 
 
-    }
+
     private void closeClaw(double sec){
         double timer = (getRuntime() + sec);
         while(timer > getRuntime()) {

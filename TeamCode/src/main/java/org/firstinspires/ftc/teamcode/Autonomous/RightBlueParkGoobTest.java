@@ -42,114 +42,99 @@ public class RightBlueParkGoobTest extends LinearOpMode{
     private Servo wristServo;
     double minAngle = 0, maxAngle= 360;
 
-        @Override
-        public void runOpMode() throws InterruptedException {
-            SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+    @Override
+    public void runOpMode() throws InterruptedException {
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-            frontLeft = hardwareMap.get(DcMotorEx.class, "leftFront");
-            backLeft = hardwareMap.get(DcMotorEx.class, "leftRear");
-            backRight = hardwareMap.get(DcMotorEx.class, "rightRear");
-            frontRight = hardwareMap.get(DcMotorEx.class, "rightFront");
+        frontLeft = hardwareMap.get(DcMotorEx.class, "leftFront");
+        backLeft = hardwareMap.get(DcMotorEx.class, "leftRear");
+        backRight = hardwareMap.get(DcMotorEx.class, "rightRear");
+        frontRight = hardwareMap.get(DcMotorEx.class, "rightFront");
 
-            intakeSlideMotor = hardwareMap.get(DcMotorEx.class, "intakeSlideMotor");
+        intakeSlideMotor = hardwareMap.get(DcMotorEx.class, "intakeSlideMotor");
 
-            intakeSlideMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-            intakeSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intakeSlideMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-            intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-            rightVirtualFourBar = new SimpleServo(hardwareMap, "rightVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
-            leftVirtualFourBar = new SimpleServo(hardwareMap, "leftVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        rightVirtualFourBar = new SimpleServo(hardwareMap, "rightVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
+        leftVirtualFourBar = new SimpleServo(hardwareMap, "leftVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
 
-            wristServo = hardwareMap.get(Servo.class, "wristServo");
+        wristServo = hardwareMap.get(Servo.class, "wristServo");
 
-            leftHand = new SimpleServo(hardwareMap, "leftHand",0, 360, AngleUnit.DEGREES);
-            rightHand = new SimpleServo(hardwareMap, "rightHand",0, 360, AngleUnit.DEGREES);
-            leftHand.setInverted(true);
-            rightHand.setInverted(true);
+        leftHand = new SimpleServo(hardwareMap, "leftHand", 0, 360, AngleUnit.DEGREES);
+        rightHand = new SimpleServo(hardwareMap, "rightHand", 0, 360, AngleUnit.DEGREES);
+        leftHand.setInverted(true);
+        rightHand.setInverted(true);
 
-            Pose2d toTape = new Pose2d(-5, 10);
+        Pose2d toTape = new Pose2d(-5, 10);
 
-            Pose2d toBoard = new Pose2d(0,10, Math.toRadians(190));
+        Pose2d toBoard = new Pose2d(10, 0, Math.toRadians(190));
 
-            frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
-            backLeft.setDirection(DcMotorEx.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
+        backLeft.setDirection(DcMotorEx.Direction.REVERSE);
 
-            frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
-            Trajectory goToTape = drive.trajectoryBuilder(toTape)
-            // .forward(5)
-            //   .strafeLeft(10)
-               .build();
-
-            Trajectory goToBoard = drive.trajectoryBuilder(toBoard)
-            //  .forward(5)
-            // .strafeLeft(10)
-
-             .build();
-
-//        // this will initialize all of our encoders- not useful
-            // for this class
-//        List<LynxModule> allHubs = hardwareMap.getAll(LynxModule.class);
-//
-//        for (LynxModule hub : allHubs) {
-//            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
-//        }
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-            // i dunno if this is even a real thing i can do
-            while(!opModeIsActive()) {
-                // lil bit of experimental code (if this works i am suoper cool)
-                voltageTelem();
-            }
+        Trajectory goToTape = drive.trajectoryBuilder(toTape)
+                 .forward(15)
+                   //.strafeLeft(10)
+                .build();
+
+        Trajectory goToBoard = drive.trajectoryBuilder(toBoard)
+
+                  .forward(15)
+                 .strafeLeft(10)
+
+                .build();
 
 
-            waitForStart();
-
-            while(opModeIsActive()){
+        waitForStart();
 
 
-                drive.followTrajectory(goToTape);
-                setWristNormal(.5);
-                retractSlide(.5);
+        while (opModeIsActive()) {
+            drive.followTrajectory(goToTape);
+            setWristNormal(.5);
+            retractSlide(.5);
 
 
-                setV4bIntaking(1);
+            setV4bIntaking(.5);
 
-                closeClaw(1);
+            closeClaw(.5);
+            //drive.turn(180);
 
-                drive.followTrajectory(goToBoard);
+            drive.followTrajectory(goToBoard);
 
             //    backwards(1,.75);
-              //  rotateRight(1, .55);
-                //forward(1, .75);
+            //  rotateRight(1, .55);
+            //forward(1, .75);
 
-                //180 degree rotation mult 1 .5 sec
-               // stopMotors();
+            //180 degree rotation mult 1 .5 sec
+            // stopMotors();
 
-                setV4BInit(.5);
-                setWristSideways(1);
+            setV4BInit(.5);
+            setWristSideways(.5);
 
-                setV4BOuttaking(1);
-                setWristNormal(1);
+            setV4BOuttaking(.5);
+            setWristNormal(.5);
 
-              openClaw(.5);
-              setWristSideways(.5);
-              setV4BInit(.5);
+            openClaw(.5);
+            setWristSideways(.5);
+            setV4BInit(.5);
 
-
-
-
-
-                break;
-
-            }
-
+//                boolean manualFullStop = true;
+//                while (manualFullStop)
+//                    stopMotors();
+            break;
         }
+    }
+
+
 
         // drive forward
         private void forward(double mult, double sec){

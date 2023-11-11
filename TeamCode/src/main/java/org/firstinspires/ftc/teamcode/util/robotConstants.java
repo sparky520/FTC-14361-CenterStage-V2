@@ -74,8 +74,8 @@ public class robotConstants
     public static class activeIntake
     {
 
-        public static double active = -0.35;
-        public static double reverseActive = 0.35;
+        public static double active = -0.3;
+        public static double reverseActive = 0.3;
 
     }
 
