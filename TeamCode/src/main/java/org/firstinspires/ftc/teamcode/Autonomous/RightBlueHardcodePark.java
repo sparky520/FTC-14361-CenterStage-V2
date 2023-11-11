@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+package org.firstinspires.ftc.teamcode.Autonomous;
 
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initRight;
@@ -66,8 +66,8 @@ public class RightBlueHardcodePark extends LinearOpMode{
             leftHand.setInverted(true);
             rightHand.setInverted(true);
 
-            frontRight.setDirection(DcMotorEx.Direction.REVERSE);
-            backRight.setDirection(DcMotorEx.Direction.REVERSE);
+            frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
+            backLeft.setDirection(DcMotorEx.Direction.REVERSE);
 
             frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -103,9 +103,10 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
                 closeClaw(1);
 
-                forward(.6,1);
+                backwards(1,1);
+                rotateRight(1, 1);
                 strafeLeft(.7, 2);
-                rotateRight(1, .55);
+
                 //180 degree rotation mult 1 .5 sec
                 stopMotors();
 
@@ -188,10 +189,7 @@ public class RightBlueHardcodePark extends LinearOpMode{
                 backRight.setPower(mult * -1);
                 backLeft.setPower(mult * 1);
             }
-            frontRight.setPower(mult * -1);
-            frontLeft.setPower(mult * 1);
-            backRight.setPower(mult * -1);
-            backLeft.setPower(mult * 1);
+
         }
 
     public void rotateLeft(double mult, double sec){
