@@ -95,22 +95,33 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
             while(opModeIsActive()){
 
-                retractSlide(1);
+                setWristNormal(.5);
+                retractSlide(.5);
 
-                setWristNormal(1);
+
                 setV4bIntaking(1);
 
+                closeClaw(1);
 
+                forward(.6,1.2);
+                strafeLeft(.7, 2.5);
+                rotateRight(1, .55);
+                //180 degree rotation mult 1 .5 sec
+                stopMotors();
 
-                closeClaw(2);
-
-                setV4BInit(1);
+                setV4BInit(.5);
                 setWristSideways(1);
 
                 setV4BOuttaking(1);
                 setWristNormal(1);
 
-              openClaw(1);
+              openClaw(.5);
+              setWristSideways(.5);
+              setV4BInit(.5);
+
+              strafeLeft(.5,.25);
+
+
 
                 break;
 
@@ -120,11 +131,14 @@ public class RightBlueHardcodePark extends LinearOpMode{
 
         // drive forward
         private void forward(double mult, double sec){
-            frontRight.setPower(mult);
-            frontLeft.setPower(mult); //mult changes the speed the motors go. Slower is more consistent
-            backRight.setPower(mult);
-            backLeft.setPower(mult);
-            runFor(sec); //runs for this amount of time
+            double timer = ( getRuntime() + sec);
+            while(timer > getRuntime()) {
+                frontRight.setPower(mult);
+                frontLeft.setPower(mult); //mult changes the speed the motors go. Slower is more consistent
+                backRight.setPower(mult);
+                backLeft.setPower(mult);
+            }
+
         /* Mecanum forward (+ means forward, - means backwards)
          + +
          + +
@@ -133,31 +147,62 @@ public class RightBlueHardcodePark extends LinearOpMode{
         }
 
         private void backwards(double mult, double sec) {
-            frontRight.setPower(mult * -1);
-            frontLeft.setPower(mult * -1);
-            backRight.setPower(mult * -1);
-            backLeft.setPower(mult * -1);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime())
+                {
+                    frontRight.setPower(mult * -1);
+                    frontLeft.setPower(mult * -1);
+                    backRight.setPower(mult * -1);
+                    backLeft.setPower(mult * -1);
+                }
         }
         // drive left
         private void strafeLeft(double mult, double sec) {
-            frontRight.setPower(mult * 1);
-            frontLeft.setPower(mult * -1);
-            backRight.setPower(mult * -1);
-            backLeft.setPower(mult * 1);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                frontRight.setPower(mult * 1);
+                frontLeft.setPower(mult * -1);
+                backRight.setPower(mult * -1);
+                backLeft.setPower(mult * 1);
+            }
         }
 
         // drive back
 
         // drive right
         private void strafeRight(double mult, double sec) {
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                frontRight.setPower(mult * -1);
+                frontLeft.setPower(mult * 1);
+                backRight.setPower(mult * 1);
+                backLeft.setPower(mult * -1);
+            }
+        }
+
+        public void rotateRight(double mult, double sec){
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                frontRight.setPower(mult * -1);
+                frontLeft.setPower(mult * 1);
+                backRight.setPower(mult * -1);
+                backLeft.setPower(mult * 1);
+            }
             frontRight.setPower(mult * -1);
             frontLeft.setPower(mult * 1);
+            backRight.setPower(mult * -1);
+            backLeft.setPower(mult * 1);
+        }
+
+    public void rotateLeft(double mult, double sec){
+        double timer = (getRuntime() + sec);
+        while(timer > getRuntime()) {
+            frontRight.setPower(mult * 1);
+            frontLeft.setPower(mult * -1);
             backRight.setPower(mult * 1);
             backLeft.setPower(mult * -1);
-            runFor(sec);
         }
+    }
 
         private void runFor(double sec){
             //sleeps for given time, so the program can run. FTC sleep means keep doing what you are doing, not stop everything
@@ -232,64 +277,91 @@ public class RightBlueHardcodePark extends LinearOpMode{
             telemetry.update();
         }
         private void closeClaw(double sec){
-            leftHand.setPosition(robotConstants.Claw.leftClose);
-            rightHand.setPosition(robotConstants.Claw.rightClose);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                leftHand.setPosition(robotConstants.Claw.leftClose);
+                rightHand.setPosition(robotConstants.Claw.rightClose);
+            }
         }
 
         private void openClaw(double sec){
-            leftHand.setPosition(robotConstants.Claw.leftOpen);
-            rightHand.setPosition(robotConstants.Claw.rightOpen);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                leftHand.setPosition(robotConstants.Claw.leftOpen);
+                rightHand.setPosition(robotConstants.Claw.rightOpen);
+            }
         }
 
         private void openLeftClaw(double sec){
-            leftHand.setPosition(robotConstants.Claw.leftOpen);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                leftHand.setPosition(robotConstants.Claw.leftOpen);
+            }
+
         }
         private void openRightClaw(double sec){
-            rightHand.setPosition(robotConstants.Claw.rightOpen);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                rightHand.setPosition(robotConstants.Claw.rightOpen);
+            }
         }
 
 
 
         private void setV4BInit(double sec){
-            leftVirtualFourBar.setPosition(initLeft);
-            rightVirtualFourBar.setPosition(initRight);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                leftVirtualFourBar.setPosition(initLeft);
+                rightVirtualFourBar.setPosition(initRight);
+            }
         }
 
         private void setV4bIntaking(double sec){
-            leftVirtualFourBar.setPosition(intakingLeftAuton);
-            rightVirtualFourBar.setPosition(intakingRightAuton);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                leftVirtualFourBar.setPosition(intakingLeftAuton);
+                rightVirtualFourBar.setPosition(intakingRightAuton);
+            }
         }
 
         private void setV4BOuttaking(double sec){
-            leftVirtualFourBar.setPosition(outtakingLeft);
-            rightVirtualFourBar.setPosition(outtakingRight);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                leftVirtualFourBar.setPosition(outtakingLeft);
+                rightVirtualFourBar.setPosition(outtakingRight);
+            }
         }
 
         private void setWristNormal(double sec){
-            wristServo.setPosition(robotConstants.Wrist.wristNormal);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()){
+                wristServo.setPosition(robotConstants.Wrist.wristNormal);
+            }
         }
 
         private void setWristSideways(double sec){
-            wristServo.setPosition(robotConstants.Wrist.wristSideways);
-            runFor(sec);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                wristServo.setPosition(robotConstants.Wrist.wristSideways);
+            }
         }
 
         public void retractSlide(double sec){
-            intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.retracted);
+            double timer = (getRuntime() + sec);
+            while(timer > getRuntime()) {
+                intakeSlideMotor.setTargetPosition(robotConstants.intakeSlide.retracted);
 
-            intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            intakeSlideMotor.setPower(.5);
+                intakeSlideMotor.setPower(.5);
 
-            runFor(sec);
+            }
+        }
+        public void stopMotors(){
+            frontRight.setPower(0);
+            frontLeft.setPower(0);
+            backRight.setPower(0);
+            backLeft.setPower(0);
         }
 
 
