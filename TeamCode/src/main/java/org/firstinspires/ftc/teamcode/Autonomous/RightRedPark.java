@@ -18,7 +18,7 @@ public class RightRedPark extends LinearOpMode {
         drive.setPoseEstimate(myPose);
 
         Trajectory Traj1 = drive.trajectoryBuilder(myPose)
-                .strafeRight(60)
+                .strafeLeft(75)
                 .build();
 
         waitForStart();

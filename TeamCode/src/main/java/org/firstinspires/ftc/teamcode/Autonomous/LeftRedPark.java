@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 @Autonomous(name = "LeftRedPark")
 public class LeftRedPark extends LinearOpMode
 {
-    Pose2d myPose = new Pose2d(63, -36, Math.toRadians(180));
+    Pose2d myPose = new Pose2d(63, -36);
     @Override
     public void runOpMode()
     {
@@ -21,9 +21,11 @@ public class LeftRedPark extends LinearOpMode
         Trajectory Traj1 = drive.trajectoryBuilder(myPose)
                 .back(80)
                 .build();
-
         Trajectory Traj2 = drive.trajectoryBuilder(Traj1.end())
-                .strafeLeft(180)
+                .strafeLeft(95)
+                .build();
+        Trajectory Traj3 = drive.trajectoryBuilder(Traj2.end())
+                .strafeLeft(95)
                 .build();
 
         waitForStart();
@@ -32,5 +34,8 @@ public class LeftRedPark extends LinearOpMode
 
         drive.followTrajectory(Traj1);
         drive.followTrajectory(Traj2);
+
+        drive.turn(1);
+        drive.followTrajectory(Traj3);
     }
 }

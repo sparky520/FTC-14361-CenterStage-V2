@@ -19,11 +19,13 @@ public class RightBluePark extends LinearOpMode
         drive.setPoseEstimate(myPose);
 
         Trajectory Traj1 = drive.trajectoryBuilder(myPose)
-                .back(70)
+                .back(80)
                 .build();
-
         Trajectory Traj2 = drive.trajectoryBuilder(Traj1.end())
-                .strafeRight(125)
+                .strafeRight(95)
+                .build();
+        Trajectory Traj3 = drive.trajectoryBuilder(Traj2.end())
+                .strafeRight(95)
                 .build();
 
         waitForStart();
@@ -32,5 +34,8 @@ public class RightBluePark extends LinearOpMode
 
         drive.followTrajectory(Traj1);
         drive.followTrajectory(Traj2);
+
+        drive.turn(-1);
+        drive.followTrajectory(Traj3);
     }
 }
