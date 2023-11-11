@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initRight;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeftAuton;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRightAuton;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingRight;
 
@@ -259,8 +261,8 @@ public class RightBlueHardcodePark extends LinearOpMode{
         }
 
         private void setV4bIntaking(double sec){
-            leftVirtualFourBar.setPosition(intakingLeft);
-            rightVirtualFourBar.setPosition(intakingRight);
+            leftVirtualFourBar.setPosition(intakingLeftAuton);
+            rightVirtualFourBar.setPosition(intakingRightAuton);
             runFor(sec);
         }
 

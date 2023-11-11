@@ -108,6 +108,9 @@ public class robotConstants
         //.55
         public static double initRight = 0.5;
 
+        public static double intakingLeftAuton = 0.5;
+        public static double intakingRightAuton = 0.6;
+
 
 
 

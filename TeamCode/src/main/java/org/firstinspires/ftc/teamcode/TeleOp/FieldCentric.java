@@ -52,7 +52,9 @@ public class FieldCentric extends OpMode
         bot.setClawPosition(clawState.open);
         bot.setClawState(clawState.open);
 
-       
+        bot.setLeftClawState(clawState.leftOpen);
+        bot.setRightClawState(clawState.rightOpen);
+
 
         bot.setSlowDownState(slowDownState.FULL);
     }
@@ -98,11 +100,7 @@ public class FieldCentric extends OpMode
             }
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER))
-        {
-            bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
-            bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
-        }
+
 
         if(driver.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON))
         {
@@ -195,16 +193,19 @@ public class FieldCentric extends OpMode
 
                     // --------------------------- OPERATOR CODE --------------------------- //
 
-
-                    if (operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
-                        if (bot.getClawState() != null && (bot.getClawState().equals(clawState.open) || bot.getClawState().equals(clawState.leftOpen) || bot.getClawState().equals(clawState.rightOpen) )) {
-                            bot.setClawPosition(clawState.close);
-                            bot.setClawState(clawState.close);
-                        } else {
-                            bot.setClawPosition(clawState.open);
-                            bot.setClawState(clawState.open);
-                        }
-                    }
+        if(operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON))
+        {
+            if(bot.getClawState() != null && bot.getClawState().equals(clawState.open))
+            {
+                bot.setClawPosition(clawState.close);
+                bot.setClawState(clawState.close);
+            }
+            else
+            {
+                bot.setClawPosition(clawState.open);
+                bot.setClawState(clawState.open);
+            }
+        }
 
 
                     if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
@@ -374,7 +375,7 @@ public class FieldCentric extends OpMode
 
         if(operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON))
         {
-            if(bot.getClawState() != null && (bot.getClawState().equals(clawState.open) || bot.getClawState().equals(clawState.leftOpen) || bot.getClawState().equals(clawState.rightOpen)))
+            if(bot.getClawState() != null && bot.getClawState().equals(clawState.open))
             {
                 bot.setClawPosition(clawState.close);
                 bot.setClawState(clawState.close);
@@ -548,29 +549,29 @@ public class FieldCentric extends OpMode
 
         if(operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER))
         {
-            if(bot.getClawState() != null && (bot.getClawState().equals(clawState.leftOpen) || bot.getClawState().equals(clawState.open)))
+            if(bot.getLeftClawState() != null && bot.getLeftClawState().equals(clawState.leftOpen))
             {
-                bot.setClawPosition(clawState.leftClose);
-                bot.setClawState(clawState.leftClose);
+                bot.setCloseLeftClawPosition();
+                bot.setLeftClawState(clawState.leftClose);
             }
             else
             {
-                bot.setClawPosition(clawState.leftOpen);
-                bot.setClawState(clawState.leftOpen);
+                bot.setOpenLeftClawPosition();
+                bot.setLeftClawState(clawState.leftOpen);
             }
         }
 
         if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER))
         {
-            if(bot.getClawState() != null && (bot.getClawState().equals(clawState.rightOpen) || bot.getClawState().equals(clawState.open)))
+            if(bot.getRightClawState() != null && bot.getRightClawState().equals(clawState.rightOpen))
             {
-              bot.setClawPosition(clawState.rightClose);
-                bot.setClawState(clawState.rightClose);
+                bot.setCloseRightClawPosition();
+                bot.setRightClawState(clawState.rightClose);
             }
             else
             {
-              bot.setClawPosition(clawState.rightOpen);
-                bot.setClawState(clawState.rightOpen);
+                bot.setOpenRightClawPosition();
+                bot.setRightClawState(clawState.rightOpen);
             }
         }
     }
