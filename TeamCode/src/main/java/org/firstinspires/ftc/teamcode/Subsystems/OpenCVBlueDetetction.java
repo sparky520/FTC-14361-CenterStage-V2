@@ -24,7 +24,7 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
         public static int REGION_HEIGHT = 40;
 
         // Color definitions
-        private final Scalar WHITE = new Scalar(0, 0, 255);
+        private final Scalar WHITE = new Scalar(255, 255, 255);
 
         private final Scalar BLUE = new Scalar(0, 0, 255);
 
@@ -46,73 +46,104 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
         // Running variable storing the parking position
         private volatile TSEPosition position = TSEPosition.RIGHT;
 
-        @Override
-        public Mat processFrame(Mat input) {
-            // Get the submat frame, and then sum all the values
-            Mat leftAreaMat = input.submat(new Rect(LEFT_left_pointA, LEFT_left_pointB));
-            Scalar leftSumColors = Core.sumElems(leftAreaMat);
+    Scalar leftSumColors, middleSumColors;
 
-            Mat middleAreaMat = input.submat(new Rect(MIDDLE_left_pointA, MIDDLE_left_pointB));
-            Scalar middleSumColors = Core.sumElems(middleAreaMat);
+    private double blueThreshold;
+        // this can be called to show how much
+    @Override
+    public Mat processFrame(Mat input) {
+        // Get the submat frame, and then sum all the values
+        Mat leftAreaMat = input.submat(new Rect(LEFT_left_pointA, LEFT_left_pointB));
+        leftSumColors = Core.sumElems(leftAreaMat);
 
-            // Get the minimum RGB value from every single channel
-            double leftMinColor = Math.max(leftSumColors.val[0], 0.3);
+        Mat middleAreaMat = input.submat(new Rect(MIDDLE_left_pointA, MIDDLE_left_pointB));
+        middleSumColors = Core.sumElems(middleAreaMat);
 
-            double middleMinColor = Math.max(middleSumColors.val[0], 0.3);
+        // Threshold for blue color detection
+        /*
+        LOWERING THIS VALUE WILL LOWER THE THRESHOLD NEEDED TO DETECT THE COLOR BLUE
 
-            // Change the bounding box color based on the sleeve color
-            if (leftSumColors.val[0] == leftMinColor) {
-                position = TSEPosition.LEFT;
-                Imgproc.rectangle(
-                        input,
-                        LEFT_left_pointA,
-                        LEFT_left_pointB,
-                        BLUE,
-                        3
-                );
+        too high, it will need a LOT of blue
+        too low, it will say everything is blue
 
-            }
-            else{
-                position = TSEPosition.LEFT;
-                Imgproc.rectangle(
-                        input,
-                        LEFT_left_pointA,
-                        LEFT_left_pointB,
-                        WHITE,
-                        3
-                );
-            }
+        to tune, increase/decrease it by 10 till you are satisfied
 
-            if (middleSumColors.val[0] == middleMinColor) {
-                position = TSEPosition.MIDDLE;
-                Imgproc.rectangle(
-                        input,
-                        MIDDLE_left_pointA,
-                        MIDDLE_left_pointB,
-                        BLUE,
-                        3
-                );
+        lighting can and will effect this,
+         */
+        blueThreshold = 150;
 
-            }
-            else{
-                position = TSEPosition.MIDDLE;
-                Imgproc.rectangle(
-                        input,
-                        MIDDLE_left_pointA,
-                        MIDDLE_left_pointB,
-                        WHITE,
-                        3
-                );
-            }
-
-            // Release and return input
-            leftAreaMat.release();
-            return input;
+        // Check if the blue color is present in the left rectangle
+        // val[] is an ArrayList, and the way the class passes the values of R G B,
+        //
+        if (leftSumColors.val[0] > blueThreshold) {
+            position = TSEPosition.LEFT;
+            Imgproc.rectangle(
+                    input,
+                    LEFT_left_pointA,
+                    LEFT_left_pointB,
+                    BLUE,
+                    3
+            );
         }
 
-        // Returns an enum being the current position where the robot will park
+        else {
+            Imgproc.rectangle(
+                    input,
+                    LEFT_left_pointA,
+                    LEFT_left_pointB,
+                    WHITE,
+                    3
+            );
+        }
+
+            // Check if the blue color is present in the middle rectangle
+        if (middleSumColors.val[0] > blueThreshold) {
+                position = TSEPosition.MIDDLE;
+                Imgproc.rectangle(
+                        input,
+                        MIDDLE_left_pointA,
+                        MIDDLE_left_pointB,
+                        BLUE,
+                        3
+                );
+            }
+
+        else {
+            // If blue is not detected in spot 2, set the outline to white
+            Imgproc.rectangle(
+                    input,
+                    MIDDLE_left_pointA,
+                    MIDDLE_left_pointB,
+                    WHITE,
+                    3
+            );
+        }
+
+
+        // Release Mat objects
+        leftAreaMat.release();
+        middleAreaMat.release();
+
+        // Return the modified input Mat
+        return input;
+    }
+
+
+    // Returns an enum being the current position where the robot will park
         public TSEPosition getPosition() {
             return position;
         }
+
+        public double getLeftBoxBlueReading(){
+            return leftSumColors.val[0];
+        }
+
+        public double getMiddleBoxBlueReading(){
+            return middleSumColors.val[0];
+        }
+
+    public double getBlueThreshold(){
+        return blueThreshold;
+    }
 
 }
