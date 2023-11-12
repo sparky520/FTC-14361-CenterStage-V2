@@ -1,156 +1,149 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvPipeline;
+public class RedDetection extends OpenCvPipeline {
 
-import android.util.Size;
+    public enum TSEPosition {
+        LEFT,
+        MIDDLE,
+        RIGHT
+    }
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
+    // TOPLEFT anchor point for the bounding box
+    private static Point RIGHTBOX_TOPLEFT_ANCHOR_POINT = new Point(50, 135); //I think this is the actual one we edit! Increase x goes right, increase y goes down.
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.tfod.TfodProcessor;
+    private static Point MIDDLEBOX_TOPLEFT_ANCHOR_POINT = new Point(200, 155); //I think this is the actual one we edit! Increase x goes right, increase y goes down.
 
-import java.util.List;
-public class RedDetection {
-    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
+    // Width and height for the bounding box
+    public static int REGION_WIDTH = 40;
+    public static int REGION_HEIGHT = 40;
 
-    // TFOD_MODEL_ASSET points to a model file stored in the project Asset location,
-    // this is only used for Android Studio when using models in Assets.
-    private static final String TFOD_MODEL_ASSET = "RedV2.tflite";
-    // TFOD_MODEL_FILE points to a model file stored onboard the Robot Controller's storage,
-    // this is used when uploading models directly to the RC using the model upload interface.
-    /*
+    // Color definitions
+    private final Scalar WHITE = new Scalar(255, 255, 255);
 
-    FOR FUTURE USERS:
-    make a model using the FTC Machine Learning Toolchain
-    (tutorial is on the 2023-2024 google drive for 14361)
-    put the name of the file in the "TFOD_MODEL_ASSET" variable above
-    go to ur github ON YOUR BROWSER
-    go to FTCRobotController
-    go to src folder
-    UPLOAD your EXISTING FOLDER "assets" into src folder
-    (the existing folder should be named "assets" and should have your .tflite files inside)
-     */
+    private final Scalar RED = new Scalar(255, 0, 0);
 
-    // commenting the file_model because we aren't using it
-    //private static final String TFOD_MODEL_FILE = "/sdcard/FIRST/tflitemodels/DuckDetection.tflite";
+    // Anchor point definitions
+    Point RIGHT_left_pointA = new Point(
+            RIGHTBOX_TOPLEFT_ANCHOR_POINT.x,
+            RIGHTBOX_TOPLEFT_ANCHOR_POINT.y);
+    Point RIGHT_left_pointB = new Point(
+            RIGHTBOX_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
+            RIGHTBOX_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
 
-    // Define the labels recognized in the model for TFOD (must be in training order!)
-    private static final String[] LABELS = {
-            "MiddleRed",
-            "RedRight"
-    };
+    Point MIDDLE_left_pointA = new Point(
+            MIDDLEBOX_TOPLEFT_ANCHOR_POINT.x,
+            MIDDLEBOX_TOPLEFT_ANCHOR_POINT.y);
+    Point MIDDLE_left_pointB = new Point(
+            MIDDLEBOX_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
+            MIDDLEBOX_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
 
-    /**
-     * The variable to store our instance of the TensorFlow Object Detection processor.
-     */
-    private TfodProcessor tfod;
+    // Running variable storing the parking position
+    private volatile TSEPosition position = TSEPosition.LEFT;
 
-    /**
-     * The variable to store our instance of the vision portal.
-     */
-    private VisionPortal visionPortal;
+    Scalar redSumColors, middleSumColors;
 
-    public void initTfod(HardwareMap hardwareMap) {
+    private double redThreshold;
+    // this can be called to show how much
+    @Override
+    public Mat processFrame(Mat input) {
+        // Get the submat frame, and then sum all the values
+        Mat rightAreaMat = input.submat(new Rect(RIGHT_left_pointA, RIGHT_left_pointB));
+        redSumColors = Core.sumElems(rightAreaMat);
 
-        telemetry.addData(">", "Inside Detection initTFOD Model Method");
-        telemetry.update();
+        Mat middleAreaMat = input.submat(new Rect(MIDDLE_left_pointA, MIDDLE_left_pointB));
+        middleSumColors = Core.sumElems(middleAreaMat);
 
-        // Create the TensorFlow processor by using a builder.
-        tfod = new TfodProcessor.Builder()
+        // Threshold for blue color detection
+        /*
+        LOWERING THIS VALUE WILL LOWER THE THRESHOLD NEEDED TO DETECT THE COLOR BLUE
 
-                // With the following lines commented out, the default TfodProcessor Builder
-                // will load the default model for the season. To define a custom model to load,
-                // choose one of the following:
-                //   Use setModelAssetName() if the custom TF Model is built in as an asset (AS only).
-                //   Use setModelFileName() if you have downloaded a custom team model to the Robot Controller.
+        too high, it will need a LOT of blue
+        too low, it will say everything is blue
 
-                .setModelAssetName(TFOD_MODEL_ASSET)
-                //.setModelFileName(TFOD_MODEL_FILE)
+        to tune, increase/decrease it by 10 till you are satisfied
 
-                // The following default settings are available to un-comment and edit as needed to
-                // set parameters for custom models.
-                .setModelLabels(LABELS)
-                .setIsModelTensorFlow2(true)
-                .setIsModelQuantized(true)
-                .setModelInputSize(300)
-                .setModelAspectRatio(16.0 / 9.0)
+        lighting can and will effect this,
+         */
+        redThreshold = 150;
 
-                .build();
-
-        telemetry.addData(">", "TFOD settings set & built");
-        telemetry.addData(">", "Building Vision");
-        telemetry.update();
-        // Create the vision portal by using a builder.
-        VisionPortal.Builder builder = new VisionPortal.Builder();
-
-        telemetry.addData(">", "TFOD Model has been Initialized successfully.");
-        telemetry.addData(">", "Labels, Quantized, Input Size, and Ascpect Ratio Set.");
-        telemetry.addData(">", "VisionPortal successfully built.");
-        telemetry.update();
-
-        // Set the camera (webcam vs. built-in RC phone camera).
-        if (USE_WEBCAM) {
-            builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
-        } else {
-            builder.setCamera(BuiltinCameraDirection.FRONT);
+        // Check if the blue color is present in the left rectangle
+        // val[] is an ArrayList, and the way the class passes the values of R G B,
+        //
+        if (redSumColors.val[0] > redThreshold) {
+            position = TSEPosition.RIGHT;
+            Imgproc.rectangle(
+                    input,
+                    RIGHT_left_pointA,
+                    RIGHT_left_pointB,
+                    RED,
+                    3
+            );
         }
 
-        // Choose a camera resolution. Not all cameras support all resolutions.
-        builder.setCameraResolution(new Size(640, 480));
+        else {
+            Imgproc.rectangle(
+                    input,
+                    RIGHT_left_pointA,
+                    RIGHT_left_pointB,
+                    WHITE,
+                    3
+            );
+        }
 
-        // Enable the RC preview (LiveView).  Set "false" to omit camera monitoring.
-        builder.enableLiveView(true);
+        // Check if the blue color is present in the middle rectangle
+        if (middleSumColors.val[0] > redThreshold) {
+            position = TSEPosition.MIDDLE;
+            Imgproc.rectangle(
+                    input,
+                    MIDDLE_left_pointA,
+                    MIDDLE_left_pointB,
+                    RED,
+                    3
+            );
+        }
 
-        // Set the stream format; MJPEG uses less bandwidth than default YUY2.
-        builder.setStreamFormat(VisionPortal.StreamFormat.MJPEG);
+        else {
+            // If blue is not detected in spot 2, set the outline to white
+            Imgproc.rectangle(
+                    input,
+                    MIDDLE_left_pointA,
+                    MIDDLE_left_pointB,
+                    WHITE,
+                    3
+            );
+        }
 
-        // Choose whether or not LiveView stops if no processors are enabled.
-        // If set "true", monitor shows solid orange screen if no processors enabled.
-        // If set "false", monitor shows camera view without annotations.
 
-        builder.setAutoStopLiveView(false);
+        // Release Mat objects
+        rightAreaMat.release();
+        middleAreaMat.release();
 
-        // Set and enable the processor.
-        builder.addProcessor(tfod);
+        // Return the modified input Mat
+        return input;
+    }
 
-        // Build the Vision Portal, using the above settings.
-        visionPortal = builder.build();
 
-        // Set confidence threshold for TFOD recognitions, at any time.
+    // Returns an enum being the current position where the robot will park
+    public TSEPosition getPosition() {
+        return position;
+    }
 
-        tfod.setMinResultConfidence(0.85f);
+    public double getRightBoxRedReading(){
+        return redSumColors.val[0];
+    }
 
-        // Disable or re-enable the TFOD processor at any time.
-        visionPortal.setProcessorEnabled(tfod, true);
+    public double getMiddleBoxRedReading(){
+        return middleSumColors.val[0];
+    }
 
-    }   // end method initTfod()
-
-    /**
-     * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
-     */
-    public void telemetryTfod() {
-        List<Recognition> currentRecognitions = tfod.getRecognitions();
-        telemetry.addData("# Objects Detected", currentRecognitions.size());
-
-        // this was manually added, no clue if it works but it should
-        // it tells the
-        if (!currentRecognitions.isEmpty())
-            telemetry.addData("Object: ", currentRecognitions.get(0) );
-
-        // Step through the list of recognitions and display info for each one.
-        for (Recognition recognition : currentRecognitions) {
-            double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
-            double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
-
-            telemetry.addData(""," ");
-            telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-            telemetry.addData("- Position", "%.0f / %.0f", x, y);
-            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-        }   // end for() loop
-
-    }   // end method telemetryTfod()
-
+    public double getRedThreshold(){
+        return redThreshold;
+    }
 
 }
