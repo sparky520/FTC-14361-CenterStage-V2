@@ -15,6 +15,9 @@ public class RedDetection extends OpenCvPipeline {
     }
 
     // TOPLEFT anchor point for the bounding box
+
+
+    // BOTH OF THESE NEED TO BE CALIBRATED FOR RED !!!!!    
     private static Point RIGHTBOX_TOPLEFT_ANCHOR_POINT = new Point(50, 135); //I think this is the actual one we edit! Increase x goes right, increase y goes down.
 
     private static Point MIDDLEBOX_TOPLEFT_ANCHOR_POINT = new Point(200, 155); //I think this is the actual one we edit! Increase x goes right, increase y goes down.
