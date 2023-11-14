@@ -31,25 +31,38 @@ public class DetectionTest extends OpMode {
     @Override
     public void init() {
 
-        middleTSE = "MiddleBlue";
-        leftTSE = "LeftBlue";
         webcamName = "Webcam 1";
 
         initCam();
 
         telemetry.addData("STATUS:", "INITIALIZED");
-        telemetry.addData("AMOUNT OF BLUE DETECTED IN LEFT POSITION: ",  blueDetection.getLeftBoxBlueReading());
-        telemetry.addData("AMOUNT OF BLUE DETECTED IN MIDDLE POSITION: ",  blueDetection.getMiddleBoxBlueReading());
-        telemetry.addData("CURRENT BLUE THRESHOLD SET AT: ", blueDetection.getBlueThreshold());
-        telemetry.addData("CUBE IS (Right is default): ", blueDetection.getPosition());
+        telemetry.addData("BLUE DETECTED IN LEFT POSITION: ",  blueDetection.getLeftBoxBlueReading());
+        telemetry.addData("BLUE DETECTED IN MIDDLE POSITION: ",  blueDetection.getMiddleBoxBlueReading());
+        telemetry.addData("CUBE IS: ", blueDetection.getPosition());
+        telemetry.addLine("(right is default position");
+
+        telemetry.update();
+
+    }
+
+    public void init_loop() {
+
+        telemetry.addData("STATUS:", "INITIALIZED");
+        telemetry.addData("BLUE DETECTED IN LEFT POSITION: ",  blueDetection.getLeftBoxBlueReading());
+        telemetry.addData("BLUE DETECTED IN MIDDLE POSITION: ",  blueDetection.getMiddleBoxBlueReading());
+        telemetry.addData("CUBE IS: ", blueDetection.getPosition());
+        telemetry.addLine("(right is default position)");
 
         telemetry.update();
 
     }
 
     public void loop() {
+        telemetry.addData("Blue Component Left: ", blueDetection.getLeftBoxBlueReading());
+        telemetry.addData("Blue Component Middle: ", blueDetection.getMiddleBoxBlueReading());
+        telemetry.addData("Position: ", blueDetection.getPosition());
 
-
+        telemetry.update();
     }
 
     private void initCam() {
@@ -78,6 +91,7 @@ public class DetectionTest extends OpMode {
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
+                camera.showFpsMeterOnViewport(true);
                 camera.startStreaming(320, 240, OpenCvCameraRotation.SENSOR_NATIVE);
             }
 

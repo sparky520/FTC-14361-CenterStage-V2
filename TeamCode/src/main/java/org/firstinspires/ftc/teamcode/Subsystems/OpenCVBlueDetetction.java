@@ -20,8 +20,8 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
         private static Point MIDDLEBOX_TOPLEFT_ANCHOR_POINT = new Point(200, 155); //I think this is the actual one we edit! Increase x goes right, increase y goes down.
 
     // Width and height for the bounding box
-        public static int REGION_WIDTH = 40;
-        public static int REGION_HEIGHT = 40;
+        public static int REGION_WIDTH = 25;
+        public static int REGION_HEIGHT = 25;
 
         // Color definitions
         private final Scalar WHITE = new Scalar(255, 255, 255);
@@ -46,10 +46,9 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
         // Running variable storing the parking position
         private volatile TSEPosition position = TSEPosition.RIGHT;
 
-    Scalar leftSumColors, middleSumColors;
+    Scalar leftSumColors = new Scalar(0, 0, 0); // Initialize with default values
+    Scalar middleSumColors = new Scalar(0, 0, 0); // Initialize with default values
 
-    private double blueThreshold;
-        // this can be called to show how much
     @Override
     public Mat processFrame(Mat input) {
         // Get the submat frame, and then sum all the values
@@ -58,6 +57,10 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
 
         Mat middleAreaMat = input.submat(new Rect(MIDDLE_left_pointA, MIDDLE_left_pointB));
         middleSumColors = Core.sumElems(middleAreaMat);
+
+        // Assuming BGR format
+        double blueComponentLeft = leftSumColors.val[0];
+        double blueComponentMiddle = middleSumColors.val[0];
 
         // Threshold for blue color detection
         /*
@@ -70,23 +73,12 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
 
         lighting can and will effect this,
          */
-        blueThreshold = 150;
 
         // Check if the blue color is present in the left rectangle
         // val[] is an ArrayList, and the way the class passes the values of R G B,
         //
-        if (leftSumColors.val[0] > blueThreshold) {
-            position = TSEPosition.LEFT;
-            Imgproc.rectangle(
-                    input,
-                    LEFT_left_pointA,
-                    LEFT_left_pointB,
-                    BLUE,
-                    3
-            );
-        }
-
-        else {
+        if (blueComponentLeft > blueComponentMiddle) {
+            position = TSEPosition.MIDDLE;
             Imgproc.rectangle(
                     input,
                     LEFT_left_pointA,
@@ -96,14 +88,24 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
             );
         }
 
+        else {
+            Imgproc.rectangle(
+                    input,
+                    LEFT_left_pointA,
+                    LEFT_left_pointB,
+                    BLUE,
+                    3
+            );
+        }
+
             // Check if the blue color is present in the middle rectangle
-        if (middleSumColors.val[0] > blueThreshold) {
-                position = TSEPosition.MIDDLE;
+        if (blueComponentMiddle > blueComponentLeft) {
+                position = TSEPosition.LEFT;
                 Imgproc.rectangle(
                         input,
                         MIDDLE_left_pointA,
                         MIDDLE_left_pointB,
-                        BLUE,
+                        WHITE,
                         3
                 );
             }
@@ -114,7 +116,7 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
                     input,
                     MIDDLE_left_pointA,
                     MIDDLE_left_pointB,
-                    WHITE,
+                    BLUE,
                     3
             );
         }
@@ -142,8 +144,6 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
             return middleSumColors.val[0];
         }
 
-    public double getBlueThreshold(){
-        return blueThreshold;
-    }
+
 
 }
