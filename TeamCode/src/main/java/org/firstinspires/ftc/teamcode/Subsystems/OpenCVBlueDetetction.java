@@ -20,8 +20,8 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
         private static Point MIDDLEBOX_TOPLEFT_ANCHOR_POINT = new Point(200, 155); //I think this is the actual one we edit! Increase x goes right, increase y goes down.
 
     // Width and height for the bounding box
-        public static int REGION_WIDTH = 25;
-        public static int REGION_HEIGHT = 25;
+        public static int REGION_WIDTH = 50;
+        public static int REGION_HEIGHT = 40;
 
         // Color definitions
         private final Scalar WHITE = new Scalar(255, 255, 255);
@@ -51,6 +51,10 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
 
     @Override
     public Mat processFrame(Mat input) {
+
+        // Convert the input Mat to HSV color space
+        Imgproc.cvtColor(input, input, Imgproc.COLOR_BGR2HSV);
+
         // Get the submat frame, and then sum all the values
         Mat leftAreaMat = input.submat(new Rect(LEFT_left_pointA, LEFT_left_pointB));
         leftSumColors = Core.sumElems(leftAreaMat);
@@ -58,69 +62,31 @@ public class OpenCVBlueDetetction extends OpenCvPipeline {
         Mat middleAreaMat = input.submat(new Rect(MIDDLE_left_pointA, MIDDLE_left_pointB));
         middleSumColors = Core.sumElems(middleAreaMat);
 
-        // Assuming BGR format
+        // Assuming HSV format, adjust the blue color range accordingly
         double blueComponentLeft = leftSumColors.val[0];
         double blueComponentMiddle = middleSumColors.val[0];
 
-        // Threshold for blue color detection
-        /*
-        LOWERING THIS VALUE WILL LOWER THE THRESHOLD NEEDED TO DETECT THE COLOR BLUE
+        // Adjust the blue color range in HSV space as needed
+        double lowerBlueHue = 90; // Example lower hue value for blue
+        double upperBlueHue = 120; // Example upper hue value for blue
 
-        too high, it will need a LOT of blue
-        too low, it will say everything is blue
-
-        to tune, increase/decrease it by 10 till you are satisfied
-
-        lighting can and will effect this,
-         */
-
-        // Check if the blue color is present in the left rectangle
-        // val[] is an ArrayList, and the way the class passes the values of R G B,
-        //
-        if (blueComponentLeft > blueComponentMiddle) {
+        // Check if the blue hue is within the specified range
+        if (blueComponentLeft >= lowerBlueHue && blueComponentLeft <= upperBlueHue) {
             position = TSEPosition.MIDDLE;
-            Imgproc.rectangle(
-                    input,
-                    LEFT_left_pointA,
-                    LEFT_left_pointB,
-                    WHITE,
-                    3
-            );
+            Imgproc.rectangle(input, LEFT_left_pointA, LEFT_left_pointB, WHITE, 3);
+
+        } else {
+            Imgproc.rectangle(input, LEFT_left_pointA, LEFT_left_pointB, BLUE, 3);
         }
 
-        else {
-            Imgproc.rectangle(
-                    input,
-                    LEFT_left_pointA,
-                    LEFT_left_pointB,
-                    BLUE,
-                    3
-            );
+        // Check if the blue hue is within the specified range for the middle rectangle
+        if (blueComponentMiddle >= lowerBlueHue && blueComponentMiddle <= upperBlueHue) {
+            position = TSEPosition.LEFT;
+            Imgproc.rectangle(input, MIDDLE_left_pointA, MIDDLE_left_pointB, WHITE, 3);
+
+        } else {
+            Imgproc.rectangle(input, MIDDLE_left_pointA, MIDDLE_left_pointB, BLUE, 3);
         }
-
-            // Check if the blue color is present in the middle rectangle
-        if (blueComponentMiddle > blueComponentLeft) {
-                position = TSEPosition.LEFT;
-                Imgproc.rectangle(
-                        input,
-                        MIDDLE_left_pointA,
-                        MIDDLE_left_pointB,
-                        WHITE,
-                        3
-                );
-            }
-
-        else {
-            // If blue is not detected in spot 2, set the outline to white
-            Imgproc.rectangle(
-                    input,
-                    MIDDLE_left_pointA,
-                    MIDDLE_left_pointB,
-                    BLUE,
-                    3
-            );
-        }
-
 
         // Release Mat objects
         leftAreaMat.release();
