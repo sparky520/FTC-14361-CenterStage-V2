@@ -34,8 +34,8 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     public static double LATERAL_DISTANCE = 10.192056985033322; // in; distance between the left and right wheels
     public static double FORWARD_OFFSET = -5.25; // in; offset of the lateral wheel
 
-    public static double X_MULTIPLIER = 0.5740; // Multiplier in the X direction
-    public static double Y_MULTIPLIER = 0.5576; // Multiplier in the Y
+    public static double X_MULTIPLIER = 0; // Multiplier in the X direction
+    public static double Y_MULTIPLIER = 0; // Multiplier in the Y
     // direction
 
     private Encoder leftEncoder, rightEncoder, frontEncoder;
@@ -68,9 +68,9 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
-        int leftPos = (int) (leftEncoder.getCurrentPosition()*1.8);
-        int rightPos =(int) (rightEncoder.getCurrentPosition() *1.8);
-        int frontPos = (int)(frontEncoder.getCurrentPosition()*1.8);
+        int leftPos = (int) (leftEncoder.getCurrentPosition());
+        int rightPos =(int) (rightEncoder.getCurrentPosition());
+        int frontPos = (int)(frontEncoder.getCurrentPosition());
 
         lastEncPositions.clear();
         lastEncPositions.add(leftPos);
@@ -87,9 +87,9 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     @NonNull
     @Override
     public List<Double> getWheelVelocities() {
-        int leftVel = (int) (leftEncoder.getCorrectedVelocity() * 1.8);
-        int rightVel = (int) (rightEncoder.getCorrectedVelocity() * 1.8);
-        int frontVel = (int) (frontEncoder.getCorrectedVelocity() * 1.8);
+        int leftVel = (int) (leftEncoder.getCorrectedVelocity());
+        int rightVel = (int) (rightEncoder.getCorrectedVelocity());
+        int frontVel = (int) (frontEncoder.getCorrectedVelocity());
 
         lastEncVels.clear();
         lastEncVels.add(leftVel);
@@ -102,4 +102,5 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
                 (encoderTicksToInches(frontVel) * Y_MULTIPLIER)
         );
     }
+
 }
