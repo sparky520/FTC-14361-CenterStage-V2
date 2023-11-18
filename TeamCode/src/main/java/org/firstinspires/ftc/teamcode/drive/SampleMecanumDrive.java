@@ -91,33 +91,33 @@ public class SampleMecanumDrive extends MecanumDrive {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        // TODO: adjust the names of the following hardware devices to match your configuration
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-        imu.initialize(parameters);
-
-        // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
-        // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
-        //
-        //             | +Z axis
-        //             |
-        //             |
-        //             |
-        //      _______|_____________     +Y axis
-        //     /       |_____________/|__________
-        //    /   REV / EXPANSION   //
-        //   /       / HUB         //
-        //  /_______/_____________//
-        // |_______/_____________|/
-        //        /
-        //       / +X axis
-        //
-        // This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
-        // and the placement of the dot/orientation from https://docs.revrobotics.com/rev-control-system/control-system-overview/dimensions#imu-location
-        //
-        // For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
-        // BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);
+//        // TODO: adjust the names of the following hardware devices to match your configuration
+//        imu = hardwareMap.get(BNO055IMU.class, "imu");
+//        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+//        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+//        imu.initialize(parameters);
+//
+//        // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
+//        // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
+//        //
+//        //             | +Z axis
+//        //             |
+//        //             |
+//        //             |
+//        //      _______|_____________     +Y axis
+//        //     /       |_____________/|__________
+//        //    /   REV / EXPANSION   //
+//        //   /       / HUB         //
+//        //  /_______/_____________//
+//        // |_______/_____________|/
+//        //        /
+//        //       / +X axis
+//        //
+//        // This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
+//        // and the placement of the dot/orientation from https://docs.revrobotics.com/rev-control-system/control-system-overview/dimensions#imu-location
+//        //
+//        // For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
+//        // BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);
 
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
@@ -306,18 +306,26 @@ public class SampleMecanumDrive extends MecanumDrive {
     }
 
     @Override
+//    public double getRawExternalHeading() {
+//        return imu.getAngularOrientation().firstAngle;
+//    }
+
     public double getRawExternalHeading() {
-        return imu.getAngularOrientation().firstAngle;
+        return 0;
     }
 
     @Override
+//    public Double getExternalHeadingVelocity() {
+//        // To work around an SDK bug, use -zRotationRate in place of xRotationRate
+//        // and -xRotationRate in place of zRotationRate (yRotationRate behaves as
+//        // expected). This bug does NOT affect orientation.
+//        //
+//        // See https://github.com/FIRST-Tech-Challenge/FtcRobotController/issues/251 for details.
+//        return (double) -imu.getAngularVelocity().xRotationRate;
+//    }
+
     public Double getExternalHeadingVelocity() {
-        // To work around an SDK bug, use -zRotationRate in place of xRotationRate
-        // and -xRotationRate in place of zRotationRate (yRotationRate behaves as
-        // expected). This bug does NOT affect orientation.
-        //
-        // See https://github.com/FIRST-Tech-Challenge/FtcRobotController/issues/251 for details.
-        return (double) -imu.getAngularVelocity().xRotationRate;
+        return 0.0;
     }
 
     public static TrajectoryVelocityConstraint getVelocityConstraint(double maxVel, double maxAngularVel, double trackWidth) {

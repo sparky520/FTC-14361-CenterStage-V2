@@ -28,7 +28,7 @@ public class Mecanum
         leftRear.setDirection(DcMotorEx.Direction.REVERSE);
         leftFront.setDirection(DcMotorEx.Direction.REVERSE);
 
-        imu = hardwareMap.get(BNO055IMU.class, "cIMU");
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
         // this is making a new object called 'parameters' that we use to hold the angle the imu is at
         parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
