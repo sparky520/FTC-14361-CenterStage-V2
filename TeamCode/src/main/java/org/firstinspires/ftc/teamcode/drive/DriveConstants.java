@@ -63,6 +63,10 @@ public class DriveConstants {
     //.0031
     public static double kStatic = 0.002;
 
+    // * THESE ARE THE PID VALUES*
+    //kA = 0.00151
+    //kV = 0.016116258833585406
+
     /*
      * These values are used to generate the trajectories for you robot. To ensure proper operation,
      * the constraints should never exceed ~80% of the robot's actual capabilities. While Road
@@ -92,9 +96,6 @@ public class DriveConstants {
 
      */
 
-    //
-    //kA = 0.00151
-    //kV = 0.016116258833585406
     public static double MAX_VEL = 62.07043729;
     public static double MAX_ACCEL = 60;
     public static double MAX_ANG_VEL = Math.toRadians(360);
