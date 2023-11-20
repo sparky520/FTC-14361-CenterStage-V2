@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.Subsystems.BlueDetection;
-import org.firstinspires.ftc.teamcode.Subsystems.OpenCVBlueDetetction;
+import org.firstinspires.ftc.teamcode.Subsystems.HSVBlueDetetction;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -24,7 +24,7 @@ public class DetectionTest extends OpMode {
 
     private String middleTSE, leftTSE;
     private Boolean scoreMiddleTSE, scoreLeftTSE, scoreRightTSE;
-    OpenCVBlueDetetction blueDetection;
+    HSVBlueDetetction blueDetection;
     OpenCvWebcam camera;
     String webcamName;
 
@@ -74,7 +74,7 @@ public class DetectionTest extends OpMode {
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webcamName), cameraMonitorViewId);
 
         // initializing our Detection class (details on how it works at the top)
-        blueDetection = new OpenCVBlueDetetction();
+        blueDetection = new HSVBlueDetetction(telemetry);
 
         // yeah what this does is it gets the thing which uses the thing so we can get the thing
         /*
