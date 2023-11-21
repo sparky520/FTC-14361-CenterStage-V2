@@ -31,9 +31,9 @@ public class HSVBlueDetetction extends OpenCvPipeline {
     private Location location;
 
     /*
-    These create the rectangles that your TSE should be in-
-    adjust these values by using the camera stream in the driver station
-    to see where your camera points, and adjust the camera or the boxes so the TSE is inside
+    These create the rectangles that your TSE should be in.
+    See what the camera does by using the camera stream in the menu of the driver station WHILE the bot is active
+    Adjust the camera or the boxes so your TSE is inside it
 
      */
     static final Rect LEFT_ROI = new Rect(
@@ -89,6 +89,17 @@ public class HSVBlueDetetction extends OpenCvPipeline {
         boolean tseLeft = leftValue > PERCENT_COLOR_THRESHOLD;
         boolean tseMiddle = middleValue > PERCENT_COLOR_THRESHOLD;
 
+
+        /*
+        THIS IS DIFFERENT FROM THE VIDEO!!
+        in the video, the detection system is made to find normal stones because they're yellow
+        and easy to detect, and depending on where the normal stones are, it knows where the skystone is
+
+        this altered version I've made is for Centerstage, and our TSE colors are either red/blue;
+        Which means it's much simpler for us that we only need to detect the color red/blue
+
+        That's why his code is 'reversed'- he's not actually detecting the Skystone- just the normal ones
+         */
         if (tseLeft) {
             location = Location.LEFT;
             telemetry.addData("TSE Location: ", "LEFT");
