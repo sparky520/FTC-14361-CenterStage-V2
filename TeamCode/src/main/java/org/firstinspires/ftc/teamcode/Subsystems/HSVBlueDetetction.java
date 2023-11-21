@@ -69,37 +69,39 @@ public class HSVBlueDetetction extends OpenCvPipeline {
 
 
         // this shows us the stuff in our range (in this case blue)
+        // mat is the matrix, and we define our
         Core.inRange(mat, lowHSV, highHSV, mat);
 
         Mat left = mat.submat(LEFT_ROI);
-        Mat right = mat.submat(MIDDLE_ROI);
+        Mat middle = mat.submat(MIDDLE_ROI);
 
         double leftValue = Core.sumElems(left).val[0] / LEFT_ROI.area() / 255;
-        double rightValue = Core.sumElems(right).val[0] / MIDDLE_ROI.area() / 255;
+        double middleValue = Core.sumElems(middle).val[0] / MIDDLE_ROI.area() / 255;
 
         left.release();
-        right.release();
+        middle.release();
 
         telemetry.addData("Left raw value", (int) Core.sumElems(left).val[0]);
-        telemetry.addData("Right raw value", (int) Core.sumElems(right).val[0]);
+        telemetry.addData("Middle raw value", (int) Core.sumElems(middle).val[0]);
         telemetry.addData("Left percentage", Math.round(leftValue * 100) + "%");
-        telemetry.addData("Right percentage", Math.round(rightValue * 100) + "%");
+        telemetry.addData("Middle percentage", Math.round(middleValue * 100) + "%");
 
-        boolean stoneLeft = leftValue > PERCENT_COLOR_THRESHOLD;
-        boolean stoneRight = rightValue > PERCENT_COLOR_THRESHOLD;
+        boolean tseLeft = leftValue > PERCENT_COLOR_THRESHOLD;
+        boolean tseMiddle = middleValue > PERCENT_COLOR_THRESHOLD;
 
-        if (stoneLeft && stoneRight) {
-            location = Location.MIDDLE;
-            telemetry.addData("Skystone Location", "not found");
+        if (tseLeft) {
+            location = Location.LEFT;
+            telemetry.addData("TSE Location: ", "LEFT");
         }
-        else if (stoneLeft) {
-            location = Location.RIGHT;
-            telemetry.addData("Skystone Location", "right");
+        else if(tseMiddle) {
+            location = Location.MIDDLE;
+            telemetry.addData("TSE Location: ", "MIDDLE");
         }
         else {
-            location = Location.LEFT;
-            telemetry.addData("Skystone Location", "left");
+            location = Location.RIGHT;
+            telemetry.addData("TSE not detected; Location: ", "RIGHT");
         }
+
         telemetry.update();
 
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_GRAY2RGB);
