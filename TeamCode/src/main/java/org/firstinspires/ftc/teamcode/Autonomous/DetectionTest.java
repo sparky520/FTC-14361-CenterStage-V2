@@ -19,10 +19,6 @@ import java.util.List;
 @Autonomous(name="test tha detect on the blu")
 public class DetectionTest extends OpMode {
 
-    private BlueDetection bDetection;
-    private List<Recognition> blueCurrentRecognitions;
-
-    private String middleTSE, leftTSE;
     private Boolean scoreMiddleTSE, scoreLeftTSE, scoreRightTSE;
     HSVBlueDetetction blueDetection;
     OpenCvWebcam camera;
@@ -31,43 +27,39 @@ public class DetectionTest extends OpMode {
     @Override
     public void init() {
 
-        webcamName = "Webcam 1";
+        telemetry.addData("System Status: ", "Initializing...");
+        telemetry.update();
 
         initCam();
 
-        telemetry.addData("STATUS:", "INITIALIZED");
-        telemetry.addData("BLUE DETECTED IN LEFT POSITION: ",  blueDetection.getLeftBoxBlueReading());
-        telemetry.addData("BLUE DETECTED IN MIDDLE POSITION: ",  blueDetection.getMiddleBoxBlueReading());
-        telemetry.addData("CUBE IS: ", blueDetection.getPosition());
+        telemetry.addLine("Camera Successfully Initialized.");
+        telemetry.addData("CUBE IS: ", blueDetection.getLocation());
         telemetry.addLine("(right is default position");
-
         telemetry.update();
 
     }
 
     public void init_loop() {
 
-        telemetry.addData("STATUS:", "INITIALIZED");
-        telemetry.addData("BLUE DETECTED IN LEFT POSITION: ",  blueDetection.getLeftBoxBlueReading());
-        telemetry.addData("BLUE DETECTED IN MIDDLE POSITION: ",  blueDetection.getMiddleBoxBlueReading());
-        telemetry.addData("CUBE IS: ", blueDetection.getPosition());
-        telemetry.addLine("(right is default position)");
-
+        telemetry.addData("System Status: ", "Currently Looping Initialization...");
+        telemetry.addData("CUBE IS: ", blueDetection.getLocation());
         telemetry.update();
 
     }
 
     public void loop() {
-        telemetry.addData("Blue Component Left: ", blueDetection.getLeftBoxBlueReading());
-        telemetry.addData("Blue Component Middle: ", blueDetection.getMiddleBoxBlueReading());
-        telemetry.addData("Position: ", blueDetection.getPosition());
-
+        telemetry.addData("System Status: ", "Currently Looping OpMode...");
+        telemetry.addData("CUBE IS: ", blueDetection.getLocation());
         telemetry.update();
     }
+
+
 
     private void initCam() {
         //This line retrieves the resource identifier for the camera monitor view. The camera monitor view is typically used to display the camera feed
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+
+        webcamName = "Webcam 1";
 
         // This line creates a webcam instance using the OpenCvCameraFactor with the webcam name (webcamName) and the camera monitor view ID.
         // The camera instance is stored in the camera variable that we can use later

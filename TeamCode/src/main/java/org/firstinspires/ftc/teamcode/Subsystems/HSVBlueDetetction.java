@@ -28,7 +28,9 @@ public class HSVBlueDetetction extends OpenCvPipeline {
         RIGHT,
         MIDDLE
     }
-    private Location location;
+
+    // lowkey i barely know what volatiles is- just google it
+    private volatile Location location = Location.RIGHT;
 
     /*
     These create the rectangles that your TSE should be in.
@@ -115,13 +117,17 @@ public class HSVBlueDetetction extends OpenCvPipeline {
 
         telemetry.update();
 
+
+        // change the img back to RGB
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_GRAY2RGB);
 
-        Scalar colorStone = new Scalar(255, 0, 0);
-        Scalar colorSkystone = new Scalar(0, 255, 0);
+        // below will make the boxes Red if no TSE exists, and Green if it does within the rectangle box
+        Scalar noTSE = new Scalar(255, 0, 0);
+        Scalar tseDetected = new Scalar(0, 255, 0);
 
-        Imgproc.rectangle(mat, LEFT_ROI, location == Location.LEFT? colorSkystone:colorStone);
-        Imgproc.rectangle(mat, MIDDLE_ROI, location == Location.RIGHT? colorSkystone:colorStone);
+        // depending on where the TSEe is, or where it isn't, the color of the rectangle will change
+        Imgproc.rectangle(mat, LEFT_ROI, location == Location.LEFT? tseDetected:noTSE);
+        Imgproc.rectangle(mat, MIDDLE_ROI, location == Location.MIDDLE? tseDetected:noTSE);
 
         return mat;
     }
