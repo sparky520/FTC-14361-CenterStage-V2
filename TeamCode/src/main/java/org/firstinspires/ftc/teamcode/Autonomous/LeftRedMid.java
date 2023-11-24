@@ -11,8 +11,8 @@ import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-@Autonomous(name = "RightBlueMid")
-public class RightBlueMid extends LinearOpMode
+@Autonomous(name = "LeftRedMid")
+public class LeftRedMid extends LinearOpMode
 {
     public Robot bot;
     Pose2d myPose = new Pose2d(63, -36, Math.toRadians(90));
@@ -40,7 +40,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory Traj3 = drive.trajectoryBuilder(Traj2.end())
-                .strafeRight(20)
+                .strafeLeft(20)
                 .build();
 
         Trajectory Traj4 = drive.trajectoryBuilder(Traj3.end())
@@ -48,7 +48,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory Traj5 = drive.trajectoryBuilder(Traj4.end())
-                .lineToLinearHeading(new Pose2d(-12, 12, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(12, 12, Math.toRadians(180)))
                 .addTemporalMarker(0.2, () -> {
                     bot.setWristPosition(wristState.sideways);
                     bot.setWristState(wristState.sideways);
@@ -60,12 +60,12 @@ public class RightBlueMid extends LinearOpMode
         Trajectory Traj6 = drive.trajectoryBuilder(Traj5.end())
                 .splineToLinearHeading(new Pose2d(-36,48),Math.toRadians(180))
                 .addTemporalMarker(0.2, () -> {
-                bot.setClawPosition(clawState.open);
+                    bot.setClawPosition(clawState.open);
                 })
                 .build();
 
         Trajectory Traj7 = drive.trajectoryBuilder(Traj6.end())
-                .strafeRight(10)
+                .strafeLeft(10)
                 .build();
 
         Trajectory Traj8 = drive.trajectoryBuilder(Traj6.end())
@@ -79,13 +79,13 @@ public class RightBlueMid extends LinearOpMode
             return;
         }
 
-            drive.followTrajectory(Traj1);
-            drive.followTrajectory(Traj2);
-            drive.followTrajectory(Traj3);
-            drive.followTrajectory(Traj4);
-            drive.followTrajectory(Traj5);
-            drive.followTrajectory(Traj6);
-            drive.followTrajectory(Traj7);
-            drive.followTrajectory(Traj8);
+        drive.followTrajectory(Traj1);
+        drive.followTrajectory(Traj2);
+        drive.followTrajectory(Traj3);
+        drive.followTrajectory(Traj4);
+        drive.followTrajectory(Traj5);
+        drive.followTrajectory(Traj6);
+        drive.followTrajectory(Traj7);
+        drive.followTrajectory(Traj8);
     }
 }
