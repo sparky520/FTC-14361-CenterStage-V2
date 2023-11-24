@@ -259,21 +259,8 @@ public class FieldCentric extends OpMode {
                 bot.setWristPosition(wristState.sideways);
 
             }
-            else if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.intaking))
+            else if(bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.intaking))
             {
-//               bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
-//               bot.setVirtualFourBarState(virtualFourBarState.init);
-//
-//               sleep(200);
-//
-//               bot.setWristState(wristState.sideways);
-//               bot.setWristPosition(wristState.sideways);
-//
-//               sleep(200);
-//
-//               bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
-//               bot.setVirtualFourBarState(virtualFourBarState.outtaking);
-//
                 bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                 bot.setVirtualFourBarState(virtualFourBarState.init);
 
@@ -287,7 +274,7 @@ public class FieldCentric extends OpMode {
                 bot.setWristPosition(wristState.normal);
 
             }
-            else if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.init))
+            else if(bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.init))
             {
                 if(bot.getvirtualFourBarState() != null && (bot.getClawState().equals(clawState.close) || bot.getClawState().equals(clawState.rightClose) || bot.getClawState().equals(clawState.leftClose)))
                 {
@@ -322,12 +309,6 @@ public class FieldCentric extends OpMode {
                 bot.setWristPosition(wristState.normal);
             }
         }
-
-//                  if(operator.wasJustPressed(GamepadKeys.Button.X))
-//                  {
-//                      bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
-//                      bot.setVirtualFourBarState(virtualFourBarState.init);
-//                  }
 
         if(operator.wasJustPressed(GamepadKeys.Button.Y))
         {
