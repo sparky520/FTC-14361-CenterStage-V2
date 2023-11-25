@@ -32,7 +32,7 @@ public class RightBlueMid extends LinearOpMode
 //                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
 //                    bot.setVirtualFourBarState(virtualFourBarState.init);
 //                })
-                .back(19)
+                .back(32)
                 .build();
 
         Trajectory Traj2 = drive.trajectoryBuilder(Traj1.end())
@@ -44,7 +44,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory Traj4 = drive.trajectoryBuilder(Traj3.end())
-                .back(18)
+                .back(27)
                 .build();
 
         Trajectory Traj5 = drive.trajectoryBuilder(Traj4.end())
@@ -70,13 +70,13 @@ public class RightBlueMid extends LinearOpMode
             return;
         }
 
-            drive.followTrajectory(Traj1);
-            drive.followTrajectory(Traj2);
-            drive.followTrajectory(Traj3);
-            drive.followTrajectory(Traj4);
-            drive.followTrajectory(Traj5);
-            drive.followTrajectory(Traj6);
-            drive.followTrajectory(Traj7);
-            drive.followTrajectory(Traj8);
+        drive.followTrajectory(Traj1);
+        drive.followTrajectory(Traj2);
+        drive.followTrajectory(Traj3);
+        drive.followTrajectory(Traj4);
+        drive.followTrajectory(Traj5);
+        drive.followTrajectory(Traj6);
+        drive.followTrajectory(Traj7);
+        drive.followTrajectory(Traj8);
     }
 }
