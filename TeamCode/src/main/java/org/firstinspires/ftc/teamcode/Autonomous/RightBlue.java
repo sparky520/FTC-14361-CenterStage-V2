@@ -39,8 +39,6 @@ public class RightBlue extends OpMode
         initCam();
 
         telemetry.addData("STATUS:", "INITIALIZED");
-        telemetry.addData("AMOUNT OF BLUE DETECTED IN LEFT POSITION: ",  blueDetection.getLeftBoxBlueReading());
-        telemetry.addData("AMOUNT OF BLUE DETECTED IN MIDDLE POSITION: ",  blueDetection.getMiddleBoxBlueReading());
         telemetry.addData("CURRENT BLUE THRESHOLD SET AT: ", blueDetection.getBlueThreshold());
         telemetry.addData("CUBE IS (Right is default): ", blueDetection.getPosition());
 

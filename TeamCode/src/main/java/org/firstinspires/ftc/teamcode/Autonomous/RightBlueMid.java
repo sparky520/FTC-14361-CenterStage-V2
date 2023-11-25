@@ -32,7 +32,7 @@ public class RightBlueMid extends LinearOpMode
 //                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
 //                    bot.setVirtualFourBarState(virtualFourBarState.init);
 //                })
-                .back(19)
+                .back(23)
                 .build();
 
         Trajectory Traj2 = drive.trajectoryBuilder(Traj1.end())
