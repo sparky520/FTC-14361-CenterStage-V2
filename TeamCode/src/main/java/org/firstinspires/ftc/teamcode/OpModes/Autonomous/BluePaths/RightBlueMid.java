@@ -47,7 +47,7 @@ public class RightBlueMid extends LinearOpMode
 
         Trajectory passThroughGate = drive.trajectoryBuilder(behindGate.end())
                 .strafeRight(70)
-                //lineToLinearHeading dist. = 80
+                //lineToLinearHeading strafe dist. = 80
                 .build();
 
         Trajectory toBackBoard = drive.trajectoryBuilder(passThroughGate.end())
