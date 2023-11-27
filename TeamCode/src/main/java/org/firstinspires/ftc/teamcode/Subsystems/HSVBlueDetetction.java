@@ -34,7 +34,7 @@ public class HSVBlueDetetction extends OpenCvPipeline {
 
     /*
     These create the rectangles that your TSE should be in.
-    See what the camera does by using the camera stream in the menu of the driver station WHILE the bot is active
+    See what the camera does by using the camera str    eam in the menu of the driver station WHILE the bot is active
     Adjust the camera or the boxes so your TSE is inside it
 
      */
@@ -52,7 +52,7 @@ public class HSVBlueDetetction extends OpenCvPipeline {
     public Mat processFrame(Mat input) {
 
         // changes the frame captured by the camera from RGB to HSV
-        Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV_FULL); // Imgproc.COLOR_RGB2HSV & Imgproc.COLOR_RGB2HSV_FULL are the same; FULL is the scale 0-360 & normal is 0-180
+        Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV); // Imgproc.COLOR_RGB2HSV & Imgproc.COLOR_RGB2HSV_FULL are the same; FULL is the scale 0-360 & normal is 0-180
 
         /*
         HSV = [ HUE (color), SATURATION (grey), VALUE (brightness) ]
@@ -66,8 +66,8 @@ public class HSVBlueDetetction extends OpenCvPipeline {
         // *** don't forget to divide the values by 2 if you use Imgproc.COLOR_RBG2HSV
 
         // in this case, we using dark blue to light blue
-        Scalar lowHSV = new Scalar(257, 100, 100);
-        Scalar highHSV = new Scalar(177, 255, 242);
+        Scalar lowHSV = new Scalar(100, 50, 72);
+        Scalar highHSV = new Scalar(127, 255, 242);
 
 
         // this shows us the stuff in our range (in this case blue)

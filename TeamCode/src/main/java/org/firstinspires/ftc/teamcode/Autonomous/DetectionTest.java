@@ -26,12 +26,15 @@ public class DetectionTest extends OpMode {
 
     @Override
     public void init() {
-
+/*
         telemetry.addData("System Status: ", "Initializing...");
         telemetry.update();
 
+ */
+
         initCam();
 
+        /*
         telemetry.addLine("Camera Successfully Initialized.");
         telemetry.addData("CUBE IS: ", blueDetection.getLocation());
         telemetry.addLine("(right is default position");
@@ -45,10 +48,12 @@ public class DetectionTest extends OpMode {
 
         telemetry.update();
 
+         */
+
     }
 
     public void init_loop() {
-
+/*
         telemetry.addData("System Status: ", "Currently Looping Initialization...");
         telemetry.addData("CUBE IS: ", blueDetection.getLocation());
 
@@ -60,6 +65,8 @@ public class DetectionTest extends OpMode {
         telemetry.addData("MIDDLE SEQUENCE: ", scoreMiddleTSE);
 
         telemetry.update();
+
+ */
 
     }
 
