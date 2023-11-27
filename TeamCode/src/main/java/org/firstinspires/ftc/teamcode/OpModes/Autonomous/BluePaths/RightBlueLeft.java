@@ -23,7 +23,7 @@ public class RightBlueLeft extends LinearOpMode {
 
         drive.setPoseEstimate(myPose);
 
-        Trajectory pushPixel = drive.trajectoryBuilder(myPose)
+        Trajectory pushPixelMid = drive.trajectoryBuilder(myPose)
                 .addTemporalMarker(0.1, () -> {
                     bot.setClawPosition(clawState.close);
                     bot.setWristPosition(wristState.normal);
@@ -34,8 +34,12 @@ public class RightBlueLeft extends LinearOpMode {
 
         //-----change-----//
 
-        Trajectory backUp = drive.trajectoryBuilder(pushPixel.end())
+        Trajectory backUp = drive.trajectoryBuilder(pushPixelMid.end())
                 .forward(6)
+                .build();
+
+        Trajectory sideMove = drive.trajectoryBuilder(backUp.end())
+                .strafeLeft(15)
                 .build();
 
         Trajectory moveFromTape = drive.trajectoryBuilder(backUp.end())
@@ -85,7 +89,7 @@ public class RightBlueLeft extends LinearOpMode {
             return;
         }
 
-        drive.followTrajectory(pushPixel);
+        drive.followTrajectory(pushPixelMid);
         drive.followTrajectory(backUp);
         drive.followTrajectory(moveFromTape);
         drive.followTrajectory(behindGate);
