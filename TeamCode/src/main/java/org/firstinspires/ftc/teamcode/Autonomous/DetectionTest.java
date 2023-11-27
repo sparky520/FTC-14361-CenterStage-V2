@@ -35,6 +35,14 @@ public class DetectionTest extends OpMode {
         telemetry.addLine("Camera Successfully Initialized.");
         telemetry.addData("CUBE IS: ", blueDetection.getLocation());
         telemetry.addLine("(right is default position");
+
+        updatePosition();
+
+        telemetry.addLine("Scoring Sequence: ");
+        telemetry.addData("LEFT SEQUENCE: ", scoreLeftTSE);
+        telemetry.addData("RIGHT SEQUENCE: ", scoreRightTSE);
+        telemetry.addData("MIDDLE SEQUENCE: ", scoreMiddleTSE);
+
         telemetry.update();
 
     }
@@ -43,6 +51,14 @@ public class DetectionTest extends OpMode {
 
         telemetry.addData("System Status: ", "Currently Looping Initialization...");
         telemetry.addData("CUBE IS: ", blueDetection.getLocation());
+
+        updatePosition();
+
+        telemetry.addLine("Scoring Sequence: ");
+        telemetry.addData("LEFT SEQUENCE: ", scoreLeftTSE);
+        telemetry.addData("RIGHT SEQUENCE: ", scoreRightTSE);
+        telemetry.addData("MIDDLE SEQUENCE: ", scoreMiddleTSE);
+
         telemetry.update();
 
     }
@@ -50,10 +66,39 @@ public class DetectionTest extends OpMode {
     public void loop() {
         telemetry.addData("System Status: ", "Currently Looping OpMode...");
         telemetry.addData("CUBE IS: ", blueDetection.getLocation());
+        
+        updatePosition();
+
+        telemetry.addLine("Scoring Sequence: ");
+        telemetry.addData("LEFT SEQUENCE: ", scoreLeftTSE);
+        telemetry.addData("RIGHT SEQUENCE: ", scoreRightTSE);
+        telemetry.addData("MIDDLE SEQUENCE: ", scoreMiddleTSE);
+
         telemetry.update();
     }
 
 
+    // this method activates the boolean that decides the path
+
+    public void updatePosition(){
+
+        if(blueDetection.getLocation().equals(HSVBlueDetetction.Location.LEFT)) {
+            scoreLeftTSE = true;
+            scoreRightTSE = false;
+            scoreMiddleTSE = false;
+        }
+        else if(blueDetection.getLocation().equals(HSVBlueDetetction.Location.MIDDLE)) {
+            scoreLeftTSE = false;
+            scoreRightTSE = false;
+            scoreMiddleTSE = true;
+        }
+        else{
+            scoreLeftTSE = false;
+            scoreRightTSE = true;
+            scoreMiddleTSE = false;
+        }
+
+    }
 
     private void initCam() {
         //This line retrieves the resource identifier for the camera monitor view. The camera monitor view is typically used to display the camera feed
