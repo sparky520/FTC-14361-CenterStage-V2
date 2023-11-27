@@ -66,7 +66,7 @@ public class DetectionTest extends OpMode {
     public void loop() {
         telemetry.addData("System Status: ", "Currently Looping OpMode...");
         telemetry.addData("CUBE IS: ", blueDetection.getLocation());
-        
+
         updatePosition();
 
         telemetry.addLine("Scoring Sequence: ");
