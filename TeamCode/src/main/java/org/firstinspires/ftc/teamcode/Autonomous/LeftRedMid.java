@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -12,80 +13,85 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Autonomous(name = "LeftRedMid")
-public class LeftRedMid extends LinearOpMode
-{
+public class LeftRedMid extends LinearOpMode {
     public Robot bot;
-    Pose2d myPose = new Pose2d(63, -36, Math.toRadians(90));
+    Pose2d myPose = new Pose2d(-36, -63, Math.toRadians(90));
+
     @Override
-    public void runOpMode()
-    {
+    public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         drive.setPoseEstimate(myPose);
 
-        Trajectory Traj1 = drive.trajectoryBuilder(myPose)
-                .addTemporalMarker(0.2, () -> {
+        Trajectory pushPixel = drive.trajectoryBuilder(myPose)
+                .addTemporalMarker(0.1, () -> {
                     bot.setClawPosition(clawState.close);
-                    bot.setClawState(clawState.close);
                     bot.setWristPosition(wristState.normal);
-                    bot.setWristState(wristState.normal);
-                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
-                    bot.setVirtualFourBarState(virtualFourBarState.init);
+                    bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
                 })
-                .forward(30)
+                .back(32)
                 .build();
 
-        Trajectory Traj2 = drive.trajectoryBuilder(Traj1.end())
-                .back(6)
+        Trajectory backUp = drive.trajectoryBuilder(pushPixel.end())
+                .forward(6)
                 .build();
 
-        Trajectory Traj3 = drive.trajectoryBuilder(Traj2.end())
-                .strafeLeft(20)
+        Trajectory moveFromTape = drive.trajectoryBuilder(backUp.end())
+                .strafeRight(20)
                 .build();
 
-        Trajectory Traj4 = drive.trajectoryBuilder(Traj3.end())
-                .forward(24)
+        Trajectory behindGate = drive.trajectoryBuilder(moveFromTape.end())
+                .back(27)
                 .build();
 
-        Trajectory Traj5 = drive.trajectoryBuilder(Traj4.end())
-                .lineToLinearHeading(new Pose2d(12, 12, Math.toRadians(180)))
-                .addTemporalMarker(0.2, () -> {
+        Trajectory passThroughGate = drive.trajectoryBuilder(behindGate.end())
+                .strafeLeft(70)
+                //lineToLinearHeading dist. = 80
+                .build();
+
+        Trajectory toBackBoard = drive.trajectoryBuilder(passThroughGate.end())
+                .splineTo(new Vector2d(48, -36), Math.toRadians(180))
+                //.lineToLinearHeading(new Pose2d(48, 36, Math.toRadians(180)))
+                .addTemporalMarker(0.5, () -> {
                     bot.setWristPosition(wristState.sideways);
-                    bot.setWristState(wristState.sideways);
                     bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
-                    bot.setVirtualFourBarState(virtualFourBarState.outtaking);
                 })
-                .build();
-
-        Trajectory Traj6 = drive.trajectoryBuilder(Traj5.end())
-                .splineToLinearHeading(new Pose2d(-36,48),Math.toRadians(180))
-                .addTemporalMarker(0.2, () -> {
+                .addTemporalMarker(2, () -> {
+                    bot.setWristPosition(wristState.normal);
                     bot.setClawPosition(clawState.open);
                 })
                 .build();
 
-        Trajectory Traj7 = drive.trajectoryBuilder(Traj6.end())
-                .strafeLeft(10)
+        Trajectory moveFromBackBoard = drive.trajectoryBuilder(toBackBoard.end())
+                .addTemporalMarker(0.5, () -> {
+                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+                })
+                .forward(5)
                 .build();
 
-        Trajectory Traj8 = drive.trajectoryBuilder(Traj6.end())
-                .forward(10)
+        Trajectory towardsPark = drive.trajectoryBuilder(moveFromBackBoard.end())
+                .strafeRight(10)
+                .build();
+
+        Trajectory park = drive.trajectoryBuilder(towardsPark.end())
+                .back(15)
                 .build();
 
         waitForStart();
 
-        if(isStopRequested())
-        {
+        if (isStopRequested()) {
             return;
         }
 
-        drive.followTrajectory(Traj1);
-        drive.followTrajectory(Traj2);
-        drive.followTrajectory(Traj3);
-        drive.followTrajectory(Traj4);
-        drive.followTrajectory(Traj5);
-        drive.followTrajectory(Traj6);
-        drive.followTrajectory(Traj7);
-        drive.followTrajectory(Traj8);
+        drive.followTrajectory(pushPixel);
+        drive.followTrajectory(backUp);
+        drive.followTrajectory(moveFromTape);
+        drive.followTrajectory(behindGate);
+        drive.followTrajectory(passThroughGate);
+        drive.followTrajectory(toBackBoard);
+        drive.followTrajectory(moveFromBackBoard);
+        drive.followTrajectory(towardsPark);
+        drive.followTrajectory(park);
+
     }
 }
