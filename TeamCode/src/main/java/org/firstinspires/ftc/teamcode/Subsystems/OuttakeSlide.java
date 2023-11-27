@@ -72,6 +72,16 @@ public class OuttakeSlide
                         leftouttakeSlide.setPower(power);
                         rightouttakeSlide.setPower(power);
                         break;
+                    case AUTOLOWOUT:
+                        leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.AUTOLOWLEFT);
+                        rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.AUTOLOWRIGHT);
+
+                        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                        leftouttakeSlide.setPower(power);
+                        rightouttakeSlide.setPower(power);
+                        break;
                     case STATION:
                         leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.GROUNDLEFT);
                         rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.GROUNDRIGHT);
@@ -84,6 +94,7 @@ public class OuttakeSlide
                         break;
                 }
             }
+
             case extended:
                 break;
         }

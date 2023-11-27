@@ -330,8 +330,8 @@ public class FieldCentric extends OpMode {
 
         if(operator.wasJustPressed(GamepadKeys.Button.X))
         {
-            bot.setWristState(wristState.normal);
-            bot.setWristPosition(wristState.normal);
+         //   bot.setWristState(wristState.normal);
+         //   bot.setWristPosition(wristState.normal);
 
             bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
             bot.setVirtualFourBarState(virtualFourBarState.init);

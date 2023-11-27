@@ -9,10 +9,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.intakeSlidesState;
+import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
+import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.util.robotConstants;
+
 @Autonomous(name = "Goob")
 
 public class LeftBluePark extends LinearOpMode {
@@ -30,6 +34,19 @@ public class LeftBluePark extends LinearOpMode {
 
         Trajectory toCenterTape = drive.trajectoryBuilder(toTape)
                 .lineToConstantHeading(new Vector2d(-32, -72))
+                .addDisplacementMarker(0, () -> {
+
+                    bot.setClawPosition(clawState.close);
+                    bot.setClawState(clawState.close);
+
+
+
+                })
+                .addDisplacementMarker(10, () -> {
+                    bot.setVirtualFourBarPosition(virtualFourBarState.init,virtualFourBarExtensionState.extending);
+                    bot.setVirtualFourBarState(virtualFourBarState.init);
+
+                })
 //                .addTemporalMarker(1, () -> {
 //                    bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
 //            bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -51,28 +68,65 @@ Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
                 .build();
 
         Trajectory toBackBoard = drive.trajectoryBuilder(toCenterTape.end())
-                .addTemporalMarker(0, () -> {
-                    drive.turn(270);
-                })
-                .lineToLinearHeading(new Pose2d(-48, -48, Math.toRadians(90)))
-                .addTemporalMarker(.2, () -> {
 
-                    bot.setVirtualFourBarPosition(virtualFourBarState.init,virtualFourBarExtensionState.extending);
-                    bot.setVirtualFourBarState(virtualFourBarState.init);
+                .lineToLinearHeading(new Pose2d(-32, -108, Math.toRadians(90)))
+
+
+                .addDisplacementMarker(0, () -> {
+                     bot.setWristPosition(wristState.sideways);
+                    bot.setWristState(wristState.sideways);
+
+
+
 
                 })
+
+                .addDisplacementMarker(10, () -> {
+
+                    bot.setVirtualFourBarPosition(virtualFourBarState.outtaking,virtualFourBarExtensionState.extending);
+                    bot.setVirtualFourBarState(virtualFourBarState.outtaking);
+
+                    bot.setOuttakeSlideState(outtakeSlidesState.AUTOLOWOUT);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.AUTOLOWOUT, extensionState.extending);
+
+
+
+
+
+                })
+//            //    .addDisplacementMarker(35, () -> {
+//                    bot.setClawPosition(clawState.open);
+//                    bot.setClawState(clawState.open);
+//
+//
+//
+//
+//                })
+
                 .build();
+        Trajectory leaveBackBoard = drive.trajectoryBuilder(toBackBoard.end())
+                .lineToConstantHeading(new Vector2d(-32,-100))
+                .addDisplacementMarker(0, () -> {
 
+                    bot.setClawPosition(clawState.open);
+                  bot.setClawState(clawState.open);
+
+
+
+                })
+                        .build();
         waitForStart();
 
         if(isStopRequested()) return;
 
         drive.followTrajectory(toCenterTape);
 
-        drive.followTrajectory(dropOnCenterTape);
+        //drive.followTrajectory(dropOnCenterTape);
+
+        drive.followTrajectory(toBackBoard);
 
 
-       // drive.followTrajectory(toBackBoard);
+        drive.followTrajectory(leaveBackBoard);
     }
 
 

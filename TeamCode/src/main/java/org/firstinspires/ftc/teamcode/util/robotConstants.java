@@ -23,6 +23,8 @@ public class robotConstants
         public static int LOWRIGHT = 450;
 
 
+        public static int AUTOLOWLEFT = -100;
+        public static int AUTOLOWRIGHT = 100;
         public static int GROUNDLEFT = 0;
         public static int GROUNDRIGHT = 0;
     }
@@ -57,12 +59,14 @@ public class robotConstants
         public static double intakeTeleOp = 0.0;
 
         public static double leftClose = .7;
-        public static double rightClose = .3;
-        public static double leftOpen = .53;
-        public static double rightOpen = .58;
+        public static double rightClose = .58;
+        public static double leftOpen = .9;
+        public static double rightOpen = .33;
 
-        public static double outWristRotation = 0.0;
-        public static double sideWristRotation = 0.0;
+        public static double rightCloseOnePixel = .58;
+
+
+
     }
 
     public static class Arm
@@ -86,8 +90,8 @@ public class robotConstants
 
     public static class Wrist
     {
-        public static double wristSideways = 1;
-        public static double wristNormal = 0.67;
+        public static double wristSideways = .67;
+        public static double wristNormal = .34;
 
         // scale is from .33 (0) to .67 (1) so there no overshoot at all
 
@@ -97,18 +101,18 @@ public class robotConstants
 
     public static class virtualFourBar
     {
-        public static double intakingLeft = 0.65;
+        public static double intakingLeft = .84;
         //.486
         //.588
-        public static double intakingRight = .61;
+        public static double intakingRight = .44;
 
-        public static double outtakingLeft = 0.26;
-        public static double outtakingRight = 0.22;
+        public static double outtakingLeft = .45;
+        public static double outtakingRight = .05;
 
-        public static double initLeft = .54;
+        public static double initLeft = .75;
         //.45
         //.55
-        public static double initRight = .5;
+        public static double initRight = .35;
 
         public static double intakingLeftAuton = 0.5;
         public static double intakingRightAuton = 0.6;
