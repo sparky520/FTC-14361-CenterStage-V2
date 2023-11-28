@@ -58,7 +58,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory toBackBoard = drive.trajectoryBuilder(passThroughGate.end())
-                .lineToLinearHeading(new Pose2d(48, 36, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(54, 30, Math.toRadians(180)))
 //                .addTemporalMarker(0.5, () -> {
 //                    bot.setWristPosition(wristState.sideways);
 //                    bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
@@ -81,7 +81,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory park = drive.trajectoryBuilder(towardsPark.end())
-                .back(20)
+                .back(16)
                 .build();
 
         waitForStart();
