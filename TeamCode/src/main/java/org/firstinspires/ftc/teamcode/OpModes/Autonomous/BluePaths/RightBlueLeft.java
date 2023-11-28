@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDriv
 @Autonomous(name = "RightBlueLeft")
 public class RightBlueLeft extends LinearOpMode {
     public Robot bot;
-    Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
+    Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(0));
 
     @Override
     public void runOpMode() {
@@ -23,23 +24,20 @@ public class RightBlueLeft extends LinearOpMode {
 
         drive.setPoseEstimate(myPose);
 
-        Trajectory pushPixelMid = drive.trajectoryBuilder(myPose)
-                .addTemporalMarker(0.1, () -> {
-                    bot.setClawPosition(clawState.close);
-                    bot.setWristPosition(wristState.normal);
-                    bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
-                })
-                .back(26)
+        Trajectory pushPixel = drive.trajectoryBuilder(myPose)
+//                .addTemporalMarker(0.1, () -> {
+//                    bot.setClawPosition(clawState.close);
+//                    bot.setWristPosition(wristState.normal);
+//                    bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
+//                })
+//                .addTemporalMarker(2, () -> {
+//                    bot.setActiveIntakePosition(activeIntakeState.activeReverse);
+//                })
+                .splineTo(new Vector2d(-36, 30), Math.toRadians(0))
                 .build();
 
-        //-----change-----//
-
-        Trajectory backUp = drive.trajectoryBuilder(pushPixelMid.end())
+        Trajectory backUp = drive.trajectoryBuilder(pushPixel.end())
                 .forward(6)
-                .build();
-
-        Trajectory sideMove = drive.trajectoryBuilder(backUp.end())
-                .strafeLeft(15)
                 .build();
 
         Trajectory moveFromTape = drive.trajectoryBuilder(backUp.end())
@@ -89,7 +87,7 @@ public class RightBlueLeft extends LinearOpMode {
             return;
         }
 
-        drive.followTrajectory(pushPixelMid);
+        drive.followTrajectory(pushPixel);
         drive.followTrajectory(backUp);
         drive.followTrajectory(moveFromTape);
         drive.followTrajectory(behindGate);
