@@ -18,7 +18,7 @@ public class RightBlueLeft extends LinearOpMode
     Robot bot;
     Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
     public Trajectory ejectPixel, backUp, behindGate, passThroughGate, toBackBoard, moveFromBackBoard, towardsPark, park;
-    SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+    public SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
     @Override
     public void runOpMode()

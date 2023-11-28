@@ -29,22 +29,25 @@ public class MainBlueRight extends LinearOpMode {
         if (isStopRequested()) {
             return;
         }
-        /* to get detection
-         */
+
 
         switch (blueDetection.getLocation()) {
+
             case LEFT:
+                camera.stopStreaming();
                 leftPath.rightBlueLeftExecute();
                 break;
+
             case RIGHT:
-                // ...
+                camera.stopStreaming();
                 break;
+
             case MIDDLE:
+                camera.stopStreaming();
                 midPath.rightBlueMidExecute();
         }
 
 
-        camera.stopStreaming();
 
 
     }
