@@ -4,21 +4,24 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
-import org.firstinspires.ftc.teamcode.Subsystems.Claw;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
 
 @Autonomous(name = "RightBlueMid")
 public class RightBlueMid extends LinearOpMode
 {
     Robot bot;
+    HardwareMap hardwareMap;
+    bot = new Robot(hardWareMap, telemetry);
+
     Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
+
     @Override
     public void runOpMode()
     {
