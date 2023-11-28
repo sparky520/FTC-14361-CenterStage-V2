@@ -17,11 +17,12 @@ public class RightBlueLeft extends LinearOpMode
 {
     Robot bot;
     Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
+    public Trajectory ejectPixel, backUp, behindGate, passThroughGate, toBackBoard, moveFromBackBoard, towardsPark, park;
+    SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
     @Override
     public void runOpMode()
     {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         bot = new Robot(hardwareMap, telemetry);
         bot.setInBrake();
 
@@ -82,13 +83,11 @@ public class RightBlueLeft extends LinearOpMode
                 .back(16)
                 .build();
 
-        waitForStart();
 
-        if(isStopRequested())
-        {
-            return;
-        }
 
+    }
+
+    public void rightBlueLeftExecute(){
         drive.followTrajectory(ejectPixel);
         drive.followTrajectory(backUp);
         drive.followTrajectory(behindGate);
@@ -97,6 +96,5 @@ public class RightBlueLeft extends LinearOpMode
         drive.followTrajectory(moveFromBackBoard);
         drive.followTrajectory(towardsPark);
         drive.followTrajectory(park);
-
     }
 }
