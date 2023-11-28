@@ -17,9 +17,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
 @Autonomous(name = "RightBlueMid")
 public class RightBlueMid extends LinearOpMode
 {
-    public Claw claw;
-    public Wrist wrist;
-    Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(0));
+    Robot bot;
+    Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
     @Override
     public void runOpMode()
     {
@@ -28,10 +27,15 @@ public class RightBlueMid extends LinearOpMode
         drive.setPoseEstimate(myPose);
 
         Trajectory pushPixel = drive.trajectoryBuilder(myPose)
-//                .addTemporalMarker(0.1, () -> {
+//                .addDisplacementMarker(0, () -> {
 //                    bot.setClawPosition(clawState.close);
-//                    bot.setWristPosition(wristState.normal);
-//                    bot.setVirtualFourBarPosition(virtualFourBarState.intaking, virtualFourBarExtensionState.extending);
+//                    bot.setClawState(clawState.close);
+//
+//                })
+//                .addDisplacementMarker(10, () -> {
+//                    bot.setVirtualFourBarPosition(virtualFourBarState.init,virtualFourBarExtensionState.extending);
+//                    bot.setVirtualFourBarState(virtualFourBarState.init);
+//
 //                })
                 .back(32)
                 .build();
@@ -54,8 +58,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory toBackBoard = drive.trajectoryBuilder(passThroughGate.end())
-                .splineTo(new Vector2d(48, 36), Math.toRadians(90))
-                //.lineToLinearHeading(new Pose2d(48, 36, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(48, 36, Math.toRadians(180)))
 //                .addTemporalMarker(0.5, () -> {
 //                    bot.setWristPosition(wristState.sideways);
 //                    bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);
