@@ -15,13 +15,14 @@ import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDriv
 public class RightBlueMid extends LinearOpMode
 {
     Robot bot;
-    Pose2d myPose = new Pose2d(-36, -63, Math.toRadians(90));
+    Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
 
     @Override
     public void runOpMode()
     {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         bot = new Robot(hardwareMap, telemetry);
+        bot.setInBrake();
 
         drive.setPoseEstimate(myPose);
 
@@ -55,7 +56,7 @@ public class RightBlueMid extends LinearOpMode
                 .build();
 
         Trajectory toBackBoard = drive.trajectoryBuilder(passThroughGate.end())
-                .lineToLinearHeading(new Pose2d(54, -30, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(54, 30, Math.toRadians(180)))
                 .addTemporalMarker(0.5, () -> {
                     bot.setWristPosition(wristState.sideways);
                     bot.setVirtualFourBarPosition(virtualFourBarState.outtaking, virtualFourBarExtensionState.extending);

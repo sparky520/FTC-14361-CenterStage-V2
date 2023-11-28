@@ -23,6 +23,7 @@ public class RightBlueLeft extends LinearOpMode
     {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         bot = new Robot(hardwareMap, telemetry);
+        bot.setInBrake();
 
         drive.setPoseEstimate(myPose);
 
