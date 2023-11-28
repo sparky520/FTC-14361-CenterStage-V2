@@ -42,6 +42,16 @@ public class OuttakeSlide
             {
                 switch (outtakeSlidesState)
                 {
+                    case MOSTHIGHOUT:
+                        leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.MOSTHIGHLEFT);
+                        rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.MOSTHIGHRIGHT);
+
+                        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                        leftouttakeSlide.setPower(power);
+                        rightouttakeSlide.setPower(power);
+                        break;
                     case HIGHOUT:
                         leftouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.HIGHLEFT);
                         rightouttakeSlide.setTargetPosition(robotConstants.outtakeSlide.HIGHRIGHT);
@@ -107,6 +117,16 @@ public class OuttakeSlide
     public double getRightOuttakeSlideMotorPosition()
     {
         return rightouttakeSlide.getCurrentPosition();
+    }
+    public void setPosition(int pos) {
+        leftouttakeSlide.setTargetPosition(-pos);
+        rightouttakeSlide.setTargetPosition(pos);
+
+        leftouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightouttakeSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        leftouttakeSlide.setPower(power);
+        rightouttakeSlide.setPower(power);
     }
 }
 

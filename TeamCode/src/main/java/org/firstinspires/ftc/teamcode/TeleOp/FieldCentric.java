@@ -30,6 +30,7 @@ public class FieldCentric extends OpMode {
     private GamepadEx driver, operator;
     private Robot bot;
     private int count = 0;
+    private int outtakeSlideCount  = 0;
 
     @Override
     public void init() {
@@ -242,9 +243,26 @@ public class FieldCentric extends OpMode {
             bot.intakeSlide.setPosition(intakeSlide.retracted + count);
         }
 
-        if(operator.wasJustPressed(GamepadKeys.Button.B))
-        {
-            if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.outtaking))
+        if(operator.wasJustPressed(GamepadKeys.Button.B)) {
+            if (bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.MEDIUMOUT))
+            {
+                bot.outtakeSlide.setPosition(outtakeSlideCount + robotConstants.outtakeSlide.LOW);
+                bot.setOuttakeSlideState(outtakeSlidesState.LOWOUT);
+            }
+            else if(bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.LOWOUT))
+            {
+                bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                bot.setOuttakeSlideState(outtakeSlidesState.LOWOUT);
+            }
+            else if(bot.getOuttakeState() != null && bot.getOuttakeState().equals(outtakeSlidesState.HIGHOUT))
+            {
+                bot.outtakeSlide.setPosition(outtakeSlideCount + robotConstants.outtakeSlide.MEDIUM);
+                bot.setOuttakeSlideState(outtakeSlidesState.MEDIUMOUT);
+            }
+
+        }
+
+          /*  if (bot.virtualFourBarState != null && bot.getvirtualFourBarState().equals(virtualFourBarState.outtaking))
             {
                 bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                 bot.setVirtualFourBarState(virtualFourBarState.init);
@@ -308,7 +326,7 @@ public class FieldCentric extends OpMode {
                 bot.setWristState(wristState.normal);
                 bot.setWristPosition(wristState.normal);
             }
-        }
+        }*/
 
         if(operator.wasJustPressed(GamepadKeys.Button.Y))
         {

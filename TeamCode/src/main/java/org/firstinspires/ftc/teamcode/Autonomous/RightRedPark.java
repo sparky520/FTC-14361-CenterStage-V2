@@ -15,26 +15,23 @@ import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.util.robotConstants;
 
-@Autonomous(name = "LeftBluePark")
-
-public class LeftBluePark extends LinearOpMode {
-
+@Autonomous(name = "RightRedPark")
+public class RightRedPark extends LinearOpMode {
     Robot bot;
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         bot = new Robot(hardwareMap, telemetry);
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        Pose2d start = new Pose2d(-10,-72,0);
-
-
+        Pose2d start = new Pose2d(10,72,0);
 
         drive.setPoseEstimate(start);
 
         Trajectory toCenterTape = drive.trajectoryBuilder(start)
-                .lineToConstantHeading(new Vector2d(-32, -72))
+                .lineToConstantHeading(new Vector2d(32, 72))
                 .addDisplacementMarker(0, () -> {
+
+                    bot.setIntakeSlidePosition(intakeSlidesState.STATION);
 
                     bot.setClawPosition(clawState.close);
                     bot.setClawState(clawState.close);
@@ -43,7 +40,7 @@ public class LeftBluePark extends LinearOpMode {
 
                 })
                 .addDisplacementMarker(10, () -> {
-                    bot.setVirtualFourBarPosition(virtualFourBarState.init,virtualFourBarExtensionState.extending);
+                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                     bot.setVirtualFourBarState(virtualFourBarState.init);
 
                 })
@@ -56,9 +53,9 @@ public class LeftBluePark extends LinearOpMode {
 //            bot.setClawState(clawState.close);
 //                })
                 .build();
-Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
-        .lineToConstantHeading(new Vector2d(-40, -72))
-        .build();
+        Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
+                .lineToConstantHeading(new Vector2d(-40, -72))
+                .build();
         Trajectory toRightTape = drive.trajectoryBuilder(toCenterTape.end())
                 .lineToConstantHeading(new Vector2d(-5,-36))
                 .build();
@@ -73,7 +70,7 @@ Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
 
 
                 .addDisplacementMarker(0, () -> {
-                     bot.setWristPosition(wristState.sideways);
+                    bot.setWristPosition(wristState.sideways);
                     bot.setWristState(wristState.sideways);
 
 
@@ -109,12 +106,12 @@ Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
                 .addDisplacementMarker(0, () -> {
 
                     bot.setClawPosition(clawState.open);
-                  bot.setClawState(clawState.open);
+                    bot.setClawState(clawState.open);
 
 
 
                 })
-                        .build();
+                .build();
         waitForStart();
 
         if(isStopRequested()) return;
@@ -125,11 +122,11 @@ Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
 
         //drive.followTrajectory(dropOnCenterTape);
 
-        drive.followTrajectory(toBackBoard);
+        //drive.followTrajectory(toBackBoard);
 
 
-        drive.followTrajectory(leaveBackBoard);
+        //drive.followTrajectory(leaveBackBoard);
     }
 
+    }
 
-}

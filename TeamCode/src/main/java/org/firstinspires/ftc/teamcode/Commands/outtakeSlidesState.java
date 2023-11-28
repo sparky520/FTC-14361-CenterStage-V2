@@ -2,5 +2,5 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 public enum outtakeSlidesState
 {
-    HIGHOUT,MEDIUMOUT,LOWOUT,AUTOLOWOUT,STATION
+    MOSTHIGHOUT,HIGHOUT,MEDIUMOUT,LOWOUT,AUTOLOWOUT,STATION
 }

@@ -12,8 +12,18 @@ public class robotConstants
         public static double ticksPerRevolution = 0.0;
 
 
-        public static int HIGHLEFT = -1200;
-        public static int HIGHRIGHT = 1200;
+        public static int MOSTHIGHLEFT = -1500;
+        public static int MOSTHIGHRIGHT = 1500;
+        public static int HIGH = 1400;
+        public static int MEDIUM = 900;
+        public static int LOW = 450;
+        //left is negative
+        //right is positive
+
+
+
+        public static int HIGHLEFT = -1400;
+        public static int HIGHRIGHT = 1400;
         //sometimes the encoder values go negative so you might have to change those
 
         public static int MEDIUMLEFT = -900;
