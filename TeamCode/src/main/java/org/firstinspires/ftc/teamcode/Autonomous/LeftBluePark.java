@@ -199,5 +199,27 @@ Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
             }
         });
     }
+/*
+OpenCvCamera camera;
+    HSVBlueDetection blueDetection;
+    String webcamName;
+
+    /* to get detection
+        switch (blueDetection.getLocation()) {
+            case LEFT:
+                // ...
+                break;
+            case RIGHT:
+                // ...
+                break;
+            case MIDDLE:
+                // ...
+        }
+
+        camera.stopStreaming();
+
+    // to save battery
+
+ */
 
 }
