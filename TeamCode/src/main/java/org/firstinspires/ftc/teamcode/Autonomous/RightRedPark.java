@@ -29,16 +29,16 @@ public class RightRedPark extends LinearOpMode {
 
         Trajectory toCenterTape = drive.trajectoryBuilder(start)
                 .lineToConstantHeading(new Vector2d(32, 72))
-                .addDisplacementMarker(0, () -> {
-
-                    bot.setIntakeSlidePosition(intakeSlidesState.STATION);
-
-                    bot.setClawPosition(clawState.close);
-                    bot.setClawState(clawState.close);
-
-
-
-                })
+//                .addDisplacementMarker(0, () -> {
+//
+//                  
+//
+//                    bot.setClawPosition(clawState.close);
+//                    bot.setClawState(clawState.close);
+//
+//
+//
+//                })
                 .addDisplacementMarker(10, () -> {
                     bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
                     bot.setVirtualFourBarState(virtualFourBarState.init);
@@ -115,6 +115,9 @@ public class RightRedPark extends LinearOpMode {
         waitForStart();
 
         if(isStopRequested()) return;
+
+        bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
+        bot.setIntakeSlideState(intakeSlidesState.STATION);
 
         bot.setClawPosition(clawState.close);
         bot.setClawState(clawState.close);
