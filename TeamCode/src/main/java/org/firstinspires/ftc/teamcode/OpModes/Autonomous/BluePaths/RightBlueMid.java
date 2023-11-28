@@ -3,7 +3,9 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.virtualFourBarState;
@@ -12,15 +14,18 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 
 @Autonomous(name = "RightBlueMid")
-public class RightBlueMid extends LinearOpMode
+public class RightBlueMid
 {
     Robot bot;
     Pose2d myPose = new Pose2d(-36, 63, Math.toRadians(90));
 
-    @Override
+    HardwareMap hardwareMap;
+    Telemetry telemetry;
+    public Trajectory pushPixel, backUp, behindGate,  moveFromTape, moveFromBackBoard, park, passThroughGate, toBackBoard, towardsPark;
+    SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
     public void runOpMode()
     {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
         bot = new Robot(hardwareMap, telemetry);
         bot.setInBrake();
 
@@ -82,13 +87,10 @@ public class RightBlueMid extends LinearOpMode
                 .back(16)
                 .build();
 
-        waitForStart();
 
-        if(isStopRequested())
-        {
-            return;
-        }
+    }
 
+    public void rightBlueMidExecute(){
         drive.followTrajectory(pushPixel);
         drive.followTrajectory(backUp);
         drive.followTrajectory(moveFromTape);
@@ -98,6 +100,6 @@ public class RightBlueMid extends LinearOpMode
         drive.followTrajectory(moveFromBackBoard);
         drive.followTrajectory(towardsPark);
         drive.followTrajectory(park);
-
     }
+
 }
