@@ -88,8 +88,8 @@ public class robotConstants
     public static class activeIntake
     {
 
-        public static double active = -0.3;
-        public static double reverseActive = 0.3;
+        public static double active = 0.3;
+        public static double reverseActive = -0.3;
 
     }
 
@@ -101,7 +101,7 @@ public class robotConstants
     public static class Wrist
     {
         public static double wristSideways = .67;
-        public static double wristNormal = .34;
+        public static double wristNormal = 1;
 
         // scale is from .33 (0) to .67 (1) so there no overshoot at all
 
