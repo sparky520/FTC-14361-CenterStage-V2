@@ -48,8 +48,6 @@ public class MainBlueRight extends LinearOpMode {
         }
 
 
-
-
     }
 
     private void initCam() {
