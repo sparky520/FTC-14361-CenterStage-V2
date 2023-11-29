@@ -44,15 +44,8 @@ public class LeftBluePark extends LinearOpMode {
 
         Trajectory toCenterTape = drive.trajectoryBuilder(start)
                 .lineToConstantHeading(new Vector2d(-32, -72))
-                .addDisplacementMarker(0, () -> {
 
-                    bot.setClawPosition(clawState.close);
-                    bot.setClawState(clawState.close);
-
-
-
-                })
-                .addDisplacementMarker(15, () -> {
+                .addDisplacementMarker(18, () -> {
                     bot.setVirtualFourBarPosition(virtualFourBarState.init,virtualFourBarExtensionState.extending);
                     bot.setVirtualFourBarState(virtualFourBarState.init);
 
@@ -134,10 +127,10 @@ Trajectory dropOnCenterTape = drive.trajectoryBuilder(toCenterTape.end())
                 // ...
                 break;
             case RIGHT:
-                // ...
+
                 break;
             case MIDDLE:
-                // ...
+
         }
          */
 
