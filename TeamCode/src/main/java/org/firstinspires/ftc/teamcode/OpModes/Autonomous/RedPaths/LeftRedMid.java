@@ -17,10 +17,12 @@ public class LeftRedMid extends LinearOpMode
     Robot bot;
     Pose2d myPose = new Pose2d(-36, -63, Math.toRadians(-90));
 
+    public SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+    public Trajectory backUp, behindGate, passThroughGate, toBackBoard, moveFromBackBoard, towardsPark, park, moveFromTape, pushPixel;
+
     @Override
     public void runOpMode()
     {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         bot = new Robot(hardwareMap, telemetry);
         bot.setInBrake();
 
@@ -89,6 +91,12 @@ public class LeftRedMid extends LinearOpMode
             return;
         }
 
+
+
+    }
+
+    public void leftRedMidExecute(){
+
         drive.followTrajectory(pushPixel);
         drive.followTrajectory(backUp);
         drive.followTrajectory(moveFromTape);
@@ -98,6 +106,5 @@ public class LeftRedMid extends LinearOpMode
         drive.followTrajectory(moveFromBackBoard);
         drive.followTrajectory(towardsPark);
         drive.followTrajectory(park);
-
     }
 }

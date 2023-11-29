@@ -20,7 +20,7 @@ https://www.youtube.com/watch?v=JO7dqzJi8lw&ab_channel=FTCteamWolfCorpRobotics12
 
 I've added some comments abt stuff- Good luck!
  */
-public class BlueDetection extends OpenCvPipeline {
+public class RedDetetction extends OpenCvPipeline {
     Telemetry telemetry;
     Mat mat = new Mat();
     public enum Location {
@@ -38,15 +38,15 @@ public class BlueDetection extends OpenCvPipeline {
     Adjust the camera or the boxes so your TSE is inside it
 
      */
-    static final Rect LEFT_ROI = new Rect(
-            new Point(45, 40),
-            new Point(90, 90));
+    static final Rect RIGHT_ROI = new Rect(
+            new Point(60, 35),
+            new Point(120, 75));
     static final Rect MIDDLE_ROI = new Rect(
-            new Point(215, 40),
-            new Point(255, 90));
+            new Point(140, 35),
+            new Point(200, 75));
     static double PERCENT_COLOR_THRESHOLD = 0.4;
 
-    public BlueDetection(Telemetry t) { telemetry = t; }
+    public RedDetetction(Telemetry t) { telemetry = t; }
 
     @Override
     public Mat processFrame(Mat input) {
@@ -66,29 +66,29 @@ public class BlueDetection extends OpenCvPipeline {
         // *** don't forget to divide the values by 2 if you use Imgproc.COLOR_RBG2HSV
 
         // in this case, we using dark blue to light blue
-        Scalar lowHSV = new Scalar(100, 50, 72);
-        Scalar highHSV = new Scalar(127, 255, 242);
+        Scalar lowHSV = new Scalar(5.5, 209, 132);
+        Scalar highHSV = new Scalar(5.5, 255, 255);
 
 
         // this shows us the stuff in our range (in this case blue)
         // mat is the matrix, and we define our
         Core.inRange(mat, lowHSV, highHSV, mat);
 
-        Mat left = mat.submat(LEFT_ROI);
+        Mat right = mat.submat(RIGHT_ROI);
         Mat middle = mat.submat(MIDDLE_ROI);
 
-        double leftValue = Core.sumElems(left).val[0] / LEFT_ROI.area() / 255;
+        double rightValue = Core.sumElems(right).val[0] / RIGHT_ROI.area() / 255;
         double middleValue = Core.sumElems(middle).val[0] / MIDDLE_ROI.area() / 255;
 
-        left.release();
+        right.release();
         middle.release();
 
-        telemetry.addData("Left raw value", (int) Core.sumElems(left).val[0]);
+        telemetry.addData("Left raw value", (int) Core.sumElems(right).val[0]);
         telemetry.addData("Middle raw value", (int) Core.sumElems(middle).val[0]);
-        telemetry.addData("Left percentage", Math.round(leftValue * 100) + "%");
+        telemetry.addData("Left percentage", Math.round(rightValue * 100) + "%");
         telemetry.addData("Middle percentage", Math.round(middleValue * 100) + "%");
 
-        boolean tseLeft = leftValue > PERCENT_COLOR_THRESHOLD;
+        boolean tseRight = rightValue > PERCENT_COLOR_THRESHOLD;
         boolean tseMiddle = middleValue > PERCENT_COLOR_THRESHOLD;
 
 
@@ -102,17 +102,17 @@ public class BlueDetection extends OpenCvPipeline {
 
         That's why his code is 'reversed'- he's not actually detecting the Skystone- just the normal ones
          */
-        if (tseLeft) {
-            location = Location.LEFT;
-            telemetry.addData("TSE Location: ", "LEFT");
+        if (tseRight) {
+            location = Location.RIGHT;
+            telemetry.addData("TSE Location: ", "RIGHT");
         }
         else if(tseMiddle) {
             location = Location.MIDDLE;
             telemetry.addData("TSE Location: ", "MIDDLE");
         }
         else {
-            location = Location.RIGHT;
-            telemetry.addData("TSE not detected; Location: ", "RIGHT");
+            location = Location.LEFT;
+            telemetry.addData("TSE not detected; Location: ", "LEFT");
         }
 
         telemetry.update();
@@ -126,7 +126,7 @@ public class BlueDetection extends OpenCvPipeline {
         Scalar tseDetected = new Scalar(0, 255, 0);
 
         // depending on where the TSEe is, or where it isn't, the color of the rectangle will change
-        Imgproc.rectangle(mat, LEFT_ROI, location == Location.LEFT? tseDetected:noTSE);
+        Imgproc.rectangle(mat, RIGHT_ROI, location == Location.LEFT? tseDetected:noTSE);
         Imgproc.rectangle(mat, MIDDLE_ROI, location == Location.MIDDLE? tseDetected:noTSE);
 
         return mat;
